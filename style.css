@@ -17,12 +17,15 @@
     :root { font-family: InterVariable, sans-serif; }
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--background-color);
     color: white;
     margin: 0;
 }
-
 
 /* sidebar navigation */
 
@@ -31,7 +34,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    float: left;
     border: 1px solid var(--sidebar-border);
     border-left: none;
     height: 99.5vh;
@@ -48,8 +50,8 @@ body {
 
 .sidebar-icon {
     max-width: fit-content;
-    margin-top: 8px;
-    margin-left: 8px;
+    margin-top: 12px;
+    margin-left: 12px;
     padding: 8px;
     border-radius: 10px;
     color: rgb(197, 197, 197);
@@ -65,7 +67,8 @@ body {
     display: flex;
     justify-content: center;
     gap: 24px;
-    padding: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .rocket-league, .counter-strike{
@@ -110,10 +113,12 @@ body {
 }
 
 .sidebar-elements {
-    padding: 12px;
-    font-size: 1rem;
-    font-family: Inter, sans-serif;
-    font-weight: 500;
+    display: flex;
+    padding-left: 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
     color: rgb(41, 41, 41);
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 6px;
@@ -122,11 +127,114 @@ body {
     cursor: pointer;
 }
 
+h3 {
+    font-size: 1.1rem;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+}
+
 .sidebar-elements:hover {
     background-color: var(--background-color);
     color: rgb(245, 245, 245);
     border: 1px solid var(--sidebar-border);
     transition: var(--button-animation);
+}
+
+.sidebar.active {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid var(--sidebar-border);
+    border-left: none;
+    height: 99.5vh;
+    width: 5rem;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: var(--sidebar-color);
+    -webkit-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    z-index: 10;
+    overflow: auto;
+
+    .top-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rocket-league, .counter-strike{
+        overflow: hidden;
+        object-fit: scale-down;
+        border-radius: 8px;
+        width:  3rem;
+        height: 3rem;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        background-color: var(--background-color);
+        cursor: pointer;
+        transition: 200ms ease;
+        
+    }
+
+    .rl-img, .cs-img {
+        filter: invert(100%);
+        width: 2rem;
+        height: auto;
+    }
+    
+    .counter-strike:hover {
+        background-color: var(--button-color);
+        transition: 200ms ease;
+        border: 2px solid rgba(0, 0, 0, 0.4);
+        .cs-img {
+            filter: invert(20%);
+        }
+    }
+    
+    .rocket-league:hover {
+        background-color: var(--button-color);
+        transition: 200ms ease;
+        border: 2px solid rgba(0, 0, 0, 0.4);
+        .rl-img {
+            filter: invert(20%);
+        }
+    }
+
+    .sidebar-body {
+        display: flex;
+        flex-direction: column;
+        padding-left: 16px;
+        padding-right: 24px;
+        gap: 24px;
+    }
+
+    .sidebar-elements {
+        display: flex;
+        flex-direction: column;
+        width: 3rem;
+        height: 3rem;
+        align-items: flex-start;
+        justify-content: center;
+        color: rgb(41, 41, 41);
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 6px;
+        background-color: var(--button-color);
+        transition: var(--button-animation);
+        cursor: pointer;
+    }
+
+    .sidebar-elements:hover {
+        background-color: var(--background-color);
+        color: rgb(245, 245, 245);
+        border: 1px solid var(--sidebar-border);
+        transition: var(--button-animation);
+    }
+
+    h3 {
+        display: none;
+    }
+    
 }
 
 /* bento box area */
@@ -181,3 +289,62 @@ body {
     grid-column: 2/4;
 }
 
+
+
+
+
+/**
+ * Basic CSS Media Query Template
+ * TODO: I should probably use Sass...
+ * Author: Michael Vieth
+ * ------------------------------------------
+ *  Responsive Grid Media Queries - 1280, 1024, 768, 480
+ *   1280-1024   - desktop (default grid)
+ *   1024-768    - tablet landscape
+ *   768-480     - tablet 
+ *   480-less    - phone landscape & smaller
+ * --------------------------------------------
+ */
+ @media all and (min-width: 1024px) and (max-width: 1280px) { }
+
+ @media all and (min-width: 768px) and (max-width: 1024px) { }
+ 
+ @media all and (min-width: 480px) and (max-width: 768px) { }
+ 
+ @media all and (max-width: 480px) { }
+ 
+ 
+ /* Portrait */
+ @media screen and (orientation:portrait) { /* Portrait styles here */ }
+ /* Landscape */
+ @media screen and (orientation:landscape) { /* Landscape styles here */ }
+ 
+ 
+ /* CSS for iPhone, iPad, and Retina Displays */
+ 
+ /* Non-Retina */
+ @media screen and (-webkit-max-device-pixel-ratio: 1) {
+ }
+ 
+ /* Retina */
+ @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+ only screen and (-o-min-device-pixel-ratio: 3/2),
+ only screen and (min--moz-device-pixel-ratio: 1.5),
+ only screen and (min-device-pixel-ratio: 1.5) {
+ }
+ 
+ /* iPhone Portrait */
+ @media screen and (max-device-width: 480px) and (orientation:portrait) {
+ } 
+ 
+ /* iPhone Landscape */
+ @media screen and (max-device-width: 480px) and (orientation:landscape) {
+ }
+ 
+ /* iPad Portrait */
+ @media screen and (min-device-width: 481px) and (orientation:portrait) {
+ }
+ 
+ /* iPad Landscape */
+ @media screen and (min-device-width: 481px) and (orientation:landscape) {
+ }
