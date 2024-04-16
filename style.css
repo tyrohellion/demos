@@ -9,6 +9,7 @@
     --card-text-color: rgb(51, 51, 51);
 
     font-family: Inter, sans-serif;
+    font-family: 'Switzer', sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 }
 
@@ -18,7 +19,6 @@
 
 body {
     background-color: var(--background-color);
-    text-align: center;
     color: white;
     margin: 0;
 }
@@ -27,6 +27,7 @@ body {
 /* sidebar navigation */
 
 .sidebar {
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -41,8 +42,24 @@ body {
     -webkit-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
     -moz-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
     box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    z-index: 10;
+    overflow: auto;
 }
 
+.sidebar-icon {
+    max-width: fit-content;
+    margin-top: 8px;
+    margin-left: 8px;
+    padding: 8px;
+    border-radius: 10px;
+    color: rgb(197, 197, 197);
+    cursor: pointer;
+}
+
+.sidebar-icon:hover {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+}
 
 .top-container {
     display: flex;
@@ -119,8 +136,10 @@ body {
     place-content: center;
     grid-template-columns: repeat(4, 20rem);
     grid-auto-rows: minmax(100px, 20rem);
+    grid-auto-flow: row;
     grid-gap: 20px;
     padding-top: 80px;
+    padding-left: 286px;
 }
 
 .grid-container section {
