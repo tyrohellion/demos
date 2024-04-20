@@ -7,6 +7,11 @@
     --sidebar-border: rgba(255, 255, 255, 0.2);
     --button-animation: 200ms ease;
     --card-text-color: rgb(51, 51, 51);
+    --button-grow: translate(0px, 0px) scale(1.1, 1.1);
+            
+
+    --Inter: Inter, sans-serif;
+    --Switzer: 'Switzer', sans-serif;
 
     font-family: Inter, sans-serif;
     font-family: 'Switzer', sans-serif;
@@ -36,7 +41,7 @@ body {
     justify-content: flex-start;
     border: 1px solid var(--sidebar-border);
     border-left: none;
-    height: 99.5vh;
+    height: 99.5%;
     width: 20rem;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -46,12 +51,13 @@ body {
     box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
     z-index: 10;
     overflow: auto;
+    transition: all 200ms ease;
 }
 
 .sidebar-icon {
     max-width: fit-content;
     margin-top: 12px;
-    margin-left: 12px;
+    margin-left: 20px;
     padding: 8px;
     border-radius: 10px;
     color: rgb(197, 197, 197);
@@ -64,7 +70,7 @@ body {
 }
 
 .top-container {
-    display: flex;
+    display: none;
     justify-content: center;
     gap: 24px;
     padding-top: 40px;
@@ -110,6 +116,7 @@ body {
     padding-left: 24px;
     padding-right: 24px;
     gap: 24px;
+    padding-top: 40px;
 }
 
 .sidebar-elements {
@@ -129,7 +136,7 @@ body {
 
 h3 {
     font-size: 1.1rem;
-    font-family: Inter, sans-serif;
+    font-family: var(--Inter);
     font-weight: 500;
 }
 
@@ -141,13 +148,12 @@ h3 {
 }
 
 .sidebar.active {
-    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     border: 1px solid var(--sidebar-border);
     border-left: none;
-    height: 99.5vh;
+    height: 99.5%;
     width: 5rem;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -157,9 +163,10 @@ h3 {
     box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
     z-index: 10;
     overflow: auto;
+    transition: all 200ms ease;
 
     .top-container {
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
     }
@@ -206,6 +213,7 @@ h3 {
         flex-direction: column;
         padding-left: 16px;
         padding-right: 24px;
+        padding-top: 40px;
         gap: 24px;
     }
 
@@ -234,20 +242,59 @@ h3 {
     h3 {
         display: none;
     }
-    
 }
+
+
+
+/* search box */
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    padding-left: 80px;
+}
+
+.search-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    cursor: pointer;
+    transition: 200ms ease;
+}
+
+.search-button:hover {
+    transform: translate(0px, 0px) scale(1.1, 1.1);
+}
+
+.search-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.search-text {
+    font-size: 1.1rem;
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    color: white;
+}
+
 
 /* bento box area */
 
 .grid-container {
     display: grid;
     place-content: center;
-    grid-template-columns: repeat(4, 20rem);
-    grid-auto-rows: minmax(100px, 20rem);
-    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    grid-auto-rows: minmax(1rem, 20rem);
+    grid-auto-flow: auto;
     grid-gap: 20px;
     padding-top: 80px;
-    padding-left: 286px;
+    padding-left: 120px;
 }
 
 .grid-container section {
@@ -264,32 +311,145 @@ h3 {
     position: absolute;
     bottom: 0;
     left: 2rem;
+    right: 2rem;
     z-index: 1;
 }
 
 
-.grid1 {
-    grid-column: 1/3;
+
+/* Fullscreen search dialog */
+
+.fullscreen-search-container {
+    display: none;
 }
 
-.grid2 {
-    grid-column: 3/4;
+.fullscreen-search-container.active {
+    display: flex;
+    overflow: auto;
+    position: absolute;
+    padding-top: 6.7rem;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(18, 19, 22, 0.8);
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+
+
+    .search-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .search-icon-2 {
+        cursor: pointer;
+    }
+
+    .x-icon {
+        cursor: pointer;
+    }
+
+    .search-box {
+        position: relative;
+        background-color: var(--sidebar-color);
+        color: rgb(236, 236, 236);
+        border: none;
+        padding: 1.5rem;
+        border-radius: 0.7rem;
+        width: 30vw;
+        height: 4rem;
+        font-family: var(--Inter);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .search-box::placeholder {
+        font-family: var(--Inter);
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .search-box:focus {
+        font-family: var(--Inter);
+        font-size: 1rem;
+        font-weight: 500;
+        color: rgb(236, 236, 236);
+        outline: none;
+    }
+
+    .results-container {
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8rem;
+        margin-top: 100px;
+        width: 95%;
+        height: 50%;
+        border-radius: 0.7rem;
+    }
+
+    .results-card-container {
+        border-radius: 0.7rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .results-box {
+        background-color: rgb(34, 35, 43);
+        border-radius: 0.7rem;
+        display: grid;
+        width: 320px;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .results-card-text {
+        font-family: var(--Inter);
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .results-card-p {
+        font-family: var(--Inter);
+        font-size: 1rem;
+        padding-top: 1rem;
+        padding-left: 1rem;
+        display: grid;
+        height: 100%;
+        margin-top: 0;
+        cursor: pointer;
+    }
+
+    .results-card-p:hover {
+        background-color: var(--button-color);
+        color: var(--card-text-color);
+        font-weight: 600;
+    }
+
+    span .results-card-p {
+        font-size: 0.9rem;
+    }
+
+    @media all and (max-width: 1600px) {
+        .search-box {
+            width: 40vw;
+        }
+
+        .results-container {
+            gap: 3rem;
+        }
+        
+    }
+
+    @media all and (max-width: 840px) {
+        .search-box {
+            width: 70vw;
+        }
+    }
 }
-
-.grid3 {
-    grid-column: 4/5;
-    grid-row: 1/3;
-}
-
-.grid4 {
-    grid-column: 1/2;
-}
-
-.grid5 {
-    grid-column: 2/4;
-}
-
-
 
 
 
@@ -305,17 +465,44 @@ h3 {
  *   480-less    - phone landscape & smaller
  * --------------------------------------------
  */
- @media all and (min-width: 1024px) and (max-width: 1280px) { }
+ @media all and (max-width: 1530px) { 
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 15rem);
+        grid-auto-rows: minmax(1rem, 15rem);
+    }
+ }
 
- @media all and (min-width: 768px) and (max-width: 1024px) { }
+ @media all and (min-width: 768px) and (max-width: 1024px) { 
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 14rem);
+        grid-auto-rows: minmax(1rem, 14rem);
+    }
+ }
  
- @media all and (min-width: 480px) and (max-width: 768px) { }
+ @media all and (min-width: 480px) and (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 13rem);
+        grid-auto-rows: minmax(1rem, 13rem);
+    }
+  }
  
- @media all and (max-width: 480px) { }
+ @media all and (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 12rem);
+        grid-auto-rows: minmax(1rem, 12rem);
+        padding-left: 80px;
+    }
+  }
  
  
  /* Portrait */
- @media screen and (orientation:portrait) { /* Portrait styles here */ }
+ @media screen and (orientation:portrait) { 
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 12rem);
+        grid-auto-rows: minmax(1rem, 12rem);
+        padding-left: 80px;
+    }
+  }
  /* Landscape */
  @media screen and (orientation:landscape) { /* Landscape styles here */ }
  
@@ -335,6 +522,11 @@ h3 {
  
  /* iPhone Portrait */
  @media screen and (max-device-width: 480px) and (orientation:portrait) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 12rem);
+        grid-auto-rows: minmax(1rem, 12rem);
+        padding-left: 80px;
+    }
  } 
  
  /* iPhone Landscape */
