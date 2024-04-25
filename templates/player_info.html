@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>demos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/css/style.css">
+
+        <!-- HTML in your document's head -->
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    </head>
+    
+    <body>
+        <nav class="sidebar">
+            <div class="sidebar-icon">
+                <i data-feather="sidebar"></i>
+            </div>
+
+            <div class="sidebar-body">
+                <a href="{{ url_for('index') }}">
+                    <i data-feather="home"></i>
+                    <h3>Home</h3>
+                    </a>
+                <a href="{{ url_for('news') }}">
+                    <i data-feather="file-text"></i>
+                    <h3>News</h3>
+                    </a>
+                <a href="{{ url_for('matches') }}">
+                    <i data-feather="zap"></i>
+                    <h3>Matches</h3>
+                    </a>
+                <a href="{{ url_for('tournaments') }}">
+                    <i data-feather="award"></i>
+                    <h3>Tournaments</h3>
+                    </a>
+                <a href="{{ url_for('stats') }}">
+                    <i data-feather="bar-chart-2"></i>
+                    <h3>Stats</h3>
+                    </a>
+                <a href="{{ url_for('teams') }}">
+                    <i data-feather="users"></i>
+                    <h3>Teams</h3>
+                </a>
+                <a href="{{ url_for('players') }}">
+                    <i data-feather="user"></i>
+                    <h3>Players</h3>
+                    </a>
+            </div>
+        </nav>
+
+        <div class="fullscreen-search-container">
+            <div class="search-icon-container">
+                <i class="search-icon-2" data-feather="search"></i>
+                <input class="search-box"
+                    type="text"
+                    id="searchInput"
+                    name="name"
+                    placeholder="Search"
+                    oninput="performSearch()"
+                    />
+
+                <i class="x-icon" data-feather="x"></i>
+            </div>
+
+            <div class="results-container">
+                <div class="results-card-container">
+                    <h3 class="results-card-text">Players</h3>
+                    <div class="results-box" id="playerResults">
+                        <!-- Player search results will be dynamically added here -->
+                    </div>
+                    <div class="seeMore" id="playersMoreResults">See more results</div>
+                </div>
+                <div class="results-card-container">
+                    <h3 class="results-card-text">Teams</h3>
+                    <div class="results-box" id="teamResults">
+                        <!-- Team search results will be dynamically added here -->
+                    </div>
+                    <div class="seeMore" id="teamsMoreResults">See more results</div>
+                </div>
+                <div class="results-card-container">
+                    <h3 class="results-card-text">Tournaments</h3>
+                    <div class="results-box" id="tournamentResults">
+                        <!-- Tournament search results will be dynamically added here -->
+                    </div>
+                    <div class="seeMore" id="tourneyMoreResults">See more results</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+
+        <div class="search-container">
+            <div class="search-button">
+                <i class="search-icon" data-feather="search"></i>
+                <h1 class="Search-text">Search</h1>
+            </div>
+        </div>
+
+        <div class="main-player-background">
+            {% if player.team %}
+            <div class="player-header-container">
+                <img class="player-img" src="{{ player.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ player.tag }}">
+                <div class="player-info">
+                    <div class="player-tag">{{ player.tag }}</div>
+                    <div class="player-subheadings">
+                        {% if player.name is defined %}
+                        <div class="player-name">{{ player.name }}</div>
+                        {% endif %}
+                        <div class="player-country">{{ player.country }}</div>
+                        <a href="{{ url_for('get_team', team_id=player.team._id) }}">
+                            <div class="player-team">{{ player.team.name }}</div>
+                        </a>                        
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="player-header-container">
+                <img class="player-img" src="/static/images/rocketleague.svg" alt="{{ player.tag }}">
+                <div class="player-info">
+                    <div class="player-tag">{{ player.tag }}</div>
+                    <div class="player-subheadings">
+                        {% if player.name is defined %}
+                        <div class="player-name">{{ player.name }}</div>
+                        {% endif %}
+                        <div class="player-country">{{ player.country }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>        
+    </div>
+        <script src="https://unpkg.com/feather-icons"></script>
+        <script>feather.replace()</script>
+        <script src="/static/css/script.js" async defer></script>
+    </body>
+</html>
