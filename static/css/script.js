@@ -3,6 +3,7 @@ let icon = document.querySelector('.sidebar-icon');
 let search = document.querySelector('.fullscreen-search-container');
 let searchButton = document.querySelector('.search-button');
 let closeSearch = document.querySelector('.x-icon');
+var body = document.body;
 
 icon.onclick = function() {
     sidebar.classList.toggle('active');
@@ -10,10 +11,12 @@ icon.onclick = function() {
 
 searchButton.onclick = function() {
     search.classList.toggle('active');
+    body.classList.toggle('active');
 };
 
 closeSearch.onclick = function() {
     search.classList.toggle('active');
+    body.classList.toggle('active');
 };
 
 // Debounce function

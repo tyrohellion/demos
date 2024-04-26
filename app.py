@@ -73,7 +73,12 @@ def get_events():
 @app.route('/event/<event_id>')
 def get_event(event_id):
     event = octane_api.get_event(event_id)
-    return jsonify(event=event)
+    format = request.args.get('format', 'html')  # Default format is HTML
+    
+    if format == 'json':
+        return jsonify(event=event)  # Return player data as JSON
+    else:
+        return render_template('event_info.html', event=event)  # Render the player_info.html template
 
 @app.route('/event/<event_id>/matches')
 def get_event_matches(event_id):
