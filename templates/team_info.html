@@ -23,31 +23,38 @@
                 <a href="{{ url_for('index') }}">
                     <i data-feather="home"></i>
                     <h3>Home</h3>
-                    </a>
+                    <div class="tooltip">Home</div>
+                </a>
                 <a href="{{ url_for('news') }}">
                     <i data-feather="file-text"></i>
                     <h3>News</h3>
-                    </a>
+                    <div class="tooltip">News</div>
+                </a>
                 <a href="{{ url_for('matches') }}">
                     <i data-feather="zap"></i>
                     <h3>Matches</h3>
-                    </a>
+                    <div class="tooltip">Matches</div>
+                </a>
                 <a href="{{ url_for('tournaments') }}">
                     <i data-feather="award"></i>
                     <h3>Tournaments</h3>
-                    </a>
+                    <div class="tooltip">Tournaments</div>
+                </a>
                 <a href="{{ url_for('stats') }}">
                     <i data-feather="bar-chart-2"></i>
                     <h3>Stats</h3>
-                    </a>
+                    <div class="tooltip">Stats</div>
+                </a>
                 <a href="{{ url_for('teams') }}">
                     <i data-feather="users"></i>
                     <h3>Teams</h3>
+                    <div class="tooltip">Teams</div>
                 </a>
                 <a href="{{ url_for('players') }}">
                     <i data-feather="user"></i>
                     <h3>Players</h3>
-                    </a>
+                    <div class="tooltip">Players</div>
+                </a>
             </div>
         </nav>
 
@@ -127,6 +134,27 @@
                 </div>
             </div>
             {% endif %}
+            {% if active_roster%}
+            <div class="active-roster-wrapper">
+            {% for player in active_roster %}
+                {% if player.get('coach', False) %}
+                <div class="player-tag">{{ player.tag }}
+                    <div class="tooltip">Coach</div>
+                </div>
+                {% elif player.get('substitute', False) %}
+                <div class="player-tag">{{ player.tag }}
+                    <div class="tooltip">Substitute</div>
+                </div>
+                {% else %}
+                <div class="player-tag">{{ player.tag }}
+                    <div class="tooltip">Player</div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+            <div class="no-roster">No roster found</div>
+            {% endif %}
+        </div>
         </div>
     </div>
         <script src="https://unpkg.com/feather-icons"></script>

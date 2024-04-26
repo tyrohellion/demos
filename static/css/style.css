@@ -43,26 +43,6 @@ body {
 
 /* sidebar navigation */
 
-.sidebar {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border: 1px solid var(--sidebar-border);
-    border-left: none;
-    height: 100vh;
-    width: 20rem;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    background-color: var(--sidebar-color);
-    -webkit-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
-    -moz-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
-    box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
-    z-index: 10;
-    overflow: auto;
-    transition: all 200ms ease;
-}
-
 .sidebar-icon {
     max-width: fit-content;
     margin-top: 12px;
@@ -87,32 +67,9 @@ body {
     padding-top: 40px;
 }
 
-.sidebar-body a {
-    display: flex;
-    flex-direction: row;
-    padding-left: 12px;
-    align-items: center;
-    justify-content: flex-start;
-    height: 3rem;
-    gap: 10px;
-    color: rgb(41, 41, 41);
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 6px;
-    background-color: var(--button-color);
-    transition: var(--button-animation);
-    cursor: pointer;
-    text-decoration: none;
-}
-
 .feather {
     min-height: 24px;
     min-width: 24px;
-}
-
-h3 {
-    font-size: 1.1rem;
-    font-family: var(--Inter);
-    font-weight: 500;
 }
 
 .sidebar-body a:hover {
@@ -122,8 +79,24 @@ h3 {
     transition: var(--button-animation);
 }
 
-.sidebar.active {
+.sidebar-body a:hover .tooltip {
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 25;
+    background-color: var(--card-color);
+    color: var(--button-color);
+    left: 75px;
+}
+
+.sidebar {
+    display: flex;
+    position: fixed;
     flex-direction: column;
     justify-content: flex-start;
     border: 1px solid var(--sidebar-border);
@@ -135,48 +108,75 @@ h3 {
     background-color: var(--sidebar-color);
     box-shadow: none;
     z-index: 10;
-    overflow: auto;
     transition: all 200ms ease;
+}
 
-    .sidebar-body {
+.sidebar-body {
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+    padding-right: 24px;
+    padding-top: 40px;
+    gap: 24px;
+}
+
+.sidebar-body a {
+    display: flex;
+    flex-direction: column;
+    width: 3rem;
+    height: 3rem;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 12px;
+    color: rgb(41, 41, 41);
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    background-color: var(--button-color);
+    transition: var(--button-animation);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.sidebar-body a:hover {
+    background-color: var(--background-color);
+    color: rgb(245, 245, 245);
+    border: 1px solid var(--sidebar-border);
+    transition: var(--button-animation);
+}
+
+h3 {
+    display: none;
+}
+
+.sidebar.active {
+    width: 20rem;
+    transition: all 200ms ease;
+    -webkit-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+
+    h3 {
         display: flex;
-        flex-direction: column;
-        padding-left: 16px;
-        padding-right: 24px;
-        padding-top: 40px;
-        gap: 24px;
+        font-size: 1.1rem;
+        font-family: var(--Inter);
+        font-weight: 600;
+        padding-left: 0.6rem;
     }
 
     .sidebar-body a {
-        display: flex;
-        flex-direction: column;
-        width: 3rem;
-        height: 3rem;
-        align-items: flex-start;
-        justify-content: center;
-        color: rgb(41, 41, 41);
-        border: 1px solid rgba(0, 0, 0, 0);
-        border-radius: 6px;
-        background-color: var(--button-color);
-        transition: var(--button-animation);
-        cursor: pointer;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: flex-start;
     }
 
-    .sidebar-body a:hover {
-        background-color: var(--background-color);
-        color: rgb(245, 245, 245);
-        border: 1px solid var(--sidebar-border);
-        transition: var(--button-animation);
-    }
-
-    h3 {
+    .sidebar-body a:hover .tooltip {
         display: none;
     }
 }
 
 
-
-/* search box */
+/* search button */
 
 .search-container {
     display: flex;
@@ -241,12 +241,12 @@ h3 {
     z-index: 1;
 }
 
-
-/* PLAYER PAGES */
+/* PLAYER/TEAM PAGES */
 
 .main-player-background {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 40px;
     border-top: 1px solid var(--sidebar-border);
     background-color: var(--sidebar-color);
@@ -273,7 +273,7 @@ h3 {
     color: white;
 }
 
-.player-info .player-tag {
+.main-player-background .player-tag {
     font-size: 2.2rem;
     font-weight: 600;
     letter-spacing: 1px;
@@ -336,7 +336,67 @@ h3 {
     cursor: pointer;
 }
 
+
+/* active roster */
+
+.active-roster-wrapper {
+    border: 1px solid var(--sidebar-border);
+    border-radius: 0.7rem;
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 4rem;
+}
+
+.active-roster-wrapper .player-tag:first-child {
+    border-top-left-radius: 0.7rem;
+    border-bottom-left-radius: 0.7rem;
+}
+
+.active-roster-wrapper .player-tag:last-child {
+    border-top-right-radius: 0.7rem;
+    border-bottom-right-radius: 0.7rem;
+}
+
+.active-roster-wrapper .player-tag {
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 1rem;
+    cursor: pointer;
+    letter-spacing: normal;
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+}
+
+.player-tag:hover .tooltip {
+    display: flex;
+    position: absolute;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 25;
+    background-color: var(--card-color);
+    color: var(--button-color);
+    top: -42px;
+    left: 0px;
+}
+
+.no-roster {
+    font-size: 1rem;
+    margin-top: 4rem;
+    font-weight: 500;
+}
+
+.active-roster-wrapper .player-tag:hover {
+    color: var(--card-text-color);
+    background-color: var(--button-color);
+}
+
 /* Fullscreen search dialog */
+
 .fullscreen-search-container {
     display: none;
 }

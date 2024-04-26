@@ -4,8 +4,6 @@ let search = document.querySelector('.fullscreen-search-container');
 let searchButton = document.querySelector('.search-button');
 let closeSearch = document.querySelector('.x-icon');
 
-sidebar.classList.toggle('active');
-
 icon.onclick = function() {
     sidebar.classList.toggle('active');
 };
@@ -17,6 +15,32 @@ searchButton.onclick = function() {
 closeSearch.onclick = function() {
     search.classList.toggle('active');
 };
+
+// Debounce function
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
+// Function to perform AJAX call for player search
+const debouncedPlayerSearch = debounce(performPlayerSearch, 200);
+
+// Function to perform AJAX call for event search
+const debouncedEventSearch = debounce(performEventSearch, 200);
+
+// Function to perform AJAX call for team search
+const debouncedTeamSearch = debounce(performTeamSearch, 200);
+
+// Attach debounced event listeners to the input field for each search type
+var userInputField = document.getElementById('searchInput');
+userInputField.addEventListener('input', debouncedPlayerSearch);
+userInputField.addEventListener('input', debouncedEventSearch);
+userInputField.addEventListener('input', debouncedTeamSearch);
 
 // Function to perform AJAX call for player search
 function performPlayerSearch() {
@@ -350,7 +374,7 @@ function createTeamElement(team) {
 
 // Function to perform all searches
 function performSearch() {
-    performTeamSearch();
-    performPlayerSearch();
-    performEventSearch();
+    debouncedPlayerSearch();
+    debouncedPlayerSearch();
+    debouncedEventSearch();
 }
