@@ -26,20 +26,19 @@
 
 body {
     transition: all 70ms ease;
-    background-color: rgb(10, 10, 10);
+    backdrop-filter: blur(7px);
+    background-color: var(--card-color);
     color: white;
-    margin-left: 10px;
     margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
 }
 
 body.active {
-    transition: all 100ms ease;
-    margin-left: 0px;
+    transition: all 70ms ease;
     margin-top: 0px;
     margin-bottom: 0px;
+    margin-left: 0px;
     margin-right: 0px;
+    height: 100vh;
 }
 
 .content-container {
@@ -50,6 +49,9 @@ body.active {
     background-color: var(--background-color);
     overflow: auto;
     height: 98vh;
+    -webkit-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    -moz-box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
+    box-shadow: 10px 0px 50px -5px rgba(0,0,0,0.5);
 }
 
 /* sidebar navigation */
@@ -101,7 +103,7 @@ body.active {
     z-index: 25;
     background-color: var(--card-color);
     color: var(--button-color);
-    left: 75px;
+    left: 72px;
 }
 
 .sidebar {
@@ -249,6 +251,53 @@ h3 {
     z-index: 1;
 }
 
+
+
+/* EVENT PAGES */
+
+
+.event-prize-wrapper {
+    display: flex;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 4px;
+    gap: 0.3rem;
+    padding: 0.5rem;
+}
+
+.event-prize {
+    font-size: 1rem;
+    margin: auto;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.event-tier, .event-region {
+    font-size: 1rem;
+    margin: auto;
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 0.5rem;
+}
+
+.event-tier, .event-region {
+    border: 1px solid var(--sidebar-border);
+}
+
+.date-wrapper {
+    display: flex;
+    border: 1px solid var(--sidebar-border);
+    padding: 0.3rem;
+    border-radius: 4px;
+}
+
+.event-start-date, .dash, .event-end-date {
+    font-size: 1rem;
+    margin: auto;
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 0.2rem;
+}
+
 /* PLAYER/TEAM PAGES */
 
 .main-player-background {
@@ -269,9 +318,10 @@ h3 {
     margin-top: 0.9rem;
 }
 
-.player-subheadings {
+.player-subheadings, .event-subheadings {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 2rem;
     margin-left: 2px;
 }
@@ -295,7 +345,7 @@ h3 {
     letter-spacing: 1px;
 }
 
-.player-header-container {
+.player-header-container, .event-header-container {
     display: flex;
     margin-top: 40px;
     gap: 1.5rem;
@@ -601,6 +651,10 @@ h3 {
         background-color: var(--button-color);
         color: var(--card-text-color);
         cursor: pointer;
+
+        .event-tier, .event-region {
+            border: 1px solid rgba(39, 39, 39, 0.39);
+        }
     }
 
     .event-results-item:nth-child(n+4) {
@@ -623,7 +677,7 @@ h3 {
         display: flex;
         position: absolute;
         left: 1rem;
-        bottom: 0.2rem;
+        bottom: 1.2rem;
         gap: 1rem;
         padding: 0px;
     }

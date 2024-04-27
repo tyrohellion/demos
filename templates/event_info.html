@@ -107,36 +107,31 @@
         </div>
 
         <div class="main-player-background">
-            {% if player.team %}
-            <div class="player-header-container">
-                <img class="player-img" src="{{ player.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ player.tag }}">
+            {% if event.image %}
+            <div class="event-header-container">
+                <img class="player-img" src="{{ event.image | default('/static/images/rocketleague.svg') }}" alt="{{ event.name }}">
+                {% else %}
+                <img class="player-img" src="/static/images/rocketleague.svg" alt="{{ event.name }}">
+                {% endif %}
                 <div class="player-info">
-                    <div class="player-tag">{{ player.tag }}</div>
-                    <div class="player-subheadings">
-                        {% if player.name is defined %}
-                        <div class="player-name">{{ player.name }}</div>
+                    <div class="player-tag">{{ event.name }}</div>
+                    <div class="event-subheadings">
+                        <div class="date-wrapper">
+                            <div class="event-start-date" id="startDate" data-utc="{{ event.startDate }}"></div>
+                            <div class="dash">-</div>
+                            <div class="event-start-date" id="endDate" data-utc="{{ event.endDate }}"></div>
+                        </div>
+                        {% if event.prize %}
+                        <div class="event-prize-wrapper">
+                            <div class="event-prizepool" id="prizePool">${{ event.prize.amount }}</div>
+                            <div class="event-prizepool">{{ event.prize.currency }}</div>
+                        </div>
                         {% endif %}
-                        <div class="player-country">{{ player.country }}</div>
-                        <a href="{{ url_for('get_team', team_id=player.team._id) }}">
-                            <div class="player-team">{{ player.team.name }}</div>
-                        </a>                        
+                            <div class="event-tier">{{ event.tier }}-Tier</div>
+                            <div class="event-region">{{ event.region }}</div>              
                     </div>
                 </div>
             </div>
-            {% else %}
-            <div class="player-header-container">
-                <img class="player-img" src="/static/images/rocketleague.svg" alt="{{ player.tag }}">
-                <div class="player-info">
-                    <div class="player-tag">{{ player.tag }}</div>
-                    <div class="player-subheadings">
-                        {% if player.name is defined %}
-                        <div class="player-name">{{ player.name }}</div>
-                        {% endif %}
-                        <div class="player-country">{{ player.country }}</div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
         </div>        
     </div>
         <script src="https://unpkg.com/feather-icons"></script>

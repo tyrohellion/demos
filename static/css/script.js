@@ -257,7 +257,11 @@ function updateEventResults(events) {
             divDetails.appendChild(pRegion); // Append p element to event details div
         }
 
-        
+        // Add click event listener to each player result
+        divWrapper.addEventListener('click', function() {
+            window.location.href = '/event/' + event._id; // Redirect to player info page
+        });
+
         function updateResultsDisplay() {
             // Get the number of .results-item elements within #tournamentResults
             var itemCount = document.querySelectorAll('#tournamentResults .event-results-item').length;
@@ -381,3 +385,41 @@ function performSearch() {
     debouncedPlayerSearch();
     debouncedEventSearch();
 }
+
+// Function to convert UTC date string to date only format (YYYY-MM-DD)
+function convertUTCtoDateOnly(utcDateString) {
+    var dateParts = utcDateString.split('T')[0];
+    return dateParts;
+}
+
+// Get the elements by class name
+var dateElements = document.querySelectorAll('.event-start-date, .event-end-date');
+
+// Loop through each element
+dateElements.forEach(function(element) {
+    // Get the UTC date string from the data attribute
+    var utcDateString = element.getAttribute('data-utc');
+
+    // Convert the UTC date string to the desired format
+    var formattedDate = convertUTCtoDateOnly(utcDateString);
+
+    // Set the formatted date as the content of the element
+    element.textContent = formattedDate;
+});
+
+// Get the prize pool element by ID
+var prizePoolElement = document.getElementById('prizePool');
+
+// Get the prize pool amount from the element
+var prizePoolAmount = prizePoolElement.textContent.trim();
+
+// Function to add commas every three digits
+function addCommas(numberString) {
+    return numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Format the prize pool amount with commas
+var formattedPrizePool = addCommas(prizePoolAmount);
+
+// Set the formatted prize pool as the content of the element
+prizePoolElement.textContent = formattedPrizePool;

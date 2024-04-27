@@ -1592,3 +1592,13 @@
 .venv/Scripts/pythonw.exe
 __pycache__/app.cpython-312.pyc
 __pycache__/main.cpython-312.pyc
+.venv/Lib/site-packages/jsonify/__init__.py
+.venv/Lib/site-packages/jsonify/convert.py
+.venv/Lib/site-packages/jsonify/__pycache__/__init__.cpython-312.pyc
+.venv/Lib/site-packages/jsonify/__pycache__/convert.cpython-312.pyc
+.venv/Lib/site-packages/jsonify-0.5.dist-info/INSTALLER
+.venv/Lib/site-packages/jsonify-0.5.dist-info/METADATA
+.venv/Lib/site-packages/jsonify-0.5.dist-info/RECORD
+.venv/Lib/site-packages/jsonify-0.5.dist-info/REQUESTED
+.venv/Lib/site-packages/jsonify-0.5.dist-info/top_level.txt
+.venv/Lib/site-packages/jsonify-0.5.dist-info/WHEEL
