@@ -290,6 +290,14 @@ h3 {
     border-radius: 4px;
 }
 
+.event-subheadings {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-left: 2px;
+}
+
 .event-start-date, .dash, .event-end-date {
     font-size: 1rem;
     margin: auto;
@@ -318,7 +326,7 @@ h3 {
     margin-top: 0.9rem;
 }
 
-.player-subheadings, .event-subheadings {
+.player-subheadings {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -758,6 +766,96 @@ h3 {
         grid-auto-rows: minmax(1rem, 12rem);
     }
   }
+
+@media all and (max-height: 590px) {
+    .sidebar {
+        height: 5rem;
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: row;
+        overflow: auto;
+        position: fixed;
+        bottom: 0;
+        border-radius: 21px;
+    }
+
+    h3 {
+        display: flex;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .sidebar-icon {
+        display: none;
+    }
+
+    .sidebar-body {
+        flex-direction: row;
+    }
+
+    .sidebar-body a {
+        width: auto;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
+        flex-direction: row;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .content-container {
+        margin-left: 0px;
+    }
+
+    .sidebar-body a:hover .tooltip {
+        display: none;
+    }
+ }
+
+ @media all and (max-width: 550px) {
+    .sidebar {
+        height: 5rem;
+        width: 100%;
+        justify-content: flex-start;
+        flex-direction: row;
+        overflow: auto;
+        position: fixed;
+        bottom: 0;
+        border-radius: 21px;
+    }
+
+    h3 {
+        display: flex;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .sidebar-icon {
+        display: none;
+    }
+
+    .sidebar-body {
+        flex-direction: row;
+    }
+
+    .sidebar-body a {
+        width: auto;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.5rem;
+        flex-direction: row;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .content-container {
+        margin-left: 0px;
+    }
+
+    .sidebar-body a:hover .tooltip {
+        display: none;
+    }
+ }
  
  
  /* Portrait */

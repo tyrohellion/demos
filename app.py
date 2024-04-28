@@ -19,9 +19,9 @@ def news():
 def matches():
     return render_template('matches.html')
 
-@app.route('/tournaments')
-def tournaments():
-    return render_template('tournaments.html')
+@app.route('/events')
+def events():
+    return render_template('events.html')
 
 @app.route('/stats')
 def stats():
