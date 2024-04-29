@@ -6,9 +6,10 @@
     --sidebar-color: rgb(45, 46, 56);
     --sidebar-border: rgba(255, 255, 255, 0.2);
     --button-animation: 200ms ease;
+    --card-grow-before: translate3D(0,-1px,0) scale(1.00);
+    --card-grow-after: translate3D(0,-1px,0) scale(1.03);
     --card-text-color: rgb(51, 51, 51);
     --button-grow: translate(0px, 0px) scale(1.1, 1.1);
-            
 
     --Inter: Inter, sans-serif;
 
@@ -315,7 +316,8 @@ h3 {
     margin-top: 40px;
     border-top: 1px solid var(--sidebar-border);
     background-color: var(--sidebar-color);
-    height: 100%;
+    height: auto;
+    padding-bottom: 80px;
 }
 
 .player-info {
@@ -403,26 +405,166 @@ h3 {
 }
 
 
+/* recent results section */
+
+.matches-wrapper {
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.recent-results-header {
+    margin-top: 4rem;
+}
+
+.match-card-wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 0.7rem;
+    padding: 1rem;
+    gap: 2rem;
+    width: 850px;
+    transform: var(--card-grow-before);
+    transition: 150ms all;
+}
+
+.match-card-wrapper:hover {
+    background-color: var(--button-color);
+    transform: var(--card-grow-after);
+    transition: 150ms all;
+    cursor: pointer;
+
+    .matches-blue-name, .matches-orange-name {
+        color: var(--card-text-color);
+    }
+
+    .matches-blue-score, .matches-orange-score {
+        color: var(--card-text-color);
+    }
+
+    .matches-event-name {
+        color: var(--card-text-color);
+    }
+
+    .matches-event-stage {
+        color: var(--card-text-color);
+    }
+
+    .match-arrow {
+        filter: invert();
+    }
+}
+
+.match-card-header {
+    display: flex;
+    gap: 0.7rem;
+    padding-left: 1rem;
+    align-items: center;
+}
+
+.matches-event-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(211, 219, 243);
+}
+
+.matches-event-stage {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(219, 227, 252);
+}
+
+.match-date {
+    position: absolute;
+    left: -200px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.img-score-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.blue-team-wrapper, .orange-team-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.matches-wrapper img {
+    height: 60px;
+    width: 60px;
+    border: 1px solid var(--sidebar-border);
+    background-color: rgb(66, 67, 82);
+    border-radius: 4px;
+    padding: 8px;
+    overflow: hidden;
+}
+
+.matches-blue-name {
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+    right: 540px;
+    bottom: 40px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.matches-orange-name {
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+    left: 540px;
+    bottom: 40px;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+}
+
+.matches-blue-score, .matches-orange-score {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
 /* active roster */
 
-.active-roster-wrapper {
+.active-roster-wrapper{
     border: 1px solid var(--sidebar-border);
     border-radius: 0.7rem;
     display: flex;
     margin-top: 4rem;
 }
 
-.active-roster-wrapper .player-tag:first-child {
+.active-roster-wrapper a {
+    text-decoration: none;
+    color: var(--button-color);
+}
+
+.active-roster-wrapper a:hover {
+    text-decoration: none;
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+}
+
+.active-roster-wrapper a:first-child {
     border-top-left-radius: 0.7rem;
     border-bottom-left-radius: 0.7rem;
 }
 
-.active-roster-wrapper .player-tag:last-child {
+.active-roster-wrapper a:last-child {
     border-top-right-radius: 0.7rem;
     border-bottom-right-radius: 0.7rem;
 }
 
-.active-roster-wrapper .player-tag {
+.active-roster-wrapper a {
     font-size: 1.3rem;
     font-weight: 500;
     padding: 1rem;
@@ -435,7 +577,7 @@ h3 {
     display: none;
 }
 
-.player-tag:hover .tooltip {
+.active-roster-wrapper a:hover .tooltip {
     display: flex;
     position: absolute;
     font-size: 0.9rem;
@@ -453,11 +595,6 @@ h3 {
     font-size: 1rem;
     margin-top: 4rem;
     font-weight: 500;
-}
-
-.active-roster-wrapper .player-tag:hover {
-    color: var(--card-text-color);
-    background-color: var(--button-color);
 }
 
 /* Fullscreen search dialog */

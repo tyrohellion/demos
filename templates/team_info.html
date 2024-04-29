@@ -138,27 +138,73 @@
             <div class="active-roster-wrapper">
             {% for player in active_roster %}
                 {% if player.get('coach', False) %}
-                <div class="player-tag">{{ player.tag }}
+                <a href="{{ url_for('get_player_info', player_id=player._id) }}">
+                    {{ player.tag }}
                     <div class="tooltip">Coach</div>
-                </div>
+                </a>
                 {% elif player.get('substitute', False) %}
-                <div class="player-tag">{{ player.tag }}
+                <a href="{{ url_for('get_player_info', player_id=player._id) }}">
+                    {{ player.tag }}
                     <div class="tooltip">Substitute</div>
-                </div>
+                </a>
                 {% else %}
-                <div class="player-tag">{{ player.tag }}
+                <a href="{{ url_for('get_player_info', player_id=player._id) }}">
+                    {{ player.tag }}
                     <div class="tooltip">Player</div>
-                </div>
+                </a>
                 {% endif %}
             {% endfor %}
             {% else %}
             <div class="no-roster">No roster found</div>
             {% endif %}
         </div>
+
+        <h2 class="recent-results-header">{{ team.name }}'s Recent Results</h2>
+            {% for match in matches %}
+            <div class="matches-wrapper">
+                    <div class="match-card-wrapper">
+                        <div class="match-date" data-utc="{{match['date']}}"></div>
+                            <div class="match-card-header">
+                                <div class="matches-event-name">{{ match['event']['name'] }}</div>
+                                <i class="match-arrow" data-feather="chevron-right"></i>
+                                <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
+                            </div>
+                            <div class="img-score-wrapper">
+                                <div class="blue-team-wrapper">
+                                    {% if match['blue']['team']['team']['image'] %}
+                                    <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% else %}
+                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% endif %}
+                                    {% if match['blue']['score'] %}
+                                    <div class="matches-orange-score">{{ match['blue']['score'] }}</div>
+                                    {% else %}
+                                    <div class="matches-orange-score">0</div>
+                                    {% endif %}
+                                </div>
+                                <div class="orange-team-wrapper">
+                                    {% if match['orange']['score'] %}
+                                    <div class="matches-orange-score">{{ match['orange']['score'] }}</div>
+                                    {% else %}
+                                    <div class="matches-orange-score">0</div>
+                                    {% endif %}
+                                    {% if match['blue']['team']['team']['image'] %}
+                                    <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% else %}
+                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                                    <div class="matches-orange-name">{{ match['orange']['team']['team']['name'] }}</div>
+                                    <div class="matches-blue-name">{{ match['blue']['team']['team']['name'] }}</div>
+                </div>
+
+            {% endfor %}
+        </div>
         </div>
     </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
-        <script src="/static/css/script.js" async defer></script>
+        <script src="/static/script.js" async defer></script>
     </body>
 </html>

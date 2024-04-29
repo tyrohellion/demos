@@ -178,14 +178,15 @@ def get_players():
     return jsonify(players=players)
 
 @app.route('/player/<player_id>')
-def get_player(player_id):
+def get_player_info(player_id):
     player = octane_api.get_player(player_id)
+    matches = octane_api.get_matches(player=player['_id'], page=1, per_page=10, sort='date:desc')
     format = request.args.get('format', 'html')  # Default format is HTML
     
     if format == 'json':
         return jsonify(player=player)  # Return player data as JSON
     else:
-        return render_template('player_info.html', player=player)  # Render the player_info.html template
+        return render_template('player_info.html', player=player, matches=matches)  # Render the player_info.html template
 
 @app.route('/teams')
 def get_teams():
@@ -201,6 +202,7 @@ def get_teams():
 @app.route('/team/<team_id>')
 def get_team(team_id):
     team = octane_api.get_team(team_id)
+    matches = octane_api.get_matches(team=team['_id'], page=1, per_page=10, sort='date:desc')
     format = request.args.get('format', 'html')  # Default format is HTML
     
     if format == 'json':
@@ -211,7 +213,7 @@ def get_team(team_id):
         # Fetch the active roster for the team using the team ID
         active_roster = octane_api.get_players_by_team_id(team_id)
         
-        return render_template('team_info.html', team=team, active_roster=active_roster)
+        return render_template('team_info.html', team=team, active_roster=active_roster, matches=matches)
 
 #function to return active roster (dont use, octane doesn't keep track of rosters)
 @app.route('/players/<team_id>')

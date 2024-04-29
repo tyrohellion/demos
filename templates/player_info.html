@@ -137,10 +137,54 @@
                 </div>
             </div>
             {% endif %}
+
+
+            <h2 class="recent-results-header">{{ player.tag }}'s Recent Results</h2>
+            {% for match in matches %}
+            <div class="matches-wrapper">
+                    <div class="match-card-wrapper">
+                        <div class="match-date" data-utc="{{match['date']}}"></div>
+                            <div class="match-card-header">
+                                <div class="matches-event-name">{{ match['event']['name'] }}</div>
+                                <i class="match-arrow" data-feather="chevron-right"></i>
+                                <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
+                            </div>
+                            <div class="img-score-wrapper">
+                                <div class="blue-team-wrapper">
+                                    {% if match['blue']['team']['team']['image'] %}
+                                    <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% else %}
+                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% endif %}
+                                    {% if match['blue']['score'] %}
+                                    <div class="matches-orange-score">{{ match['blue']['score'] }}</div>
+                                    {% else %}
+                                    <div class="matches-orange-score">0</div>
+                                    {% endif %}
+                                </div>
+                                <div class="orange-team-wrapper">
+                                    {% if match['orange']['score'] %}
+                                    <div class="matches-orange-score">{{ match['orange']['score'] }}</div>
+                                    {% else %}
+                                    <div class="matches-orange-score">0</div>
+                                    {% endif %}
+                                    {% if match['blue']['team']['team']['image'] %}
+                                    <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% else %}
+                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                                    <div class="matches-orange-name">{{ match['orange']['team']['team']['name'] }}</div>
+                                    <div class="matches-blue-name">{{ match['blue']['team']['team']['name'] }}</div>
+                </div>
+
+            {% endfor %}
+        </div>
             </div>
         </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
-        <script src="/static/css/script.js" async defer></script>
+        <script src="/static/script.js" async defer></script>
     </body>
 </html>
