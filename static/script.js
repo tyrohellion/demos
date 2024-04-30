@@ -4,6 +4,7 @@ let search = document.querySelector('.fullscreen-search-container');
 let searchButton = document.querySelector('.search-button');
 let closeSearch = document.querySelector('.x-icon');
 var body = document.body;
+var page = 1;
 
 icon.onclick = function() {
     sidebar.classList.toggle('active');
@@ -406,20 +407,3 @@ dateElements.forEach(function(element) {
     // Set the formatted date as the content of the element
     element.textContent = formattedDate;
 });
-
-// Get the prize pool element by ID
-var prizePoolElement = document.getElementById('prizePool');
-
-// Get the prize pool amount from the element
-var prizePoolAmount = prizePoolElement.textContent.trim();
-
-// Function to add commas every three digits
-function addCommas(numberString) {
-    return numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-// Format the prize pool amount with commas
-var formattedPrizePool = addCommas(prizePoolAmount);
-
-// Set the formatted prize pool as the content of the element
-prizePoolElement.textContent = formattedPrizePool;

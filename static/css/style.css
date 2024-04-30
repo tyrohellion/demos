@@ -418,6 +418,7 @@ h3 {
 
 .recent-results-header {
     margin-top: 4rem;
+    text-align: center;
 }
 
 .match-card-wrapper {
@@ -532,6 +533,34 @@ h3 {
 .matches-blue-score, .matches-orange-score {
     font-size: 1.1rem;
     font-weight: 700;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    gap: 2rem;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: var(--card-text-color);
+    background-color: var(--button-color);
+    padding: 1rem;
+    border-radius: 0.7rem;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 150ms all;
+    border: 1px solid var(--sidebar-border);
+}
+
+.pagination a:hover {
+    transition: 150ms all;
+    background-color: var(--background-color);
+    color: var(--button-color);
+    border: 1px solid var(--sidebar-border);
 }
 
 /* active roster */

@@ -137,5 +137,24 @@
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
         <script src="/static/script.js" async defer></script>
+        <script>
+            // Get the prize pool element by ID
+            var prizePoolElement = document.getElementById('prizePool');
+
+            // Get the prize pool amount from the element
+            var prizePoolAmount = prizePoolElement.textContent.trim();
+
+            // Function to add commas every three digits
+            function addCommas(numberString) {
+                return numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            // Format the prize pool amount with commas
+            var formattedPrizePool = addCommas(prizePoolAmount);
+
+            // Set the formatted prize pool as the content of the element
+            prizePoolElement.textContent = formattedPrizePool;
+
+        </script>
     </body>
 </html>

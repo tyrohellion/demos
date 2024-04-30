@@ -178,13 +178,88 @@
                                     <div class="matches-orange-name">{{ match['orange']['team']['team']['name'] }}</div>
                                     <div class="matches-blue-name">{{ match['blue']['team']['team']['name'] }}</div>
                 </div>
-
+            </div>
             {% endfor %}
-        </div>
+
+            <div class="pagination">
+                {% if page > 1 %}
+                <a href="{{ url_for('get_player', player_id=player._id, page=page-1) }}" id="prevPageButton">Previous</a>
+                {% endif %}
+                {% if  page >= 0 %}
+                <a href="{{ url_for('get_player', player_id=player._id, page=page+1) }}" id="nextPageButton">Next</a>
+                {% endif %}
+            </div>
+
             </div>
         </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
         <script src="/static/script.js" async defer></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let currentPage = 1;
+
+                // Function to fetch matches with a specific page number
+                function fetchMatches(page) {
+                    // Construct the URL with the page parameter
+                    const url = `/player/{{ player._id }}?page=${page}`;
+
+                    // Fetch data from the API
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data); // Log the data to ensure it's coming correctly
+                            // Process the data and append it to your HTML
+                            appendMatchesToDOM(data.matches); // Example: appendMatchesToDOM is a function that appends matches to the HTML
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                        });
+                }
+
+                // Initial fetch when the page loads
+                fetchMatches(currentPage);
+
+                // Function to handle clicking on the next page button
+                nextPageButton.addEventListener('click', function() {
+                    currentPage++;
+                    fetchMatches(currentPage);
+                });
+
+                // Function to handle clicking on the previous page button
+                prevPageButton.addEventListener('click', function() {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        fetchMatches(currentPage);
+                    }
+                });
+            });
+
+                            // Function to count the number of elements with the class "match-card-wrapper"
+            function countMatchCardWrapperElements() {
+                const matchCardWrappers = document.querySelectorAll('.match-card-wrapper');
+                return matchCardWrappers.length;
+            }
+
+            // Function to hide the next button if less than 10 elements
+            function hideNextButtonIfLessThanTenElements() {
+                const matchCount = countMatchCardWrapperElements();
+                const nextButton = document.getElementById('nextPageButton');
+                if (matchCount == 10) {
+                    nextButton.style.display = 'flex';
+                }
+                else {
+                    nextButton.style.display = 'none';
+                }
+            }
+
+            // Call the function initially
+            hideNextButtonIfLessThanTenElements();
+        </script>
     </body>
 </html>
