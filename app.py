@@ -74,13 +74,15 @@ def get_events():
 def get_event(event_id):
     event = octane_api.get_event(event_id)
     participants = octane_api.get_event_participants(event_id)
-    matches = octane_api.get_event_matches(event_id)
+    page = request.args.get('page', default=1, type=int)  # Get the page number from the request
+    per_page = 10  # Number of matches per page
+    matches = octane_api.get_matches(event=event['_id'], page=page, per_page=per_page, sort='date:desc')
     format = request.args.get('format', 'html')
     
     if format == 'json':
         return jsonify(event=event)
     else:
-        return render_template('event_info.html', event=event, participants=participants, matches=matches)
+        return render_template('event_info.html', event=event, participants=participants, matches=matches, page=page, per_page=per_page)
 
 @app.route('/event/<event_id>/matches')
 def get_event_matches(event_id):

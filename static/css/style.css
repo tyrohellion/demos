@@ -25,6 +25,10 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     transition: all 70ms ease;
     backdrop-filter: blur(7px);
@@ -434,13 +438,25 @@ h3 {
     transition: 150ms all;
 }
 
+.match-card-header a:hover {
+    background-color: var(--sidebar-color);
+    padding: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    transition: 150ms all;
+    .matches-event-name {
+        color: var(--button-color);
+        transition: 150ms all;
+    }
+}
+
 .match-card-wrapper:hover {
     background-color: var(--button-color);
     transform: var(--card-grow-after);
     transition: 150ms all;
     cursor: pointer;
 
-    .matches-blue-name, .matches-orange-name {
+    .blue-name-text, .orange-name-text, .blue-tbd, .orange-tbd {
         color: var(--card-text-color);
     }
 
@@ -461,11 +477,17 @@ h3 {
     }
 }
 
+.match-card-header a {
+    border-radius: 0.3rem;
+    transition: 150ms all;
+}
+
 .match-card-header {
     display: flex;
     gap: 0.7rem;
     padding-left: 1rem;
     align-items: center;
+    transition: 150ms all;
 }
 
 .matches-event-name {
@@ -510,24 +532,73 @@ h3 {
     overflow: hidden;
 }
 
-.matches-blue-name {
+.blue-name {
     font-size: 1rem;
     font-weight: 600;
     position: absolute;
+    padding: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    border-radius: 0.3rem;
     right: 540px;
-    bottom: 40px;
+    bottom: 33px;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: var(--button-color);
+    transition: 150ms all;
 }
 
-.matches-orange-name {
+.blue-name:hover, .orange-name:hover {
+    background-color: var(--sidebar-color);
+    transition: 150ms all;
+
+    .blue-name-text, .orange-name-text {
+        color: var(--button-color);
+    }
+}
+
+.orange-tbd {
     font-size: 1rem;
     font-weight: 600;
     position: absolute;
+    padding: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
     left: 540px;
-    bottom: 40px;
+    bottom: 33px;
     white-space: nowrap;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
+    color: var(--button-color); 
+}
+
+.blue-tbd {
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+    padding: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    right: 540px;
+    bottom: 33px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--button-color);
+}
+
+.orange-name {
+    font-size: 1rem;
+    font-weight: 600;
+    position: absolute;
+    padding: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    border-radius: 0.3rem;
+    left: 540px;
+    bottom: 33px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--button-color);
+    transition: 150ms all;
 }
 
 .matches-blue-score, .matches-orange-score {

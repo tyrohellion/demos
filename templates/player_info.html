@@ -145,7 +145,9 @@
                     <div class="match-card-wrapper">
                         <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="match-card-header">
-                                <div class="matches-event-name">{{ match['event']['name'] }}</div>
+                                <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
+                                    <div class="matches-event-name">{{ match['event']['name'] }}</div>
+                                </a>
                                 <i class="match-arrow" data-feather="chevron-right"></i>
                                 <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
                             </div>
@@ -175,8 +177,12 @@
                                     {% endif %}
                                 </div>
                             </div>
-                                    <div class="matches-orange-name">{{ match['orange']['team']['team']['name'] }}</div>
-                                    <div class="matches-blue-name">{{ match['blue']['team']['team']['name'] }}</div>
+                                <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="orange-name">
+                                    <div class="orange-name-text">{{ match['orange']['team']['team']['name'] }}</div>
+                                </a>
+                                <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="blue-name">
+                                    <div class="blue-name-text">{{ match['blue']['team']['team']['name'] }}</div>
+                                </a>
                 </div>
             </div>
             {% endfor %}
