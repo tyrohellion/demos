@@ -85,8 +85,8 @@ body.active {
 }
 
 .feather {
-    min-height: 24px;
-    min-width: 24px;
+    min-height: 16px;
+    min-width: 16px;
 }
 
 .sidebar-body a:hover {
@@ -263,10 +263,15 @@ h3 {
 
 .event-prize-wrapper {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 42px;
     border: 1px solid var(--sidebar-border);
     border-radius: 4px;
     gap: 0.3rem;
-    padding: 0.5rem;
+    padding: 0.8rem;
+    cursor: default;
 }
 
 .event-prize {
@@ -282,6 +287,7 @@ h3 {
     border-radius: 4px;
     font-weight: 500;
     padding: 0.5rem;
+    cursor: default;
 }
 
 .event-tier, .event-region {
@@ -293,6 +299,7 @@ h3 {
     border: 1px solid var(--sidebar-border);
     padding: 0.3rem;
     border-radius: 4px;
+    cursor: default;
 }
 
 .event-subheadings {
@@ -376,40 +383,68 @@ h3 {
 
 .main-player-background .player-country {
     font-size: 1rem;
-    margin: auto;
+    width: auto;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    align-items: center;
     text-transform: uppercase;
     border-radius: 4px;
     padding: 0.5rem;
     border: 1px solid var(--sidebar-border);
     font-weight: 500;
     letter-spacing: 1px;
+    cursor: default;
+}
+
+.player-country .feather {
+    height: 20px;
+    width: 20px;
 }
 
 .main-player-background .player-team {
     font-size: 1rem;
-    margin: auto;
     border-radius: 4px;
+    width: auto;
+    height: 42px;
     padding: 0.5rem;
     border: 1px solid var(--sidebar-border);
     font-weight: 500;
     letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.player-team .feather {
+    color: white;
+    height: 22px;
+    width: 22px;
 }
 
 .main-player-background .player-team:hover {
-    font-size: 1rem;
-    margin: auto;
-    border-radius: 4px;
-    padding: 0.5rem;
     background-color: var(--button-color);
     color: var(--card-text-color);
-    border: 1px solid var(--sidebar-border);
-    font-weight: 500;
-    letter-spacing: 1px;
     cursor: pointer;
+
+    .feather {
+        color: var(--card-text-color);
+    }
 }
 
 
 /* recent results section */
+
+#match-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
 .matches-wrapper {
     display: flex;
@@ -418,6 +453,7 @@ h3 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .recent-results-header {
@@ -450,6 +486,10 @@ h3 {
     }
 }
 
+.match-card-header .feather {
+    color: var(--button-color);
+}
+
 .match-card-wrapper:hover {
     background-color: var(--button-color);
     transform: var(--card-grow-after);
@@ -475,11 +515,43 @@ h3 {
     .match-arrow {
         filter: invert();
     }
+
+    .lan-wrapper .feather, .online-wrapper .feather {
+        color: var(--card-text-color);
+    }
+    
+    .lan-text, .online-text {
+        color: var(--card-text-color);
+    }
 }
 
 .match-card-header a {
     border-radius: 0.3rem;
     transition: 150ms all;
+    z-index: 2;
+}
+
+.lan-wrapper, .online-wrapper {
+    position: absolute;
+    right: 1.7rem;
+    top: 1.2rem;
+    padding: 0.1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.lan-wrapper .feather, .online-wrapper .feather {
+    height: 20px;
+    width: 20px;
+    color: var(--button-color);
+}
+
+.lan-text, .online-text {
+    font-size: 0.9rem;
+    color: var(--button-color);
+    margin-bottom: 2px;
+    font-weight: 500;
 }
 
 .match-card-header {
@@ -1016,6 +1088,10 @@ h3 {
         border-radius: 21px;
     }
 
+    .sidebar.active {
+        width: 100%;
+    }
+
     h3 {
         display: flex;
         font-size: 1rem;
@@ -1059,6 +1135,10 @@ h3 {
         position: fixed;
         bottom: 0;
         border-radius: 21px;
+    }
+
+    .sidebar.active {
+        width: 100%;
     }
 
     h3 {

@@ -143,6 +143,17 @@
                                 </a>
                                 <i class="match-arrow" data-feather="chevron-right"></i>
                                 <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
+                                {% if match['stage']['lan'] %}
+                                <div class="lan-wrapper">
+                                    <div class="lan-text">Lan</div>
+                                    <i class="lan-icon" data-feather="map-pin"></i>
+                                </div>
+                                {% else %}
+                                <div class="online-wrapper">
+                                    <div class="online-text">Online</div>
+                                    <i class="online-icon" data-feather="globe"></i>
+                                </div>
+                                {% endif %}
                             </div>
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">

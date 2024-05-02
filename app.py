@@ -163,7 +163,7 @@ def get_games():
 @app.route('/game/<game_id>')
 def get_game(game_id):
     game = octane_api.get_game(game_id)
-    return jsonify(game=game)
+    return render_template('match_info.html', game=game)
 
 @app.route('/players')
 def get_players():

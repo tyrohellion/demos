@@ -116,7 +116,10 @@
                     <div class="player-tag">{{ team.name }}</div>
                     <div class="player-subheadings">
                         {% if team.region is defined %}
-                        <div class="player-country">{{ team.region }}</div>
+                        <div class="player-country">
+                            <i data-feather="flag"></i>
+                            {{ team.region }}
+                        </div>
                         {% endif %}
                     </div>
                 </div>
@@ -163,6 +166,7 @@
             {% for match in matches %}
             <div class="matches-wrapper" id="matches-container">
                     <div class="match-card-wrapper">
+                        <a href="{{ url_for('get_match', match_id=match['_id']) }}" id="match-link"></a>
                         <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="match-card-header">
                                 <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
@@ -170,6 +174,17 @@
                                 </a>
                                 <i class="match-arrow" data-feather="chevron-right"></i>
                                 <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
+                                {% if match['stage']['lan'] %}
+                                <div class="lan-wrapper">
+                                    <div class="lan-text">Lan</div>
+                                    <i class="lan-icon" data-feather="map-pin"></i>
+                                </div>
+                            {% else %}
+                            <div class="online-wrapper">
+                                <div class="online-text">Online</div>
+                                <i class="online-icon" data-feather="globe"></i>
+                            </div>
+                            {% endif %}
                             </div>
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">
