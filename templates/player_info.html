@@ -190,7 +190,7 @@
                                     {% else %}
                                     <div class="matches-orange-score">0</div>
                                     {% endif %}
-                                    {% if match['blue']['team']['team']['image'] %}
+                                    {% if match['orange']['team']['team']['image'] %}
                                     <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
                                     {% else %}
                                     <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">

@@ -57,6 +57,7 @@ def get_events():
     region = request.args.get('region')
     mode = request.args.get('mode')
     group = request.args.get('group')
+    stages = request.args.get('stages')
     before = request.args.get('before')
     after = request.args.get('after')
     date = request.args.get('date')
@@ -65,7 +66,7 @@ def get_events():
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('perPage', 100))
 
-    events = octane_api.get_events(name=name, tier=tier, region=region, mode=mode, group=group, 
+    events = octane_api.get_events(name=name, tier=tier, region=region, mode=mode, group=group, stages=stages,
                                     before=before, after=after, date=date, sort=sort, order=order, 
                                     page=page, per_page=per_page)
     return jsonify(events=events)

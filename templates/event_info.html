@@ -132,6 +132,14 @@
                     </div>
                 </div>
             </div>
+
+            <div class="brackets-heading">Brackets</div>
+            <div class="bracket-buttons-wrapper">
+                {% for stage in event.stages %}
+                <a href="{{ stage.liquipedia }}" class="bracket-button">{{ stage.name }}</a>
+                {% endfor %}
+            </div>
+
             <h2 class="recent-results-header">Recent Matches</h2>
             {% for match in matches %}
             <div class="matches-wrapper" id="matches-container">
@@ -179,7 +187,7 @@
                                     {% else %}
                                     <div class="matches-orange-score">0</div>
                                     {% endif %}
-                                    {% if match['blue']['team']['team']['image'] %}
+                                    {% if match['orange']['team']['team']['image'] %}
                                     <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
                                     {% else %}
                                     <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">

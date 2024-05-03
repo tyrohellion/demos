@@ -142,17 +142,17 @@
             {% for player in active_roster %}
                 {% if player.get('coach', False) %}
                 <a href="{{ url_for('get_player', player_id=player._id) }}">
-                    {{ player.tag }}
+                    <div class="coach-tag">{{ player.tag }}</div>
                     <div class="tooltip">Coach</div>
                 </a>
                 {% elif player.get('substitute', False) %}
                 <a href="{{ url_for('get_player', player_id=player._id) }}">
-                    {{ player.tag }}
+                    <div class="sub-tag">{{ player.tag }}</div>
                     <div class="tooltip">Substitute</div>
                 </a>
                 {% else %}
                 <a href="{{ url_for('get_player', player_id=player._id) }}">
-                    {{ player.tag }}
+                    <div class="player-display">{{ player.tag }}</div>
                     <div class="tooltip">Player</div>
                 </a>
                 {% endif %}
@@ -205,7 +205,7 @@
                                     {% else %}
                                     <div class="matches-orange-score">0</div>
                                     {% endif %}
-                                    {% if match['blue']['team']['team']['image'] %}
+                                    {% if match['orange']['team']['team']['image'] %}
                                     <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
                                     {% else %}
                                     <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">

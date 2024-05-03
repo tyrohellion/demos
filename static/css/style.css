@@ -84,9 +84,9 @@ body.active {
     gap: 24px;
 }
 
-.feather {
-    min-height: 16px;
-    min-width: 16px;
+.sidebar-body .feather {
+    min-height: 24px;
+    min-width: 24px;
 }
 
 .sidebar-body a:hover {
@@ -434,6 +434,41 @@ h3 {
     }
 }
 
+/* Stages/brackets buttons */
+
+.bracket-buttons-wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-flow: wrap;
+}
+
+.brackets-heading {
+    font-size: 1.5rem;
+    padding: 2rem;
+    font-weight: 500;
+    color: var(--button-color);
+}
+
+.bracket-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--sidebar-border);
+    color: var(--button-color);
+    border-radius: 0.7rem;
+    transform: var(--card-grow-before);
+    transition: all 150ms;
+    font-weight: 500;
+}
+
+.bracket-button:hover {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    transform: var(--card-grow-after);
+    transition: all 150ms;
+}
+
 
 /* recent results section */
 
@@ -712,7 +747,13 @@ h3 {
     border: 1px solid var(--sidebar-border);
     border-radius: 0.7rem;
     display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 4rem;
+}
+
+.coach-tag, .sub-tag {
+    color: rgba(255, 255, 255, 0.712);
 }
 
 .active-roster-wrapper a {
@@ -724,6 +765,10 @@ h3 {
     text-decoration: none;
     background-color: var(--button-color);
     color: var(--card-text-color);
+
+    .coach-tag, .sub-tag {
+        color: var(--card-text-color);
+    }
 }
 
 .active-roster-wrapper a:first-child {
