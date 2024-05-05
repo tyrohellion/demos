@@ -127,12 +127,12 @@ def get_matches():
 @app.route('/match/<match_id>')
 def get_match(match_id):
     match = octane_api.get_match(match_id)
-    return jsonify(match=match)
-
-@app.route('/match/<match_id>/games')
-def get_match_games(match_id):
     games = octane_api.get_match_games(match_id)
-    return jsonify(games=games)
+
+    if format == 'json':
+        return jsonify(match=match, games=games)  # Return player data as JSON
+    else:
+        return render_template('match_info.html', match=match, games=games)
 
 @app.route('/games')
 def get_games():

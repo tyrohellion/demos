@@ -106,7 +106,97 @@
             </div>
         </div>
 
-        <!-- start on match info page -->
+
+        <div class="background-color">
+
+            <div class="match-event-header-wrapper">
+                <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}" class="match-event-header">{{ match.event.name }}</a>
+                <i class="match-arrow" data-feather="chevron-right"></i>
+                <div class="match-event-stage-header">{{ match.stage.name }}</div>
+            </div>
+
+            <div class="matchup-scoreboard-wrapper">
+                <div class="matchup-header-wrapper">
+                    <div class="blue-team-img-name-wrapper">
+                        {% if match['blue']['team']['team']['image'] %}
+                            <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
+                        {% else %}
+                            <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
+                        {% endif %}
+                        <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="matches-team-name">{{ match['blue']['team']['team']['name'] }}</a>
+                    </div>
+
+                    <div class="orange-team-img-name-wrapper">
+                        {% if match['orange']['team']['team']['image'] %}
+                            <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                        {% else %}
+                            <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                        {% endif %}
+                        <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="matches-team-name">{{ match['orange']['team']['team']['name'] }}</a>
+                    </div>
+                </div>
+
+                <div class="scores-cotainer">
+                    {% for game in match.games %}
+                    <div class="scores-wrapper">
+                        <div class="scores-blue">{{ game.blue }}</div>
+                        <div class="scores-orange">{{ game.orange }}</div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="match-final-score-wrapper">
+                        {% if match.blue.score %}
+                        <div class="match-final-score-blue">{{ match.blue.score }}</div>
+                        {% else %}
+                        <div class="match-final-score-blue">0</div>
+                        {% endif %}
+                        {% if match.orange.score %}
+                        <div class="match-final-score-orange">{{ match.orange.score }}</div>
+                        {% else %}
+                        <div class="match-final-score-orange">0</div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="match-roster-list-wrapper">
+                <div class="blue-team-roster">
+                    <div class="roster-heading">
+                        {% if match['blue']['team']['team']['image'] %}
+                            <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
+                        {% else %}
+                            <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
+                        {% endif %}
+                        <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="matches-team-name">{{ match['blue']['team']['team']['name'] }}</a>
+                    </div>
+                    {% for player in match.blue.players %}
+                    <a href="{{ url_for('get_player', player_id=player.player._id) }}" class="roster-list-card"> {{ player.player.tag }} </a>
+                    {% endfor %}
+                </div>
+
+                <div class="orange-team-roster">
+                    <div class="roster-heading">
+                        {% if match['orange']['team']['team']['image'] %}
+                            <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                        {% else %}
+                            <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                        {% endif %}
+                        <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="matches-team-name">{{ match['orange']['team']['team']['name'] }}</a>
+                    </div>
+                    {% for player in match.orange.players %}
+                    <a href="{{ url_for('get_player', player_id=player.player._id) }}" class="roster-list-card"> {{ player.player.tag }} </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <h2 class="ballchasing-header">Game Replays</h2>
+            <div class="ballchasing-wrapper">
+                {% for game in games %}
+                    <a href="https://ballchasing.com/replay/{{ game.ballchasing }}" class="ballchasing-links">Game {{ loop.index }}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>

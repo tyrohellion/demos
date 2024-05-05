@@ -144,6 +144,7 @@
             {% for match in matches %}
             <div class="matches-wrapper" id="matches-container">
                     <div class="match-card-wrapper">
+                        <a href="{{ url_for('get_match', match_id=match['_id']) }}" id="match-link"></a>
                         <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="match-card-header">
                                 <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">

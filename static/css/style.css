@@ -434,22 +434,209 @@ h3 {
     }
 }
 
-/* Stages/brackets buttons */
+/* match_info pages */
+
+.background-color {
+    background-color: var(--sidebar-color);
+    border-top: 1px solid var(--sidebar-border);
+    height: auto;
+    margin-top: 40px;
+    padding-bottom: 80px;
+}
+
+.match-event-header-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.match-event-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--button-color);
+    transition: 150ms all;
+    padding: 0.3rem;
+    border-radius: 4px;
+    transform: var(--card-grow-before);
+}
+
+.match-event-header:hover {
+    color: var(--card-text-color);
+    background-color: var(--button-color);
+    transition: 150ms all;
+    transform: var(--card-grow-after);
+}
+
+.match-event-stage-header {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--button-color);
+    cursor: default;
+}
+
+.matchup-scoreboard-wrapper {
+    display: flex;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 0.7rem;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.matchup-header-wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.matches-team-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--button-color);
+    text-overflow: ellipsis;
+    padding: 0.4rem;
+    border-radius: 4px;
+    transition: 150ms all;
+}
+
+.matches-team-name:hover {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    transition: 150ms all;
+}
+
+.blue-team-img-name-wrapper, .orange-team-img-name-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-right: 2rem;
+    align-items: center;
+    border-right: 1px solid var(--sidebar-border);
+}
+
+.blue-team-img-name-wrapper img, .orange-team-img-name-wrapper img, .roster-heading img {
+    max-height: 80px;
+    max-width: 80px;
+    background-color: rgb(66, 67, 82);
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--sidebar-border);
+}
+
+.scores-cotainer {
+    display: flex;
+    gap: 3rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+    width: auto;
+}
+
+.scores-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5.3rem;
+    width: auto;
+}
+
+.scores-blue, .scores-orange {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(243, 243, 243);
+}
+
+.match-final-score-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5.3rem;
+    width: auto;
+    padding-left: 2rem;
+    border-left: 1px solid var(--sidebar-border);
+}
+
+.match-final-score-blue, .match-final-score-orange {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--button-color);
+}
+
+.match-roster-list-wrapper {
+    display: flex;
+    gap: 5rem;
+    flex-flow: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.blue-team-roster, .orange-team-roster {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    border: 1px solid var(--sidebar-border);
+    border-radius: 0.7rem;
+    padding: 1.5rem;
+}
+
+.roster-heading {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--sidebar-border);
+    padding-bottom: 1.5rem;
+}
+
+.roster-list-card {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    color: rgb(243, 243, 243);
+    border-radius: 4px;
+    transition: 150ms all;
+}
+
+.roster-list-card:hover {
+    color: var(--card-text-color);
+    background-color: var(--button-color);
+    transition: 150ms all;
+}
+
+
+
+/* Stages/brackets buttons and Ballchasing buttons */
 
 .bracket-buttons-wrapper {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     flex-flow: wrap;
 }
 
-.brackets-heading {
-    font-size: 1.5rem;
-    padding: 2rem;
-    font-weight: 500;
-    color: var(--button-color);
+.ballchasing-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-flow: wrap;
+    margin-bottom: 40px;
 }
 
-.bracket-button {
+.brackets-heading, .ballchasing-header {
+    font-size: 1.5rem;
+    padding: 1rem;
+    padding-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    color: var(--button-color);
+    margin-top: 40px;
+}
+
+.bracket-button, .ballchasing-links {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -459,16 +646,15 @@ h3 {
     border-radius: 0.7rem;
     transform: var(--card-grow-before);
     transition: all 150ms;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-.bracket-button:hover {
+.bracket-button:hover, .ballchasing-links:hover {
     background-color: var(--button-color);
     color: var(--card-text-color);
     transform: var(--card-grow-after);
     transition: all 150ms;
 }
-
 
 /* recent results section */
 
@@ -607,6 +793,7 @@ h3 {
     font-size: 1rem;
     font-weight: 600;
     color: rgb(219, 227, 252);
+    text-overflow: ellipsis;
 }
 
 .match-date {

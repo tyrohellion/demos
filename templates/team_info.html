@@ -189,9 +189,9 @@
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">
                                     {% if match['blue']['team']['team']['image'] %}
-                                    <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
                                     {% else %}
-                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                                    <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
                                     {% endif %}
                                     {% if match['blue']['score'] %}
                                     <div class="matches-orange-score">{{ match['blue']['score'] }}</div>
