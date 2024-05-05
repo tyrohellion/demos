@@ -28,9 +28,9 @@ replace get_events with this:
             mode: Optional[int] = None, group: Optional[str] = None, stages: Optional[str] = None, before: Optional[str] = None,
             after: Optional[str] = None, date: Optional[str] = None, sort: Optional[str] = None,
             order: Optional[str] = None, page: int = 1, per_page: int = 100) -> list:
-endpoint = f'{API_BASE_URL}/events'
-param_names = {'name', 'tier', 'region', 'mode', 'group', 'before', 'after', 'date', 'sort',
-                'order', 'page', 'stages'}
+    endpoint = f'{API_BASE_URL}/events'
+    param_names = {'name', 'tier', 'region', 'mode', 'group', 'before', 'after', 'date', 'sort',
+                    'order', 'page', 'stages'}
 
 
 
