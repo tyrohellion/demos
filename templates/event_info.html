@@ -218,7 +218,7 @@
 
             <div class="pagination">
                 {% if page > 1 %}
-                <a href="{{ url_for('get_event', event_id=event._id, page=page-1) }}" id="prevPageButton">Previous</a>
+                <a href="{{ url_for('get_event', event_id=event._id, page=page-1) }}" id="prevPageButton">Prev</a>
                 {% endif %}
                 {% if  page >= 0 %}
                 <a href="{{ url_for('get_event', event_id=event._id, page=page+1) }}" id="nextPageButton">Next</a>

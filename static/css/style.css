@@ -568,10 +568,74 @@ h3 {
 
 .match-roster-list-wrapper {
     display: flex;
+    flex-direction: column;
     gap: 5rem;
-    flex-flow: wrap;
     justify-content: center;
+    align-items: center;
     margin-top: 40px;
+}
+
+.stat-labels-wrapper {
+    display: flex;
+    position: absolute;
+    gap: 2rem;
+    right: -573px;
+    top: -24px;
+}
+
+.stat-label {
+    color: var(--button-color);
+}
+
+#goals {
+    text-align: start;
+    width: 60px;
+}
+
+#assists {
+    text-align: start;
+    width: 60px;
+}
+
+#saves {
+    text-align: start;
+    width: 60px;
+}
+
+#score {
+    text-align: start;
+    width: 71px;
+}
+
+.player-stats-wrapper {
+    display: flex;
+    gap: 2rem;
+}
+
+.player-stats-names {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 1rem;
+    padding-right: 2.3rem;
+    gap: 1rem;
+    border-right: 1px solid var(--sidebar-border);
+    width: fit-content;
+}
+
+.player-name-stats-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-top: 32px;
+    width: fit-content;
+}
+
+.player-stats-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    margin-left: 1rem;
 }
 
 .blue-team-roster, .orange-team-roster {
@@ -581,6 +645,7 @@ h3 {
     border: 1px solid var(--sidebar-border);
     border-radius: 0.7rem;
     padding: 1.5rem;
+    width: fit-content;
 }
 
 .roster-heading {
@@ -592,13 +657,25 @@ h3 {
     padding-bottom: 1.5rem;
 }
 
-.roster-list-card {
+.roster-list-card-small, .roster-list-card-medium, .roster-list-card, .roster-list-card-rating, .roster-list-card-goalpart {
     font-size: 1.2rem;
     font-weight: 500;
     padding: 0.5rem;
     color: rgb(243, 243, 243);
     border-radius: 4px;
     transition: 150ms all;
+}
+
+.roster-list-card-small {
+    width: 60px;
+}
+
+.roster-list-card-medium, .roster-list-card-goalpart {
+    width: 72px;
+}
+
+.roster-list-card-rating {
+    width: 92px;
 }
 
 .roster-list-card:hover {
