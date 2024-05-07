@@ -394,7 +394,7 @@ function convertUTCtoDateOnly(utcDateString) {
 }
 
 // Get the elements by class name
-var dateElements = document.querySelectorAll('.event-start-date, .event-end-date, .match-date');
+var dateElements = document.querySelectorAll('.event-start-date, .event-end-date, .match-date, .match-date-header');
 
 // Loop through each element
 dateElements.forEach(function(element) {

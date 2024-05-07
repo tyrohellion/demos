@@ -265,7 +265,6 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: auto;
     height: 42px;
     border: 1px solid var(--sidebar-border);
     border-radius: 4px;
@@ -304,6 +303,7 @@ h3 {
 
 .event-subheadings {
     display: flex;
+    flex-flow: wrap;
     flex-direction: row;
     justify-content: center;
     gap: 1.2rem;
@@ -369,6 +369,8 @@ h3 {
 .player-header-container, .event-header-container {
     display: flex;
     margin-top: 40px;
+    margin-left: 1rem;
+    margin-right: 1rem;
     gap: 1.5rem;
 }
 
@@ -442,6 +444,14 @@ h3 {
     height: auto;
     margin-top: 40px;
     padding-bottom: 80px;
+}
+
+.match-date-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .match-event-header-wrapper {
@@ -1364,10 +1374,81 @@ h3 {
     }
  }
 
+ @media all and (max-width: 1400px) {
+    .match-date {
+        display: none;
+    }
+ }
+
  @media all and (min-width: 768px) and (max-width: 1024px) { 
     .grid-container {
         grid-template-columns: repeat(auto-fit, 14rem);
         grid-auto-rows: minmax(1rem, 14rem);
+    }
+ }
+
+ @media all and (min-width: 768px) and (max-width: 992px) { 
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, 14rem);
+        grid-auto-rows: minmax(1rem, 14rem);
+    }
+
+    .match-card-wrapper {
+        width: 335px;
+        height: 240px;
+    }
+
+    .orange-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 175px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .match-card-header {
+        justify-content: center;
+        padding-left: 0;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    .match-card-header a {
+        text-overflow: ellipsis;
+    }
+
+    .match-card-header .feather {
+        display: none;
+    }
+
+    .matches-event-stage {
+        display: none;
+    }
+
+    .online-wrapper {
+        display: none;
+    }
+
+    .lan-wrapper {
+        display: none;
     }
  }
  
@@ -1376,12 +1457,165 @@ h3 {
         grid-template-columns: repeat(auto-fit, 13rem);
         grid-auto-rows: minmax(1rem, 13rem);
     }
+
+    .player-header-container, .event-header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .player-tag {
+        text-align: center;
+    }
+
+    .player-subheadings {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-left: 2px;
+    }
+
+    .player-info {
+        align-items: center;
+    }
+
+    .active-roster-wrapper {
+        flex-direction: column;
+    }
+
+    .match-card-wrapper {
+        width: 335px;
+        height: 240px;
+    }
+
+    .orange-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 175px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .match-card-header {
+        justify-content: center;
+        padding-left: 0;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    .match-card-header a {
+        text-overflow: ellipsis;
+    }
+
+    .match-card-header .feather {
+        display: none;
+    }
+
+    .matches-event-stage {
+        display: none;
+    }
+
+    .online-wrapper {
+        display: none;
+    }
+
+    .lan-wrapper {
+        display: none;
+    }
   }
  
  @media all and (max-width: 480px) {
     .grid-container {
         grid-template-columns: repeat(auto-fit, 12rem);
         grid-auto-rows: minmax(1rem, 12rem);
+    }
+
+    .player-header-container, .event-header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .player-tag {
+        text-align: center;
+    }
+
+    .match-card-wrapper {
+        width: 335px;
+        height: 240px;
+    }
+
+    .orange-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 175px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .match-card-header {
+        justify-content: center;
+        padding-left: 0;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    .match-card-header a {
+        text-overflow: ellipsis;
+    }
+
+    .match-card-header .feather {
+        display: none;
+    }
+
+    .matches-event-stage {
+        display: none;
+    }
+
+    .online-wrapper {
+        display: none;
+    }
+
+    .lan-wrapper {
+        display: none;
     }
   }
 
@@ -1513,6 +1747,83 @@ h3 {
     .grid-container {
         grid-template-columns: repeat(auto-fit, 12rem);
         grid-auto-rows: minmax(1rem, 12rem);
+    }
+
+    .player-header-container, .event-header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .player-subheadings {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        gap: 2rem;
+        margin-left: 2px;
+    }
+
+    .player-info {
+        align-items: center;
+    }
+
+    .match-card-wrapper {
+        width: 335px;
+        height: 240px;
+    }
+
+    .orange-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 175px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-name {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .match-card-header {
+        justify-content: center;
+        padding-left: 0;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    .match-card-header a {
+        text-overflow: ellipsis;
+    }
+
+    .match-card-header .feather {
+        display: none;
+    }
+
+    .matches-event-stage {
+        display: none;
+    }
+
+    .online-wrapper {
+        display: none;
+    }
+
+    .lan-wrapper {
+        display: none;
     }
  } 
  

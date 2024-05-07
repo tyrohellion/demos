@@ -109,6 +109,8 @@
 
         <div class="background-color">
 
+            <div class="match-date-header" data-utc="{{ match.date }}"></div>
+
             <div class="match-event-header-wrapper">
                 <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}" class="match-event-header">{{ match.event.name }}</a>
                 <i class="match-arrow" data-feather="chevron-right"></i>
