@@ -1399,13 +1399,6 @@ h3 {
     }
 }
 
-.active-roster-wrapper a:active, .active-roster-wrapper a:focus {
-    background-color: var(--sidebar-color);
-    color: var(--button-color);
-    width: 100%;
-    text-align: center;
-}
-
 .active-roster-wrapper a:first-child {
     border-top-left-radius: 0.7rem;
     border-bottom-left-radius: 0.7rem;
@@ -1999,6 +1992,13 @@ h3 {
         gap: 2rem;
         margin-left: 2px;
     }
+
+    .active-roster-wrapper a:active {
+        background-color: var(--sidebar-color);
+        color: var(--button-color);
+        width: 100%;
+        text-align: center;
+    }
     
     .ballchasing-wrapper {
         margin-bottom: 120px;
@@ -2303,6 +2303,13 @@ h3 {
 
     .player-info {
         align-items: center;
+    }
+
+    .active-roster-wrapper a:active {
+        background-color: var(--sidebar-color);
+        color: var(--button-color);
+        width: 100%;
+        text-align: center;
     }
 
     .ballchasing-wrapper {
