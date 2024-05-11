@@ -139,12 +139,12 @@
                                     {% endif %}
                                 </div>
                                 <div class="name-line-container">
-                                    <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="team-blue-name">
+                                    <div class="team-blue-name">
                                         <div class="results-team-text">{{ match['blue']['team']['team']['name'] }}</div>
-                                    </a>
-                                    <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="team-orange-name">
+                                    </div>
+                                    <div class="team-orange-name">
                                         <div class="results-team-text">{{ match['orange']['team']['team']['name'] }}</div>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}

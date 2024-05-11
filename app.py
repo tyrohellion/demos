@@ -77,11 +77,17 @@ def get_event_participants(event_id):
 def get_match(match_id):
     match = octane_api.get_match(match_id)
     games = octane_api.get_match_games(match_id)
+    blue_games = 0
+    orange_games = 0
 
-    if format == 'json':
-        return jsonify(match=match, games=games)
-    else:
-        return render_template('match_info.html', match=match, games=games)
+    if 'blue' in match and 'score' in match['blue']:
+        blue_games = match['blue']['score']
+    if 'orange' in match and 'score' in match['orange']:
+        orange_games = match['orange']['score']
+
+    num_of_games = blue_games + orange_games
+
+    return render_template('match_info.html', match=match, games=games, num_of_games=num_of_games)
 
 @app.route('/games')
 def get_games():

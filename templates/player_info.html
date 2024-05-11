@@ -121,6 +121,11 @@
                             <i data-feather="flag"></i>
                             {{ player.country }}
                         </div>
+                        {% else %}
+                        <div class="player-country">
+                            <i data-feather="flag"></i>
+                            Unknown
+                        </div>
                         {% endif %}
                         <a href="{{ url_for('get_team', team_id=player.team._id) }}">
                             <div class="player-team">
@@ -140,7 +145,17 @@
                         {% if player.name is defined %}
                         <div class="player-name">{{ player.name }}</div>
                         {% endif %}
-                        <div class="player-country">{{ player.country }}</div>
+                        {% if player.country is defined %}
+                        <div class="player-country">
+                            <i data-feather="flag"></i>
+                            {{ player.country }}
+                        </div>
+                        {% else %}
+                        <div class="player-country">
+                            <i data-feather="flag"></i>
+                            ?
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

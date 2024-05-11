@@ -115,34 +115,50 @@
                 <div class="match-event-stage-header">{{ match.stage.name }}</div>
             </div>
 
+            {% if match.blue and match.orange %}
             <div class="matchup-scoreboard-wrapper">
                 <div class="matchup-header-wrapper">
                     <div class="blue-team-img-name-wrapper">
-                        {% if match['blue']['team']['team']['image'] %}
-                            <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
+                        {% if match.blue.team.team.image %}
+                            <img src="{{ match.blue.team.team.image | default('/static/images/rocketleague.svg')}}" alt="{{ match.blue.team.team.image }}">
                         {% else %}
-                            <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
+                            <img src="/static/images/rocketleague.svg" alt="blue team image">
                         {% endif %}
-                        <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="matches-team-name">{{ match['blue']['team']['team']['name'] }}</a>
+                        <a href="{{ url_for('get_team', team_id = match.blue.team.team._id) }}" class="matches-team-name">{{ match.blue.team.team.name }}</a>
                     </div>
 
                     <div class="orange-team-img-name-wrapper">
-                        {% if match['orange']['team']['team']['image'] %}
-                            <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
+                        {% if match.orange.team.team.image %}
+                            <img src="{{ match.orange.team.team.image | default('/static/images/rocketleague.svg')}}" alt="{{ match.orange.team.team.name }}">
                         {% else %}
-                            <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
+                            <img src="/static/images/rocketleague.svg" alt="orange team image">
                         {% endif %}
-                        <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="matches-team-name">{{ match['orange']['team']['team']['name'] }}</a>
+                        <a href="{{ url_for('get_team', team_id = match.orange.team.team._id) }}" class="matches-team-name">{{ match.orange.team.team.name }}</a>
                     </div>
                 </div>
 
                 <div class="scores-cotainer">
-                    {% for game in match.games %}
+                    {% if match.games %}
+                    {% for i in range(num_of_games) %}
                     <div class="scores-wrapper">
+                        {% set game = match.games[i] %}
+                        {% if i < match.games|length %}
                         <div class="scores-blue">{{ game.blue }}</div>
                         <div class="scores-orange">{{ game.orange }}</div>
+                        {% else %}
+                        <div class="scores-blue">?</div>
+                        <div class="scores-orange">?</div>
+                        {% endif %}
                     </div>
                     {% endfor %}
+                    {% else %}
+                        {% for i in range(num_of_games) %}
+                            <div class="scores-wrapper">
+                                <div class="scores-blue">?</div>
+                                <div class="scores-orange">?</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
                     <div class="match-final-score-wrapper">
                         {% if match.blue.score %}
@@ -252,11 +268,22 @@
                 {% endif %}
             </div>
 
+            {% else %}
+                <div class="upcoming">Upcoming Match</div>
+            {% endif %}
+
             <h2 class="ballchasing-header">Match Replays</h2>
             <div class="ballchasing-wrapper">
-                {% for game in games %}
-                    <a href="https://ballchasing.com/replay/{{ game.ballchasing }}" class="ballchasing-links">Game {{ loop.index }}</a>
-                {% endfor %}
+                {% if match.games %}
+                    {% for i in range(num_of_games) %}
+                        {% set game = match.games[i] %}
+                        {% if i < match.games|length %}
+                            <a href="https://ballchasing.com/replay/{{ game.ballchasing }}" class="ballchasing-links" target=”_blank”>Game {{ loop.index }}</a>
+                            {% else %}
+                            <div class="no-replay">No data</div>
+                            {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
     </div>
         <script src="https://unpkg.com/feather-icons"></script>
