@@ -137,6 +137,8 @@
                     </div>
                 </div>
 
+
+                {% if num_of_games != 0 %}
                 <div class="scores-cotainer">
                     {% if match.games %}
                     {% for i in range(num_of_games) %}
@@ -159,6 +161,13 @@
                             </div>
                         {% endfor %}
                     {% endif %}
+                    {% else %}
+                    <div class="scores-wrapper">
+                        <div class="scores-blue-upcoming">Upcoming</div>
+                        <div class="scores-orange-upcoming">Upcoming</div>
+                    </div>
+                    {% endif %}
+
 
                     <div class="match-final-score-wrapper">
                         {% if match.blue.score %}
@@ -176,9 +185,8 @@
                 </div>
             </div>
 
-            <div class="match-roster-list-wrapper">
-
                 {% if match.blue.players %}
+                <div class="match-roster-list-wrapper">
                 <div class="blue-team-roster">
                     <div class="roster-heading">
                         {% if match['blue']['team']['team']['image'] %}
@@ -265,26 +273,33 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
             </div>
+                {% endif %}
 
             {% else %}
                 <div class="upcoming">Upcoming Match</div>
             {% endif %}
 
-            <h2 class="ballchasing-header">Match Replays</h2>
-            <div class="ballchasing-wrapper">
-                {% if match.games %}
-                    {% for i in range(num_of_games) %}
-                        {% set game = match.games[i] %}
-                        {% if i < match.games|length %}
-                            <a href="https://ballchasing.com/replay/{{ game.ballchasing }}" class="ballchasing-links" target=”_blank”>Game {{ loop.index }}</a>
+
+            {% if num_of_games != 0 %}
+                <h2 class="ballchasing-header">Match Replays</h2>
+                <div class="ballchasing-wrapper">
+                    {% if match.games %}
+                        {% for i in range(num_of_games) %}
+                            {% set game = match.games[i] %}
+                            {% if i < match.games|length %}
+                                <a href="https://ballchasing.com/replay/{{ game.ballchasing }}" class="ballchasing-links" target=”_blank”>Game {{ loop.index }}</a>
                             {% else %}
-                            <div class="no-replay">No data</div>
+                                <div class="no-replay">No data</div>
                             {% endif %}
-                    {% endfor %}
-                {% endif %}
-            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for i in range(num_of_games) %}
+                            <div class="no-replay">No data</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endif %}
     </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>

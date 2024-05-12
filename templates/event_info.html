@@ -133,14 +133,22 @@
                 </div>
             </div>
 
-            <div class="brackets-heading">Brackets</div>
-            <div class="bracket-buttons-wrapper">
+            <div class="event-tab-wrapper">
+                <div class="event-tab-button" id="matches-button">Matches</div>
+                <div class="event-tab-button" id="teams-button">Teams</div>
+                <div class="event-tab-button" id="players-button">Players</div>
+                <div class="event-tab-button" id="brackets-button">Brackets</div>
+            </div>
+
+            <div class="brackets-heading" id="brackets-heading">Liquipedia links</div>
+            <div class="bracket-buttons-wrapper" id="bracket-buttons-wrapper">
                 {% for stage in event.stages %}
                 <a href="{{ stage.liquipedia }}" class="bracket-button" target=”_blank”>{{ stage.name }}</a>
                 {% endfor %}
             </div>
+            
 
-            <h2 class="recent-results-header">Recent Matches</h2>
+            <div id="matches-section">
             {% for match in matches %}
             <div class="matches-wrapper" id="matches-container">
                     <div class="match-card-wrapper">
@@ -216,7 +224,7 @@
                 </div>
             {% endfor %}
 
-            <div class="pagination">
+            <div class="pagination" id="pagination">
                 {% if page > 1 %}
                 <a href="{{ url_for('get_event', event_id=event._id, page=page-1) }}" id="prevPageButton">Prev</a>
                 {% endif %}
@@ -224,7 +232,46 @@
                 <a href="{{ url_for('get_event', event_id=event._id, page=page+1) }}" id="nextPageButton">Next</a>
                 {% endif %}
             </div>
-        </div>        
+        </div>
+
+            {% if participants %}
+            <div class="event-participants-list-wrapper" id="event-participants-list-wrapper">
+                {% for participant in participants %}
+                    <div class="event-participants-list-item">
+                        {% if participant.team.image %}
+                        <img src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ participant.team.name }}">
+                        <div class="team-name-participant">{{ participant.team.name }}</div>
+                    {% else %}
+                        <img src="/static/images/rocketleague.svg" alt="{{ participant.team.name }}">
+                        <div class="team-name-participant">{{ participant.team.name }}</div>
+                    {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <div class="upcoming-participants" id="upcoming-participants">TBD</div>
+            {% endif %}
+
+            {% if participants %}
+            <div class="event-participants-list-wrapper" id="event-players-list-wrapper">
+                {% for participant in participants %}
+                    {% for player in participant.players %}
+                    <div class="event-participants-list-item">
+                        {% if participant.team.image %}
+                        <img src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ participant.team.name }}">
+                        <div class="player-name-participant">{{ player.tag }}</div>
+                    {% else %}
+                        <img src="/static/images/rocketleague.svg" alt="{{ participant.team.name }}">
+                        <div class="player-name-participant">{{ player.tag }}</div>
+                    {% endif %}
+                    </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% else %}
+                <div class="upcoming-participants" id="upcoming-participants">TBD</div>
+            {% endif %}
+        </div>
     </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
@@ -314,5 +361,42 @@
             // Call the function initially
             hideNextButtonIfLessThanTenElements();
         </script>
+        <script>
+                    document.getElementById('matches-button').onclick = function() {
+            document.getElementById('matches-section').style.display = 'block';
+            document.getElementById('brackets-heading').style.display = 'none';
+            document.getElementById('bracket-buttons-wrapper').style.display = 'none';
+            document.getElementById('event-participants-list-wrapper').style.display = 'none';
+            document.getElementById('event-players-list-wrapper').style.display = 'none';
+            document.getElementById('upcoming-participants').style.display = 'none';
+        };
+
+        document.getElementById('teams-button').onclick = function() {
+            document.getElementById('matches-section').style.display = 'none';
+            document.getElementById('brackets-heading').style.display = 'none';
+            document.getElementById('bracket-buttons-wrapper').style.display = 'none';
+            document.getElementById('event-participants-list-wrapper').style.display = 'flex';
+            document.getElementById('event-players-list-wrapper').style.display = 'none';
+            document.getElementById('upcoming-participants').style.display = 'block';
+        };
+
+        document.getElementById('players-button').onclick = function() {
+            document.getElementById('matches-section').style.display = 'none';
+            document.getElementById('brackets-heading').style.display = 'none';
+            document.getElementById('bracket-buttons-wrapper').style.display = 'none';
+            document.getElementById('event-participants-list-wrapper').style.display = 'none';
+            document.getElementById('event-players-list-wrapper').style.display = 'flex';
+            document.getElementById('upcoming-participants').style.display = 'block';
+        };
+
+        document.getElementById('brackets-button').onclick = function() {
+            document.getElementById('matches-section').style.display = 'none';
+            document.getElementById('brackets-heading').style.display = 'block';
+            document.getElementById('bracket-buttons-wrapper').style.display = 'flex';
+            document.getElementById('event-participants-list-wrapper').style.display = 'none';
+            document.getElementById('event-players-list-wrapper').style.display = 'none';
+            document.getElementById('upcoming-participants').style.display = 'none';
+        };
+      </script>
     </body>
 </html>
