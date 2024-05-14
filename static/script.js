@@ -1,17 +1,26 @@
 let search = document.querySelector('.fullscreen-search-container');
 let searchButton = document.querySelector('.search-container');
 let closeSearch = document.querySelector('.x-icon');
+let hamburger = document.querySelector('.navbar-icon');
+let navbar = document.querySelector('.navbar');
+let closeMenu = document.querySelector('.close-menu-button');
 var body = document.body;
 var page = 1;
 
 searchButton.onclick = function() {
     search.classList.toggle('active');
-    body.classList.toggle('active');
 };
 
 closeSearch.onclick = function() {
     search.classList.toggle('active');
-    body.classList.toggle('active');
+};
+
+hamburger.onclick = function() {
+    navbar.classList.toggle('active');
+};
+
+closeMenu.onclick = function() {
+    navbar.classList.toggle('active');
 };
 
 // Debounce function
