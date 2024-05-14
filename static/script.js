@@ -1,14 +1,8 @@
-let sidebar = document.querySelector('.sidebar');
-let icon = document.querySelector('.sidebar-icon');
 let search = document.querySelector('.fullscreen-search-container');
-let searchButton = document.querySelector('.search-button');
+let searchButton = document.querySelector('.search-container');
 let closeSearch = document.querySelector('.x-icon');
 var body = document.body;
 var page = 1;
-
-icon.onclick = function() {
-    sidebar.classList.toggle('active');
-};
 
 searchButton.onclick = function() {
     search.classList.toggle('active');
@@ -383,7 +377,7 @@ function createTeamElement(team) {
 // Function to perform all searches
 function performSearch() {
     debouncedPlayerSearch();
-    debouncedPlayerSearch();
+    debouncedTeamSearch();
     debouncedEventSearch();
 }
 
@@ -407,3 +401,272 @@ dateElements.forEach(function(element) {
     // Set the formatted date as the content of the element
     element.textContent = formattedDate;
 });
+
+
+//player page searching
+
+// Function to update player search results
+function updatePlayerPageResults() {
+    var query = document.getElementById("playerSearchInput").value;
+    console.log("Player Search Query:", query); // Log the player search query
+
+    // Perform AJAX call to /search endpoint with the player query
+    fetch("/search?query=" + query)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Player Search: Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Player Search Data:', data); // Log the received player search data
+            clearPlayerResults(); // Clear previous player results
+            updatePlayerResultsPage(data.players); // Update player results with new data
+        })
+        .catch(error => console.error('Player Search Error:', error));
+}
+
+function clearPlayerResults() {
+    var playerResults = document.getElementById("playerResultsCard");
+    playerResults.innerHTML = "";
+}
+
+function updatePlayerResultsPage(players) {
+    var playerResults = document.getElementById("playerResultsCard");
+
+    players.sort(function(a, b) {
+        if (a.team && a.team.image !== undefined && (!b.team || b.team.image === undefined)) {
+            return -1;
+        }
+        if ((!a.team || a.team.image === undefined) && b.team && b.team.image !== undefined) {
+            return 1;
+        }
+        return 0;
+    });
+
+    players.forEach(function(player) {
+        var divWrapper = document.createElement("div");
+        var divTagWrapper = document.createElement("div");
+        divWrapper.classList.add("results-item");
+        divTagWrapper.classList.add("player-card-tags");
+
+        if (player.tag.trim() !== "") {
+            var divTag = document.createElement("div"); 
+            divTag.classList.add("player-tag");
+            divTag.textContent = player.tag; 
+            divWrapper.appendChild(divTag);
+        }
+
+        if (player.name) {
+            var pName = document.createElement("p");
+            pName.classList.add("player-name");
+            pName.textContent = player.name; 
+            divWrapper.appendChild(pName);
+        }
+
+        if (player.team && player.team.image !== undefined) {
+            var teamDiv = document.createElement("div");
+            var img = document.createElement("img"); 
+            img.classList.add("team-image"); 
+            img.src = player.team.image; 
+            img.alt = player.team.name; 
+            teamDiv.appendChild(img); 
+            divWrapper.appendChild(teamDiv);
+        }
+
+        if (player.country) {
+            var pCountry = document.createElement("p");
+            pCountry.classList.add("player-country");
+            pCountry.textContent = player.country;
+            divTagWrapper.appendChild(pCountry);
+            divWrapper.appendChild(divTagWrapper);
+        }
+
+        if (player.coach) {
+            var pCoach = document.createElement("p"); 
+            pCoach.classList.add("player-coach-tag");
+            pCoach.textContent = "Coach";
+            divTagWrapper.appendChild(pCoach);
+            divWrapper.appendChild(divTagWrapper);
+        } else if (player.substitute) {
+            var pSub = document.createElement("p"); 
+            pSub.classList.add("player-sub-tag");
+            pSub.textContent = "Substitute";
+            divTagWrapper.appendChild(pSub);
+            divWrapper.appendChild(divTagWrapper);
+        } else {
+            var pPlayer = document.createElement("p"); 
+            pPlayer.classList.add("player-player-tag");
+            pPlayer.textContent = "Player";
+            divTagWrapper.appendChild(pPlayer);
+            divWrapper.appendChild(divTagWrapper);
+        }
+
+        divWrapper.addEventListener('click', function() {
+            window.location.href = '/player/' + player._id;
+        });
+
+        playerResults.appendChild(divWrapper);
+    });
+}
+
+document.getElementById('playerSearchInput').addEventListener('input', updatePlayerPageResults);
+
+//team page searching
+
+function updateTeamPageResults() {
+    var query = document.getElementById("teamSearchInput").value;
+    console.log("Team Search Query:", query);
+
+    fetch("/search?query=" + query)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Team Search: Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Team Search Data:', data);
+            clearTeamResults();
+            updateTeamResultsPage(data.teams); 
+        })
+        .catch(error => console.error('Team Search Error:', error));
+}
+
+function clearTeamResults() {
+    var teamResults = document.getElementById("teamResultsCard");
+    teamResults.innerHTML = "";
+}
+
+function updateTeamResultsPage(teams) {
+    var teamResults = document.getElementById("teamResultsCard");
+
+    teams.sort(function(a, b) {
+        if (a.team && a.team.image !== undefined && (!b.team || b.team.image === undefined)) {
+            return -1;
+        }
+        if ((!a.team || a.team.image === undefined) && b.team && b.team.image !== undefined) {
+            return 1;
+        }
+        return 0;
+    });
+
+    teams.forEach(function(team) {
+        var divWrapper = document.createElement("div");
+        var divTagWrapper = document.createElement("div");
+        divWrapper.classList.add("results-item");
+        divTagWrapper.classList.add("team-card-tags");
+
+        if (team.name.trim() !== "") {
+            var divTag = document.createElement("div"); 
+            divTag.classList.add("team-name");
+            divTag.textContent = team.name;
+            divWrapper.appendChild(divTag);
+        }
+
+        if (team.image !== undefined) {
+            var teamDiv = document.createElement("div");
+            var img = document.createElement("img"); 
+            img.classList.add("team-image"); 
+            img.src = team.image; 
+            img.alt = team.name;
+            teamDiv.appendChild(img); 
+            divWrapper.appendChild(teamDiv);
+        }
+
+        if (team.region) {
+            var pCountry = document.createElement("p");
+            pCountry.classList.add("team-region");
+            pCountry.textContent = team.region;
+            divTagWrapper.appendChild(pCountry);
+            divWrapper.appendChild(divTagWrapper);
+        }
+
+        divWrapper.addEventListener('click', function() {
+            window.location.href = '/team/' + team._id;
+        });
+
+        teamResults.appendChild(divWrapper);
+    });
+}
+
+document.getElementById('teamSearchInput').addEventListener('input', updateTeamPageResults);
+
+
+//event page searching
+
+function updateEventPageResults() {
+    var query = document.getElementById("eventSearchInput").value;
+    console.log("Event Search Query:", query);
+
+    fetch("/search?query=" + query)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Event Search: Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Event Search Data:', data);
+            clearEventResults();
+            updateEventResultsPage(data.events);
+        })
+        .catch(error => console.error('Event Search Error:', error));
+}
+
+function clearEventResults() {
+    var eventResults = document.getElementById("eventResultsCard");
+    eventResults.innerHTML = "";
+}
+
+function updateEventResultsPage(events) {
+    var eventResults = document.getElementById("eventResultsCard");
+
+    events.forEach(function(event) {
+        var divWrapper = document.createElement("div");
+        var divTagWrapper = document.createElement("div");
+        divWrapper.classList.add("results-item");
+        divTagWrapper.classList.add("event-card-tags");
+
+        if (event.name.trim() !== "") {
+            var divTag = document.createElement("div"); 
+            divTag.classList.add("event-name");
+            divTag.textContent = event.name;
+            divWrapper.appendChild(divTag);
+        }
+
+        if (event.image !== undefined) {
+            var eventDiv = document.createElement("div");
+            var img = document.createElement("img");
+            img.classList.add("event-image");
+            img.src = event.image;
+            img.alt = event.name;
+            eventDiv.appendChild(img);
+            divWrapper.appendChild(eventDiv);
+        }
+
+        if (event.region) {
+            var pCountry = document.createElement("p");
+            pCountry.classList.add("event-region");
+            pCountry.textContent = event.region;
+            divTagWrapper.appendChild(pCountry);
+            divWrapper.appendChild(divTagWrapper);
+        }
+
+        if (event.tier) {
+            var pTier = document.createElement("p");
+            pTier.classList.add("event-tier");
+            pTier.textContent = event.tier;
+            divTagWrapper.appendChild(pTier);
+            divWrapper.appendChild(divTagWrapper);
+        }
+
+        divWrapper.addEventListener('click', function() {
+            window.location.href = '/event/' + event._id;
+        });
+
+        eventResults.appendChild(divWrapper);
+    });
+}
+
+document.getElementById('eventSearchInput').addEventListener('input', updateEventPageResults);

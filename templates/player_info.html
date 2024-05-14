@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>demos</title>
+        <title>{{ player.tag }}'s Player Profile</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/static/css/style.css">
@@ -14,46 +14,32 @@
     </head>
     
     <body>
-        <nav class="sidebar">
-            <div class="sidebar-icon">
-                <i data-feather="sidebar"></i>
+        <nav class="navbar">
+            <div class="navbar-icon">
+                <i data-feather="menu"></i>
             </div>
-
-            <div class="sidebar-body">
+            <div class="navbar-wrapper">
                 <a href="{{ url_for('index') }}">
                     <i data-feather="home"></i>
                     <h3>Home</h3>
-                    <div class="tooltip">Home</div>
-                </a>
-                <a href="{{ url_for('results') }}">
-                    <i data-feather="trending-up"></i>
-                    <h3>Results</h3>
-                    <div class="tooltip">Results</div>
-                </a>
-                <a href="{{ url_for('matches') }}">
-                    <i data-feather="zap"></i>
-                    <h3>Matches</h3>
-                    <div class="tooltip">Matches</div>
-                </a>
-                <a href="{{ url_for('events') }}">
-                    <i data-feather="award"></i>
-                    <h3>Events</h3>
-                    <div class="tooltip">Events</div>
-                </a>
-                <a href="{{ url_for('stats') }}">
-                    <i data-feather="bar-chart-2"></i>
-                    <h3>Stats</h3>
-                    <div class="tooltip">Stats</div>
-                </a>
-                <a href="{{ url_for('teams') }}">
-                    <i data-feather="users"></i>
-                    <h3>Teams</h3>
-                    <div class="tooltip">Teams</div>
                 </a>
                 <a href="{{ url_for('players') }}">
                     <i data-feather="user"></i>
                     <h3>Players</h3>
-                    <div class="tooltip">Players</div>
+                </a>
+
+                <a class="search-container">
+                    <i data-feather="search"></i>
+                    <h3>Search</h3>
+                </a>
+
+                <a href="{{ url_for('events') }}">
+                    <i data-feather="award"></i>
+                    <h3>Events</h3>
+                </a>
+                <a href="{{ url_for('teams') }}">
+                    <i data-feather="users"></i>
+                    <h3>Teams</h3>
                 </a>
             </div>
         </nav>
@@ -75,34 +61,19 @@
             <div class="results-container">
                 <div class="results-card-container">
                     <h3 class="results-card-text">Players</h3>
-                    <div class="results-box" id="playerResults">
-                        <!-- Player search results will be dynamically added here -->
-                    </div>
-                    <div class="seeMore" id="playersMoreResults">See more results</div>
+                    <div class="results-box" id="playerResults"></div>
+                    <a href="{{ url_for('players') }}" class="seeMore" id="playersMoreResults">Full player results</a>
                 </div>
                 <div class="results-card-container">
                     <h3 class="results-card-text">Teams</h3>
-                    <div class="results-box" id="teamResults">
-                        <!-- Team search results will be dynamically added here -->
-                    </div>
-                    <div class="seeMore" id="teamsMoreResults">See more results</div>
+                    <div class="results-box" id="teamResults"></div>
+                    <a href="{{ url_for('teams') }}" class="seeMore" id="teamsMoreResults">Full team results</a>
                 </div>
                 <div class="results-card-container">
                     <h3 class="results-card-text">Events</h3>
-                    <div class="results-box" id="tournamentResults">
-                        <!-- Tournament search results will be dynamically added here -->
-                    </div>
-                    <div class="seeMore" id="tourneyMoreResults">See more results</div>
+                    <div class="results-box" id="tournamentResults"></div>
+                    <a href="{{ url_for('events') }}" class="seeMore" id="tourneyMoreResults">Full event results</a>
                 </div>
-            </div>
-        </div>
-
-        <div class="content-container">
-
-        <div class="search-container">
-            <div class="search-button">
-                <i class="search-icon" data-feather="search"></i>
-                <h1 class="Search-text">Search</h1>
             </div>
         </div>
 
@@ -161,8 +132,11 @@
             </div>
             {% endif %}
 
+            <div class="player-tab-wrapper">
+                <div class="player-tab-button" id="matches-button">Matches</div>
+                <div class="player-tab-button" id="teams-button">Stats</div>
+            </div>
 
-            <h2 class="recent-results-header">{{ player.tag }}'s Recent Results</h2>
             {% for match in matches %}
             <div class="matches-wrapper">
                     <div class="match-card-wrapper">
@@ -232,7 +206,6 @@
             </div>
 
             </div>
-        </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
         <script src="/static/script.js" async defer></script>
@@ -302,5 +275,44 @@
             // Call the function initially
             hideNextButtonIfLessThanTenElements();
         </script>
+        <!-- 
+        <script>
+            document.getElementById('matches-button').onclick = function() {
+                document.getElementById('matches-section').style.display = 'block';
+                document.getElementById('brackets-heading').style.display = 'none';
+                document.getElementById('bracket-buttons-wrapper').style.display = 'none';
+                document.getElementById('event-participants-list-wrapper').style.display = 'none';
+                document.getElementById('event-players-list-wrapper').style.display = 'none';
+                document.getElementById('upcoming-participants').style.display = 'none';
+            };
+    
+            document.getElementById('teams-button').onclick = function() {
+                document.getElementById('matches-section').style.display = 'none';
+                document.getElementById('brackets-heading').style.display = 'none';
+                document.getElementById('bracket-buttons-wrapper').style.display = 'none';
+                document.getElementById('event-participants-list-wrapper').style.display = 'flex';
+                document.getElementById('event-players-list-wrapper').style.display = 'none';
+                document.getElementById('upcoming-participants').style.display = 'block';
+            };
+    
+            document.getElementById('players-button').onclick = function() {
+                document.getElementById('matches-section').style.display = 'none';
+                document.getElementById('brackets-heading').style.display = 'none';
+                document.getElementById('bracket-buttons-wrapper').style.display = 'none';
+                document.getElementById('event-participants-list-wrapper').style.display = 'none';
+                document.getElementById('event-players-list-wrapper').style.display = 'flex';
+                document.getElementById('upcoming-participants').style.display = 'block';
+            };
+    
+            document.getElementById('brackets-button').onclick = function() {
+                document.getElementById('matches-section').style.display = 'none';
+                document.getElementById('brackets-heading').style.display = 'block';
+                document.getElementById('bracket-buttons-wrapper').style.display = 'flex';
+                document.getElementById('event-participants-list-wrapper').style.display = 'none';
+                document.getElementById('event-players-list-wrapper').style.display = 'none';
+                document.getElementById('upcoming-participants').style.display = 'none';
+            };
+        </script>
+        -->
     </body>
 </html>

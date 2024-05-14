@@ -13,46 +13,32 @@
     </head>
     
     <body>
-        <nav class="sidebar">
-            <div class="sidebar-icon">
-                <i data-feather="sidebar"></i>
+        <nav class="navbar">
+            <div class="navbar-icon">
+                <i data-feather="menu"></i>
             </div>
-
-            <div class="sidebar-body">
+            <div class="navbar-wrapper">
                 <a href="{{ url_for('index') }}">
                     <i data-feather="home"></i>
                     <h3>Home</h3>
-                    <div class="tooltip">Home</div>
-                </a>
-                <a href="{{ url_for('results') }}">
-                    <i data-feather="trending-up"></i>
-                    <h3>Results</h3>
-                    <div class="tooltip">Results</div>
-                </a>
-                <a href="{{ url_for('matches') }}">
-                    <i data-feather="zap"></i>
-                    <h3>Matches</h3>
-                    <div class="tooltip">Matches</div>
-                </a>
-                <a href="{{ url_for('events') }}">
-                    <i data-feather="award"></i>
-                    <h3>Events</h3>
-                    <div class="tooltip">Events</div>
-                </a>
-                <a href="{{ url_for('stats') }}">
-                    <i data-feather="bar-chart-2"></i>
-                    <h3>Stats</h3>
-                    <div class="tooltip">Stats</div>
-                </a>
-                <a href="{{ url_for('teams') }}">
-                    <i data-feather="users"></i>
-                    <h3>Teams</h3>
-                    <div class="tooltip">Teams</div>
                 </a>
                 <a href="{{ url_for('players') }}">
                     <i data-feather="user"></i>
                     <h3>Players</h3>
-                    <div class="tooltip">Players</div>
+                </a>
+
+                <a class="search-container">
+                    <i data-feather="search"></i>
+                    <h3>Search</h3>
+                </a>
+
+                <a href="{{ url_for('events') }}">
+                    <i data-feather="award"></i>
+                    <h3>Events</h3>
+                </a>
+                <a href="{{ url_for('teams') }}">
+                    <i data-feather="users"></i>
+                    <h3>Teams</h3>
                 </a>
             </div>
         </nav>
@@ -74,83 +60,23 @@
             <div class="results-container">
                 <div class="results-card-container">
                     <h3 class="results-card-text">Players</h3>
-                    <div class="results-box" id="playerResults">
-                        <!-- Player search results will be dynamically added here -->
-                    </div>
-                    <div class="seeMore" id="playersMoreResults">See more results</div>
+                    <div class="results-box" id="playerResults"></div>
+                    <a href="{{ url_for('players') }}" class="seeMore" id="playersMoreResults">Full player results</a>
                 </div>
                 <div class="results-card-container">
                     <h3 class="results-card-text">Teams</h3>
-                    <div class="results-box" id="teamResults">
-                        <!-- Team search results will be dynamically added here -->
-                    </div>
-                    <div class="seeMore" id="teamsMoreResults">See more results</div>
+                    <div class="results-box" id="teamResults"></div>
+                    <a href="{{ url_for('teams') }}" class="seeMore" id="teamsMoreResults">Full team results</a>
                 </div>
                 <div class="results-card-container">
                     <h3 class="results-card-text">Events</h3>
-                    <div class="results-box" id="tournamentResults">
-                        <!-- Tournament search results will be dynamically added here -->
-                    </div>
-                    <div class="seeMore" id="tourneyMoreResults">See more results</div>
+                    <div class="results-box" id="tournamentResults"></div>
+                    <a href="{{ url_for('events') }}" class="seeMore" id="tourneyMoreResults">Full event results</a>
                 </div>
-            </div>
-        </div>
-
-        <div class="content-container">
-
-        <div class="search-container">
-            <div class="search-button">
-                <i class="search-icon" data-feather="search"></i>
-                <h1 class="Search-text">Search</h1>
             </div>
         </div>
 
         <div class="grid-container">
-
-            <section class="results">
-                <a href="{{ url_for('teams') }}" class="results-redirect"></a>
-                <div class="index-card-blur">Results</div>
-                    <div class="results-container-index">
-                        {% for match in results %}
-                        <div class="results-wrapper">
-                            <div class="team-score-wrapper">
-                                <div class="score-line-container">
-                                    {% if match['blue']['score'] %}
-                                    <div class="results-score">{{ match['blue']['score'] }}</div>
-                                    {% else %}
-                                    <div class="results-score">0</div>
-                                    {% endif %}
-                                    {% if match['orange']['score'] %}
-                                    <div class="results-score">{{ match['orange']['score'] }}</div>
-                                    {% else %}
-                                    <div class="results-score">0</div>
-                                    {% endif %}
-                                </div>
-                                <div class="img-line-container">
-                                    {% if match['blue']['team']['team']['image'] %}
-                                    <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
-                                    {% else %}
-                                    <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
-                                    {% endif %}
-                                    {% if match['orange']['team']['team']['image'] %}
-                                    <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
-                                    {% else %}
-                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
-                                    {% endif %}
-                                </div>
-                                <div class="name-line-container">
-                                    <div class="team-blue-name">
-                                        <div class="results-team-text">{{ match['blue']['team']['team']['name'] }}</div>
-                                    </div>
-                                    <div class="team-orange-name">
-                                        <div class="results-team-text">{{ match['orange']['team']['team']['name'] }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </section>
 
             <section class="teams">
                 <a href="{{ url_for('teams') }}"></a>
