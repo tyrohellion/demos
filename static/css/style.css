@@ -547,14 +547,91 @@ body {
 }
 
 
-/* player search page */
+/* player/team/event search pages */
 
 .search-player-page {
     display: flex;
-    padding-top: 40px;
     justify-content: center;
     gap: 0.7rem;
     align-items: center;
+}
+
+.search-box-and-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 40px;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
+
+.filter-button {
+    font-family: var(--Inter);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.7rem;
+    background-color: var(--sidebar-color);
+    color: var(--button-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    height: 64px;
+}
+
+.filter-button:hover {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    transition: all 100ms;
+}
+
+.filter-button:active {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    transition: all 100ms;
+}
+
+.na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+    font-family: var(--Inter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.7rem;
+    background-color: var(--sidebar-color);
+    color: var(--button-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    width: auto;
+    height: 64px;
+    text-transform: capitalize;
+    transition: all 100ms;
+}
+
+.na-filter:hover, .eu-filter:hover, .sam-filter:hover, .mena-filter:hover, .apac-filter:hover, .ssa-filter:hover, .all-filter:hover {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    transition: all 100ms;
+}
+
+.na-filter:active, .eu-filter:active, .sam-filter:active, .mena-filter:active, .apac-filter:active, .ssa-filter:active, .all-filter:active {
+    background-color: var(--sidebar-color);
+    color: var(--button-color);
+    cursor: pointer;
+    transition: all 100ms;
 }
 
 #playerSearchInput, #teamSearchInput, #eventSearchInput {
@@ -917,7 +994,25 @@ body {
     font-weight: 600;
 }
 
-.player-header-container, .event-header-container {
+.player-header-container {
+    display: flex;
+    margin-top: 64px;
+    margin-left: 1rem;
+    margin-bottom: 40px;
+    margin-right: 1rem;
+    gap: 1.5rem;
+}
+
+.event-header-container {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 1rem;
+    margin-bottom: 32px;
+    margin-right: 1rem;
+    gap: 1.5rem;
+}
+
+.team-header-container {
     display: flex;
     margin-top: 40px;
     margin-left: 1rem;
@@ -1112,7 +1207,8 @@ body {
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
-    width: fit-content;
+    max-width: fit-content;
+    overflow: auto;
 }
 
 .matchup-header-wrapper {
@@ -1224,6 +1320,9 @@ body {
     align-items: center;
     margin-top: 40px;
     margin-left: auto;
+    margin-right: auto;
+    max-width: fit-content;
+    overflow: auto;
 }
 
 .stat-labels-wrapper {
@@ -1296,6 +1395,7 @@ body {
     background-color: var(--sidebar-color);
     border-radius: 0.7rem;
     padding: 1.5rem;
+    overflow: auto;
     margin: auto;
 }
 
@@ -1686,6 +1786,7 @@ body {
     border-radius: 0.7rem;
     display: flex;
     justify-content: center;
+    margin-bottom: 40px;
     align-items: center;
     margin-top: 4rem;
 }
@@ -2074,7 +2175,28 @@ body {
     }
  }
 
- @media all and (min-width: 768px) and (max-width: 992px) { 
+ @media all and (min-width: 768px) and (max-width: 992px) {
+
+    .filter-button {
+        display: flex;
+    }
+
+    #teamSearchInput, #eventSearchInput, #playerSearchInput {
+        width: 220px;
+    }
+
+    .search-box {
+        width: 220px;
+    }
+
+    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+        display: none;
+    }
+
+    .search-box-and-filters {
+        gap: 1rem;
+    }
+
     .grid-container {
         grid-template-columns: repeat(auto-fit, 14rem);
         grid-auto-rows: minmax(1rem, 14rem);
@@ -2147,6 +2269,26 @@ body {
  
  @media all and (min-width: 480px) and (max-width: 768px) {
 
+    .filter-button {
+        display: flex;
+    }
+
+    #teamSearchInput, #eventSearchInput, #playerSearchInput {
+        width: 220px;
+    }
+
+    .search-box {
+        width: 220px;
+    }
+
+    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+        display: none;
+    }
+
+    .search-box-and-filters {
+        gap: 1rem;
+    }
+
     .navbar-icon {
         display: flex;
         justify-content: center;
@@ -2208,12 +2350,22 @@ body {
         margin-left: 2px;
     }
 
+    .team-header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .player-info {
         align-items: center;
     }
 
     .active-roster-wrapper {
         flex-direction: column;
+        text-align: center;
+    }
+
+    .active-roster-wrapper a {
+        width: 100%;
     }
 
     .active-roster-wrapper a:first-child {
@@ -2308,6 +2460,27 @@ body {
   }
  
  @media all and (max-width: 480px) {
+
+    .filter-button {
+        display: flex;
+    }
+
+    #teamSearchInput, #eventSearchInput, #playerSearchInput {
+        width: 220px;
+    }
+
+    .search-box {
+        width: 220px;
+    }
+
+    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+        display: none;
+    }
+
+    .search-box-and-filters {
+        gap: 1rem;
+    }
+
     .navbar-icon {
         display: flex;
         justify-content: center;
@@ -2389,12 +2562,22 @@ body {
         margin-bottom: 120px;
     }
 
+    .team-header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .player-info {
         align-items: center;
     }
 
     .active-roster-wrapper {
         flex-direction: column;
+        text-align: center;
+    }
+
+    .active-roster-wrapper a {
+        width: 100%;
     }
 
     .active-roster-wrapper a:first-child {
@@ -2519,6 +2702,27 @@ body {
  
  /* iPhone Portrait */
  @media screen and (max-device-width: 480px) and (orientation:portrait) {
+
+    .filter-button {
+        display: flex;
+    }
+
+    #teamSearchInput, #eventSearchInput, #playerSearchInput {
+        width: 220px;
+    }
+
+    .search-box {
+        width: 220px;
+    }
+
+    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+        display: none;
+    }
+
+    .search-box-and-filters {
+        gap: 1rem;
+    }
+
     .navbar-icon {
         display: flex;
         justify-content: center;
@@ -2596,16 +2800,37 @@ body {
         gap: 1rem;
         margin-left: 2px;
     }
+    
+    .team-header-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
     .player-info {
         align-items: center;
     }
 
-    .active-roster-wrapper a:active {
-        background-color: var(--sidebar-color);
-        color: var(--button-color);
-        width: 100%;
+    .active-roster-wrapper {
+        flex-direction: column;
         text-align: center;
+    }
+
+    .active-roster-wrapper a {
+        width: 100%;
+    }
+
+    .active-roster-wrapper a:first-child {
+        border-top-left-radius: 0.7rem;
+        border-top-right-radius: 0.7rem;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    
+    .active-roster-wrapper a:last-child {
+        border-bottom-right-radius: 0.7rem;
+        border-bottom-left-radius: 0.7rem;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
     }
 
     .ballchasing-wrapper {

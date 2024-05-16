@@ -83,7 +83,7 @@
         <!-- I know all the classes say player I just dont feel like changing the names -->
         <div class="main-player-background">
             {% if team.image %}
-            <div class="player-header-container">
+            <div class="team-header-container">
                 <img class="player-img" src="{{ team.image | default('/static/images/rocketleague.svg') }}" alt="{{ team.name }}">
                 <div class="player-info">
                     <div class="player-tag">{{ team.name }}</div>
@@ -103,7 +103,7 @@
                 </div>
             </div>
             {% else %}
-            <div class="player-header-container">
+            <div class="team-header-container">
                 <img class="player-img" src="/static/images/rocketleague.svg" alt="{{ team.name }}">
                 <div class="player-info">
                     <div class="player-tag">{{ team.name }}</div>
@@ -146,11 +146,6 @@
             {% else %}
             <div class="no-roster">No roster found</div>
             {% endif %}
-        </div>
-
-        <div class="team-tab-wrapper">
-            <div class="team-tab-button" id="matches-button">Matches</div>
-            <div class="team-tab-button" id="teams-button">Stats</div>
         </div>
 
             {% for match in matches %}
