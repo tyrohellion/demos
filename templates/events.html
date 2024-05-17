@@ -89,22 +89,147 @@
                     oninput="updateEventPageResults()"
                     />
                 </div>
-                <div class="all-filter">ALL</div>
-                <div class="na-filter">NA</div>
-                <div class="eu-filter">EU</div>
-                <div class="sam-filter">SAM</div>
-                <div class="mena-filter">MENA</div>
-                <div class="apac-filter">APAC</div>
-                <div class="ssa-filter">SSA</div>
-                <div class="filter-button">
-                    <i data-feather="filter"></i>
+                <div class="filter-buttons-wrapper">
+                    <div class="filter-button all-filter" data-region="ALL">ALL</div>
+                    <div class="filter-button int-filter" data-region="INT">INT</div>
+                    <div class="filter-button na-filter" data-region="NA">NA</div>
+                    <div class="filter-button eu-filter" data-region="EU">EU</div>
+                    <div class="filter-button sam-filter" data-region="SAM">SAM</div>
+                    <div class="filter-button mena-filter" data-region="ME">MENA</div>
+                    <div class="filter-button oce-filter" data-region="OCE">OCE</div>
+                    <div class="filter-button apac-filter" data-region="ASIA">APAC</div>
+                    <div class="filter-button ssa-filter" data-region="AF">SSA</div>
+                    <div class="close-filter-menu">
+                        <i data-feather="x"></i>
+                    </div>
                 </div>
-            </div>
+                    <div class="filter-button-mobile">
+                        <i data-feather="filter"></i>
+                    </div>
+
+        </div>
 
             <div class="results-player-page" id="eventResultsCard"></div>
 
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
         <script src="/static/script.js" async defer></script>
+        <script>
+            let allEvents = [];
+            let perPage = 50;
+            let pageCount = 1;
+            let isLoading = false;
+
+            function fetchEvents(query = '', append = false) {
+                if (isLoading) return;
+                isLoading = true;
+                fetch(`/search?query=${query}&page=${pageCount}&per_page=${perPage}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Event Search: Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (append) {
+                            allEvents = allEvents.concat(data.events);
+                        } else {
+                            allEvents = data.events;
+                        }
+                        updateEventPageResults();
+                        isLoading = false;
+                    })
+                    .catch(error => {
+                        console.error('Event Search Error:', error);
+                        isLoading = false;
+                    });
+            }
+
+            function updateEventPageResults() {
+                var query = document.getElementById("eventSearchInput").value.toLowerCase();
+                var region = document.querySelector('.filter-button.selected')?.getAttribute('data-region') || 'ALL';
+
+                const filteredEvents = allEvents.filter(event => {
+                    const matchesQuery = event.name.toLowerCase().includes(query);
+                    const matchesRegion = region === 'ALL' || event.region === region;
+                    return matchesQuery && matchesRegion;
+                });
+
+                clearEventResults();
+                updateEventResultsPage(filteredEvents);
+            }
+
+            function clearEventResults() {
+                var eventResults = document.getElementById("eventResultsCard");
+                eventResults.innerHTML = "";
+            }
+
+            function updateEventResultsPage(events) {
+                var eventResults = document.getElementById("eventResultsCard");
+                events.forEach(function(event) {
+                    var divWrapper = document.createElement("div");
+                    var divTagWrapper = document.createElement("div");
+                    divWrapper.classList.add("results-item");
+                    divTagWrapper.classList.add("event-card-tags");
+
+                    if (event.name.trim() !== "") {
+                        var divTag = document.createElement("div"); 
+                        divTag.classList.add("event-name");
+                        divTag.textContent = event.name;
+                        divWrapper.appendChild(divTag);
+                    }
+
+                    if (event.image !== undefined) {
+                        var eventDiv = document.createElement("div");
+                        var img = document.createElement("img"); 
+                        img.classList.add("event-image"); 
+                        img.src = event.image; 
+                        img.alt = event.name;
+                        eventDiv.appendChild(img); 
+                        divWrapper.appendChild(eventDiv);
+                    }
+
+                    if (event.region) {
+                        var pCountry = document.createElement("p");
+                        pCountry.classList.add("event-region");
+                        pCountry.textContent = event.region;
+                        divTagWrapper.appendChild(pCountry);
+                        divWrapper.appendChild(divTagWrapper);
+                    }
+
+                    divWrapper.addEventListener('click', function() {
+                        window.location.href = '/event/' + event._id;
+                    });
+
+                    eventResults.appendChild(divWrapper);
+                });
+            }
+
+            function updateEventRegion(event) {
+                var selectedRegion = event.target.getAttribute('data-region');
+                document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('selected'));
+                event.target.classList.add('selected');
+                updateEventPageResults();
+            }
+
+            document.getElementById('eventSearchInput').addEventListener('input', () => {
+                pageCount = 1;
+                fetchEvents(document.getElementById('eventSearchInput').value);
+            });
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.addEventListener('click', event => {
+                    updateEventRegion(event);
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight && !isLoading) {
+                    pageCount++;
+                    fetchEvents(document.getElementById('eventSearchInput').value, true);
+                }
+            });
+
+            fetchEvents();
+        </script>
     </body>
 </html>

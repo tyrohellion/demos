@@ -32,10 +32,11 @@ def players():
 @app.route('/search')
 def search():
     query = request.args.get('query')
-    per_page = 200
-    players = octane_api.get_players(tag=query, per_page=per_page)
-    teams = octane_api.get_teams(name=query, per_page=per_page)
-    events = octane_api.get_events(name=query, per_page=per_page)
+    page = int(request.args.get('page', 1))
+    per_page = 50
+    players = octane_api.get_players(tag=query, page=page, per_page=per_page)
+    teams = octane_api.get_teams(name=query, page=page, per_page=per_page)
+    events = octane_api.get_events(name=query, page=page, per_page=per_page)
     return jsonify(players=players, teams=teams, events=events, per_page=per_page)
 
 @app.route('/event/<event_id>')

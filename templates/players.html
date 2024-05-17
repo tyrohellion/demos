@@ -89,23 +89,194 @@
                     oninput="updatePlayerPageResults()"
                     />
             </div>
-        <div class="all-filter">ALL</div>
-        <div class="na-filter">NA</div>
-        <div class="eu-filter">EU</div>
-        <div class="sam-filter">SAM</div>
-        <div class="mena-filter">MENA</div>
-        <div class="apac-filter">APAC</div>
-        <div class="ssa-filter">SSA</div>
-        <div class="filter-button">
-            <i data-feather="filter"></i>
+            <div class="filter-buttons-wrapper">
+                <div class="filter-button all-filter" data-region="ALL">ALL</div>
+                <div class="filter-button na-filter" data-region="NA">NA</div>
+                <div class="filter-button eu-filter" data-region="EU">EU</div>
+                <div class="filter-button sam-filter" data-region="SAM">SAM</div>
+                <div class="filter-button mena-filter" data-region="ME">MENA</div>
+                <div class="filter-button oce-filter" data-region="OCE">OCE</div>
+                <div class="filter-button apac-filter" data-region="ASIA">APAC</div>
+                <div class="filter-button ssa-filter" data-region="AF">SSA</div>
+                <div class="close-filter-menu">
+                    <i data-feather="x"></i>
+                </div>
+            </div>
+            <div class="filter-button-mobile">
+                <i data-feather="filter"></i>
+            </div>
         </div>
-    </div>
 
             <div class="results-player-page" id="playerResultsCard"></div>
-
-        </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
+        <script>
+    let allPlayers = [];
+    let pageCount = 1;
+    let perPage = 50;
+    let isLoading = false;
+
+    const regionCountryMap = {
+    'NA': ['us', 'ca', 'mx', 'bz', 'cr', 'sv', 'gt', 'hn', 'ni', 'pa'],
+    'EU': ['fr', 'de', 'es', 'it', 'nl', 'pl', 'se', 'fi', 'no', 'dk', 'be', 'at', 'ch', 'pt', 'gr', 'cz', 'hu', 'ro', 'bg', 'hr', 'ie', 'lt', 'lv', 'ee', 'si', 'sk', 'lu', 'mt', 'cy'],
+    'SAM': ['br', 'ar', 'cl', 'co', 'pe', 'bo', 'ec', 'gy', 'py', 'sr', 'uy', 've'],
+    'ME': ['sa', 'ae', 'eg', 'ma', 'dz', 'qa', 'kw', 'bh', 'jo', 'lb', 'om', 'ps', 'qa', 'sy', 'tn', 'ye'],
+    'OCE': ['au', 'nz', 'fj', 'pg', 'sb', 'vu'],
+    'ASIA': ['jp', 'kr', 'cn', 'tw', 'in', 'ph', 'th', 'sg', 'my', 'vn', 'bd', 'id', 'kh', 'la', 'mm', 'mv', 'np', 'pk'],
+    'AF': ['za', 'ng', 'ke', 'gh', 'dz', 'sz', 'bj', 'bw', 'bf', 'bi', 'cv', 'cm', 'cf', 'td', 'km', 'cd', 'dj', 'gq', 'er', 'et', 'ga', 'gm', 'gn', 'gw', 'ci', 'lr', 'ly', 'mg', 'mw', 'ml', 'mr', 'mu', 'ma', 'mz', 'na', 'ne', 'rw', 'st', 'sn', 'sc', 'sl', 'so', 'za', 'ss', 'sd', 'sz', 'tz', 'tg', 'tn', 'ug', 'zm', 'zw']
+    };
+
+    function fetchPlayers(query = '', append = false) {
+        if (isLoading) return;
+        isLoading = true;
+        fetch(`/search?query=${query}&page=${pageCount}&per_page=${perPage}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Player Search: Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (append) {
+                    allPlayers = allPlayers.concat(data.players);
+                } else {
+                    allPlayers = data.players;
+                }
+                updatePlayerPageResults();
+                isLoading = false;
+            })
+            .catch(error => {
+                console.error('Player Search Error:', error);
+                isLoading = false;
+            });
+    }
+
+    function updatePlayerPageResults() {
+        var query = document.getElementById("playerSearchInput").value.toLowerCase();
+        var region = document.querySelector('.filter-button.selected')?.getAttribute('data-region') || 'ALL';
+        var countries = regionCountryMap[region] || [];
+
+        const filteredPlayers = allPlayers.filter(player => {
+            const matchesQuery = player.tag.toLowerCase().includes(query);
+            const matchesCountry = region === 'ALL' || countries.includes(player.country);
+            return matchesQuery && matchesCountry;
+        });
+
+        clearPlayerResults();
+        updatePlayerResultsPage(filteredPlayers);
+    }
+
+    function clearPlayerResults() {
+        var playerResults = document.getElementById("playerResultsCard");
+        playerResults.innerHTML = "";
+    }
+
+    function updatePlayerResultsPage(players) {
+        var playerResults = document.getElementById("playerResultsCard");
+
+        players.sort(function(a, b) {
+            if (a.team && a.team.image !== undefined && (!b.team || b.team.image === undefined)) {
+                return -1;
+            }
+            if ((!a.team || a.team.image === undefined) && b.team && b.team.image !== undefined) {
+                return 1;
+            }
+            return 0;
+        });
+
+        players.forEach(function(player) {
+            var divWrapper = document.createElement("div");
+            var divTagWrapper = document.createElement("div");
+            divWrapper.classList.add("results-item");
+            divTagWrapper.classList.add("player-card-tags");
+
+            if (player.tag.trim() !== "") {
+                var divTag = document.createElement("div");
+                divTag.classList.add("player-tag");
+                divTag.textContent = player.tag;
+                divWrapper.appendChild(divTag);
+            }
+
+            if (player.name) {
+                var pName = document.createElement("p");
+                pName.classList.add("player-name");
+                pName.textContent = player.name;
+                divWrapper.appendChild(pName);
+            }
+
+            if (player.team && player.team.image !== undefined) {
+                var teamDiv = document.createElement("div");
+                var img = document.createElement("img");
+                img.classList.add("team-image");
+                img.src = player.team.image;
+                img.alt = player.team.name;
+                teamDiv.appendChild(img);
+                divWrapper.appendChild(teamDiv);
+            }
+
+            if (player.country) {
+                var pCountry = document.createElement("p");
+                pCountry.classList.add("player-country");
+                pCountry.textContent = player.country;
+                divTagWrapper.appendChild(pCountry);
+                divWrapper.appendChild(divTagWrapper);
+            }
+
+            if (player.coach) {
+                var pCoach = document.createElement("p");
+                pCoach.classList.add("player-coach-tag");
+                pCoach.textContent = "Coach";
+                divTagWrapper.appendChild(pCoach);
+                divWrapper.appendChild(divTagWrapper);
+            } else if (player.substitute) {
+                var pSub = document.createElement("p");
+                pSub.classList.add("player-sub-tag");
+                pSub.textContent = "Substitute";
+                divTagWrapper.appendChild(pSub);
+                divWrapper.appendChild(divTagWrapper);
+            } else {
+                var pPlayer = document.createElement("p");
+                pPlayer.classList.add("player-player-tag");
+                pPlayer.textContent = "Player";
+                divTagWrapper.appendChild(pPlayer);
+                divWrapper.appendChild(divTagWrapper);
+            }
+
+        divWrapper.addEventListener('click', function() {
+                window.location.href = '/player/' + player._id;
+            });
+
+            playerResults.appendChild(divWrapper);
+        });
+    }
+
+    function updatePlayerRegion(event) {
+        var selectedRegion = event.target.getAttribute('data-region');
+        document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('selected'));
+        event.target.classList.add('selected');
+        updatePlayerPageResults();
+    }
+
+    document.getElementById('playerSearchInput').addEventListener('input', () => {
+        pageCount = 1;
+        fetchPlayers(document.getElementById('playerSearchInput').value);
+    });
+
+    document.querySelectorAll('.filter-button').forEach(button => {
+        button.addEventListener('click', event => {
+            updatePlayerRegion(event);
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight && !isLoading) {
+            pageCount++;
+            fetchPlayers(document.getElementById('playerSearchInput').value, true);
+        }
+    });
+
+    fetchPlayers();
+        </script>
         <script src="/static/script.js" async defer></script>
     </body>
 </html>

@@ -89,22 +89,144 @@
                     oninput="updateTeamPageResults()"
                     />
             </div>
-            <div class="all-filter">ALL</div>
-            <div class="na-filter">NA</div>
-            <div class="eu-filter">EU</div>
-            <div class="sam-filter">SAM</div>
-            <div class="mena-filter">MENA</div>
-            <div class="apac-filter">APAC</div>
-            <div class="ssa-filter">SSA</div>
-            <div class="filter-button">
-                <i data-feather="filter"></i>
+            <div class="filter-buttons-wrapper">
+                <div class="filter-button all-filter" data-region="ALL">ALL</div>
+                <div class="filter-button na-filter" data-region="NA">NA</div>
+                <div class="filter-button eu-filter" data-region="EU">EU</div>
+                <div class="filter-button sam-filter" data-region="SAM">SAM</div>
+                <div class="filter-button mena-filter" data-region="ME">MENA</div>
+                <div class="filter-button oce-filter" data-region="OCE">OCE</div>
+                <div class="filter-button apac-filter" data-region="ASIA">APAC</div>
+                <div class="filter-button ssa-filter" data-region="AF">SSA</div>
+                <div class="close-filter-menu">
+                    <i data-feather="x"></i>
+                </div>
             </div>
+                <div class="filter-button-mobile">
+                    <i data-feather="filter"></i>
+                </div>
         </div>
+        <div class="results-player-page" id="teamResultsCard"></div>
 
-            <div class="results-player-page" id="teamResultsCard"></div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>feather.replace()</script>
+    <script src="/static/script.js" async defer></script>
+    <script>
+    let allTeams = [];
+    let pageCount = 1;
+    let perPage = 50;
+    let isLoading = false;
 
-        <script src="https://unpkg.com/feather-icons"></script>
-        <script>feather.replace()</script>
-        <script src="/static/script.js" async defer></script>
-    </body>
+    function fetchTeams(query = '', append = false) {
+        if (isLoading) return;
+        isLoading = true;
+        fetch(`/search?query=${query}&page=${pageCount}&per_page=${perPage}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Team Search: Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (append) {
+                    allTeams = allTeams.concat(data.teams);
+                } else {
+                    allTeams = data.teams;
+                }
+                updateTeamPageResults();
+                isLoading = false;
+            })
+            .catch(error => {
+                console.error('Team Search Error:', error);
+                isLoading = false;
+            });
+    }
+
+    function updateTeamPageResults() {
+        var query = document.getElementById("teamSearchInput").value.toLowerCase();
+        var region = document.querySelector('.filter-button.selected')?.getAttribute('data-region') || 'ALL';
+
+        const filteredTeams = allTeams.filter(team => {
+            const matchesQuery = team.name.toLowerCase().includes(query);
+            const matchesRegion = region === 'ALL' || team.region === region;
+            return matchesQuery && matchesRegion;
+        });
+
+        clearTeamResults();
+        updateTeamResultsPage(filteredTeams);
+    }
+
+    function clearTeamResults() {
+        var teamResults = document.getElementById("teamResultsCard");
+        teamResults.innerHTML = "";
+    }
+
+    function updateTeamResultsPage(teams) {
+        var teamResults = document.getElementById("teamResultsCard");
+        teams.forEach(function(team) {
+            var divWrapper = document.createElement("div");
+            var divTagWrapper = document.createElement("div");
+            divWrapper.classList.add("results-item");
+            divTagWrapper.classList.add("team-card-tags");
+
+            if (team.name.trim() !== "") {
+                var divTag = document.createElement("div"); 
+                divTag.classList.add("team-name");
+                divTag.textContent = team.name;
+                divWrapper.appendChild(divTag);
+            }
+
+            if (team.image !== undefined) {
+                var teamDiv = document.createElement("div");
+                var img = document.createElement("img"); 
+                img.classList.add("team-image"); 
+                img.src = team.image; 
+                img.alt = team.name;
+                teamDiv.appendChild(img); 
+                divWrapper.appendChild(teamDiv);
+            }
+
+            if (team.region) {
+                var pCountry = document.createElement("p");
+                pCountry.classList.add("team-region");
+                pCountry.textContent = team.region;
+                divTagWrapper.appendChild(pCountry);
+                divWrapper.appendChild(divTagWrapper);
+            }
+
+            divWrapper.addEventListener('click', function() {
+                window.location.href = '/team/' + team._id;
+            });
+
+            teamResults.appendChild(divWrapper);
+        });
+    }
+
+    function updateTeamRegion(event) {
+        var selectedRegion = event.target.getAttribute('data-region');
+        document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('selected'));
+        event.target.classList.add('selected');
+        updateTeamPageResults();
+    }
+
+    document.getElementById('teamSearchInput').addEventListener('input', () => {
+        pageCount = 1;
+        fetchTeams(document.getElementById('teamSearchInput').value);
+    });
+    document.querySelectorAll('.filter-button').forEach(button => {
+        button.addEventListener('click', event => {
+            updateTeamRegion(event);
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight && !isLoading) {
+            pageCount++;
+            fetchTeams(document.getElementById('teamSearchInput').value, true);
+        }
+    });
+
+    fetchTeams();
+    </script>
+</body>
 </html>

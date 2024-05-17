@@ -556,6 +556,11 @@ body {
     align-items: center;
 }
 
+.filter-buttons-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
 .search-box-and-filters {
     display: flex;
     justify-content: center;
@@ -566,7 +571,11 @@ body {
     flex-wrap: nowrap;
 }
 
-.filter-button {
+.close-filter-menu {
+    display: none;
+}
+
+.filter-button-mobile {
     font-family: var(--Inter);
     display: none;
     align-items: center;
@@ -585,6 +594,77 @@ body {
     height: 64px;
 }
 
+.filter-button-mobile:hover {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    transition: all 100ms;
+}
+
+.filter-button-mobile:active {
+    background-color: var(--button-color);
+    color: var(--card-text-color);
+    cursor: pointer;
+    transition: all 100ms;
+}
+
+.filter-buttons-wrapper.active {
+    display: flex;
+    flex-direction: row;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(64, 66, 78, 0.6);
+    backdrop-filter: blur(4px);
+    width: 100%;
+    height: 100%;
+    z-index: 35;
+
+    .filter-button {
+        display: flex;
+        width: 90px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .close-filter-menu {
+        display: flex;
+        position: absolute;
+        right: 5vw;
+        top: 5vh;
+        cursor: pointer;
+        transition: all 150ms;
+        border-radius: 0.4rem;
+        height: 34px;
+        width: 34px;
+        padding: 0.3rem;
+        background-color: var(--sidebar-color);
+        color: var(--button-color);
+        transition: all 150ms;
+        z-index: 36;
+    }
+
+    .close-filter-menu:hover {
+        transition: all 150ms;
+        background-color: var(--button-color);
+        color: var(--card-text-color);
+    }
+
+    .close-filter-menu:active {
+        transition: all 150ms;
+        background-color: var(--button-color);
+        color: var(--card-text-color);
+    }
+}
+
+
 .filter-button:hover {
     background-color: var(--button-color);
     color: var(--card-text-color);
@@ -599,7 +679,7 @@ body {
     transition: all 100ms;
 }
 
-.na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+.filter-button {
     font-family: var(--Inter);
     display: flex;
     align-items: center;
@@ -620,14 +700,14 @@ body {
     transition: all 100ms;
 }
 
-.na-filter:hover, .eu-filter:hover, .sam-filter:hover, .mena-filter:hover, .apac-filter:hover, .ssa-filter:hover, .all-filter:hover {
+.filter-button:hover {
     background-color: var(--button-color);
     color: var(--card-text-color);
     cursor: pointer;
     transition: all 100ms;
 }
 
-.na-filter:active, .eu-filter:active, .sam-filter:active, .mena-filter:active, .apac-filter:active, .ssa-filter:active, .all-filter:active {
+.filter-button:active {
     background-color: var(--sidebar-color);
     color: var(--button-color);
     cursor: pointer;
@@ -670,6 +750,8 @@ body {
     justify-content: center;
     margin-top: 40px;
     gap: 1rem;
+    margin-left: 16px;
+    margin-right: 16px;
     flex-wrap: wrap;
 }
 
@@ -688,6 +770,7 @@ body {
     transition: all 150ms;
     transform: var(--card-grow-before);
     background-color: var(--sidebar-color);
+    overflow: hidden;
 }
 
 .results-player-page .results-item:hover {
@@ -2175,9 +2258,8 @@ body {
     }
  }
 
- @media all and (min-width: 768px) and (max-width: 992px) {
-
-    .filter-button {
+ @media all and (max-width: 1100px) {
+    .filter-button-mobile {
         display: flex;
     }
 
@@ -2189,7 +2271,26 @@ body {
         width: 220px;
     }
 
-    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+    .filter-button {
+        display: none;
+    }
+ }
+
+ @media all and (min-width: 768px) and (max-width: 992px) {
+
+    .filter-button-mobile {
+        display: flex;
+    }
+
+    #teamSearchInput, #eventSearchInput, #playerSearchInput {
+        width: 220px;
+    }
+
+    .search-box {
+        width: 220px;
+    }
+
+    .filter-button {
         display: none;
     }
 
@@ -2269,7 +2370,7 @@ body {
  
  @media all and (min-width: 480px) and (max-width: 768px) {
 
-    .filter-button {
+    .filter-button-mobile {
         display: flex;
     }
 
@@ -2281,7 +2382,7 @@ body {
         width: 220px;
     }
 
-    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+    .filter-button {
         display: none;
     }
 
@@ -2461,7 +2562,7 @@ body {
  
  @media all and (max-width: 480px) {
 
-    .filter-button {
+    .filter-button-mobile {
         display: flex;
     }
 
@@ -2473,7 +2574,7 @@ body {
         width: 220px;
     }
 
-    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+    .filter-button {
         display: none;
     }
 
@@ -2703,7 +2804,7 @@ body {
  /* iPhone Portrait */
  @media screen and (max-device-width: 480px) and (orientation:portrait) {
 
-    .filter-button {
+    .filter-button-mobile {
         display: flex;
     }
 
@@ -2715,7 +2816,7 @@ body {
         width: 220px;
     }
 
-    .na-filter, .eu-filter, .sam-filter, .mena-filter, .apac-filter, .ssa-filter, .all-filter {
+    .filter-button {
         display: none;
     }
 
