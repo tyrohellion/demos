@@ -35,9 +35,11 @@ a {
 body {
     background-color: var(--match-results-background);
     color: white;
+    position: relative;
     margin: 0;
-    padding-bottom: 80px;
-    height: 100vh;
+    padding-bottom: 283px;
+    height: 100%;
+    min-height: 100vh;
     width: 100vw;
 }
 
@@ -55,8 +57,10 @@ body {
     gap: 2rem;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    will-change: backdrop-filter;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(4px);
     background-color: rgba(26, 27, 32, 0.8);
     z-index: 30;
 }
@@ -133,8 +137,7 @@ body {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(4px);
-    background-color: rgba(26, 27, 32, 0.8);
+    background-color: rgba(26, 27, 32, 0.9);
     z-index: 40;
 
     .search-container {
@@ -279,8 +282,7 @@ body {
     height: 100%;
     width: 100%;
     position: absolute;
-    backdrop-filter: blur(2px);
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 20;
     justify-content: center;
     align-items: center;
@@ -458,7 +460,6 @@ body {
     flex-direction: column;
     gap: 0.9rem;
     margin-top: 40px;
-    margin-bottom: 80px;
 }
 
 .featured-player-wrapper-index, .featured-team-wrapper-index {
@@ -621,8 +622,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(64, 66, 78, 0.6);
-    backdrop-filter: blur(4px);
+    background-color: rgba(64, 66, 78, 0.9);
     width: 100%;
     height: 100%;
     z-index: 35;
@@ -750,8 +750,6 @@ body {
     justify-content: center;
     margin-top: 40px;
     gap: 1rem;
-    margin-left: 16px;
-    margin-right: 16px;
     flex-wrap: wrap;
 }
 
@@ -923,8 +921,6 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-left: 16px;
-    margin-right: 16px;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
@@ -1077,6 +1073,10 @@ body {
     font-weight: 600;
 }
 
+.main-player-background .team-name {
+    text-align: center;
+}
+
 .player-header-container {
     display: flex;
     margin-top: 64px;
@@ -1184,8 +1184,6 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-left: 16px;
-    margin-right: 16px;
     padding-top: 3rem;
     padding-bottom: 1rem;
 }
@@ -1534,8 +1532,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    flex-flow: wrap;
-    margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
 .no-replay {
@@ -1581,6 +1578,7 @@ body {
     transform: var(--card-grow-before);
     transition: all 150ms;
     font-weight: 600;
+    min-width: fit-content;
 }
 
 .bracket-button:hover, .ballchasing-links:hover {
@@ -1614,8 +1612,6 @@ body {
 .recent-results-header {
     margin-top: 4rem;
     text-align: center;
-    margin-left: 16px;
-    margin-right: 16px;
 }
 
 .match-card-wrapper {
@@ -1936,6 +1932,78 @@ body {
     font-weight: 500;
 }
 
+
+/* footer */
+
+
+footer {
+    display: flex;
+    position: absolute;
+    justify-content: flex-start;
+    padding: 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    background-color: var(--sidebar-color);
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    gap: 4rem;
+}
+
+.main-section, .personal-section, .thanks-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-section-headers {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(231, 231, 231);
+    margin-bottom: 0.5rem;
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-button {
+    display: flex;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--button-color);
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.2rem;
+}
+
+.footer-button .feather {
+    width: 16px;
+    height: 16px;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--button-color);
+}
+
+.footer-button:hover {
+    text-decoration: underline;
+}
+
+.footer-button:active {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
 /* Fullscreen search dialog */
 
 .fullscreen-search-container {
@@ -1949,8 +2017,7 @@ body {
     padding-top: 6.7rem;
     align-items: center;
     flex-direction: column;
-    background-color: rgba(18, 19, 22, 0.8);
-    backdrop-filter: blur(7px);
+    background-color: rgba(18, 19, 22, 0.9);
     top: 0;
     width: 100%;
     height: 100%;
@@ -2327,11 +2394,37 @@ body {
         overflow-x: visible;
     }
 
+    .orange-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 150px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
     .blue-name {
         position: absolute;
         white-space: wrap;
         text-overflow: ellipsis;
         right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 150px;
         top: 155px;
         width: 130px;
         height: auto;
@@ -2483,10 +2576,6 @@ body {
         border-top-left-radius: 0px;
     }
 
-    .match-event-header-wrapper {
-        margin-left: 16px;
-    }
-
     .match-card-wrapper {
         width: 335px;
         height: 240px;
@@ -2505,11 +2594,37 @@ body {
         overflow-x: visible;
     }
 
+    .orange-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 150px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
     .blue-name {
         position: absolute;
         white-space: wrap;
         text-overflow: ellipsis;
         right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 150px;
         top: 155px;
         width: 130px;
         height: auto;
@@ -2561,6 +2676,10 @@ body {
   }
  
  @media all and (max-width: 480px) {
+
+    body {
+        padding-bottom: 420px;
+    }
 
     .filter-button-mobile {
         display: flex;
@@ -2658,10 +2777,6 @@ body {
         width: 100%;
         text-align: center;
     }
-    
-    .ballchasing-wrapper {
-        margin-bottom: 120px;
-    }
 
     .team-header-container {
         flex-direction: column;
@@ -2695,10 +2810,6 @@ body {
         border-top-left-radius: 0px;
     }
 
-    .match-event-header-wrapper {
-        margin-left: 16px;
-    }
-
     .match-card-wrapper {
         width: 335px;
         height: 240px;
@@ -2717,11 +2828,37 @@ body {
         overflow-x: visible;
     }
 
+    .orange-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 150px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
     .blue-name {
         position: absolute;
         white-space: wrap;
         text-overflow: ellipsis;
         right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 150px;
         top: 155px;
         width: 130px;
         height: auto;
@@ -2761,20 +2898,6 @@ body {
         width: 360px;
     }
   }
-
-@media all and (max-height: 590px) {
-
-    .ballchasing-wrapper {
-        margin-bottom: 120px;
-    }
- }
-
- @media all and (max-width: 550px) {
-
-    .ballchasing-wrapper {
-        margin-bottom: 120px;
-    }
- }
  
  
  /* Portrait */
@@ -2800,9 +2923,20 @@ body {
  only screen and (min--moz-device-pixel-ratio: 1.5),
  only screen and (min-device-pixel-ratio: 1.5) {
  }
+
+ @media all and (max-width: 274px) {
+
+    body {
+        padding-bottom: 610px;
+    }
+ }
  
  /* iPhone Portrait */
  @media screen and (max-device-width: 480px) and (orientation:portrait) {
+
+    body {
+        padding-bottom: 420px;
+    }
 
     .filter-button-mobile {
         display: flex;
@@ -2934,10 +3068,6 @@ body {
         border-top-left-radius: 0px;
     }
 
-    .ballchasing-wrapper {
-        margin-bottom: 120px;
-    }
-
     .match-card-wrapper {
         width: 335px;
         height: 240px;
@@ -2956,11 +3086,37 @@ body {
         overflow-x: visible;
     }
 
+    .orange-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        left: 150px;
+        width: 130px;
+        height: auto;
+        top: 155px;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
     .blue-name {
         position: absolute;
         white-space: wrap;
         text-overflow: ellipsis;
         right: 175px;
+        top: 155px;
+        width: 130px;
+        height: auto;
+        text-align: center;
+        overflow-y: auto;
+        overflow-x: visible;
+    }
+
+    .blue-tbd {
+        position: absolute;
+        white-space: wrap;
+        text-overflow: ellipsis;
+        right: 150px;
         top: 155px;
         width: 130px;
         height: auto;
