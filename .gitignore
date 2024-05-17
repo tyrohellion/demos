@@ -1602,3 +1602,7 @@ __pycache__/main.cpython-312.pyc
 .venv/Lib/site-packages/jsonify-0.5.dist-info/REQUESTED
 .venv/Lib/site-packages/jsonify-0.5.dist-info/top_level.txt
 .venv/Lib/site-packages/jsonify-0.5.dist-info/WHEEL
+__pycache__/__init__.cpython-312.pyc
+__pycache__/api.cpython-312.pyc
+octanegg/__pycache__/__init__.cpython-312.pyc
+octanegg/__pycache__/api.cpython-312.pyc
