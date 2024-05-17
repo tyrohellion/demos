@@ -228,5 +228,18 @@
 
     fetchTeams();
     </script>
+    <script>
+        let filterMenu = document.querySelector('.filter-button-mobile');
+        let filterMenuActive = document.querySelector('.filter-buttons-wrapper');
+        let closeFilterMenu = document.querySelector('.close-filter-menu');
+        
+        filterMenu.onclick = function() {
+            filterMenuActive.classList.toggle('active');
+        }
+
+        closeFilterMenu.onclick = function() {
+            filterMenuActive.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

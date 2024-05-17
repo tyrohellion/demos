@@ -4,9 +4,6 @@ let closeSearch = document.querySelector('.x-icon');
 let hamburger = document.querySelector('.navbar-icon');
 let navbar = document.querySelector('.navbar');
 let closeMenu = document.querySelector('.close-menu-button');
-let filterMenu = document.querySelector('.filter-button-mobile');
-let filterMenuActive = document.querySelector('.filter-buttons-wrapper');
-let closeFilterMenu = document.querySelector('.close-filter-menu');
 var body = document.body;
 var page = 1;
 
@@ -25,14 +22,6 @@ hamburger.onclick = function() {
 closeMenu.onclick = function() {
     navbar.classList.toggle('active');
 };
-
-filterMenu.onclick = function() {
-    filterMenuActive.classList.toggle('active');
-}
-
-closeFilterMenu.onclick = function() {
-    filterMenuActive.classList.toggle('active');
-}
 
 function debounce(func, delay) {
     let debounceTimer;
