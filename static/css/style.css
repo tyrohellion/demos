@@ -1936,7 +1936,7 @@ body {
 /* footer */
 
 
-footer {
+.footer {
     display: flex;
     position: absolute;
     justify-content: flex-start;
