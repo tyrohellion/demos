@@ -87,7 +87,7 @@
 
             <div class="match-event-header-wrapper">
                 <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}" class="match-event-header">{{ match.event.name }}</a>
-                <i class="match-arrow" data-feather="chevron-right"></i>
+                <i class="match-arrow" data-feather="circle"></i>
                 <div class="match-event-stage-header">{{ match.stage.name }}</div>
             </div>
 
@@ -276,7 +276,7 @@
                     {% endif %}
                 </div>
             {% endif %}
-            <footer>
+            <div class="footer">
                 <div class="main-section">
                     <div class="footer-section-headers">Demosgg</div>
                     <div class="footer-buttons">
@@ -331,7 +331,7 @@
                 <div class="copyright">
                     demosgg © 2024 - All Rights Reserved
                 </div>
-            </footer>
+            </div>
         <script src="https://unpkg.com/feather-icons"></script>
         <script>feather.replace()</script>
         <script src="/static/script.js" async defer></script>

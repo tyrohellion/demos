@@ -1245,15 +1245,22 @@ body {
 
 .match-event-header-wrapper {
     display: flex;
+    text-align: center;
     justify-content: center;
     margin-top: 40px;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .match-event-header-wrapper .feather {
-    min-height: 16px;
-    min-width: 16px;
+    height: 10px;
+    width: 10px;
+    min-height: 10px;
+    min-width: 10px;
+    fill: rgb(218, 218, 218);
+    color: rgb(218, 218, 218);
 }
 
 .match-event-header {
@@ -1278,7 +1285,7 @@ body {
     font-weight: 500;
     color: var(--button-color);
     cursor: default;
-    margin-right: 16px;
+    text-align: center;
 }
 
 .matchup-scoreboard-wrapper {
@@ -1936,7 +1943,7 @@ body {
 /* footer */
 
 
-footer {
+.footer {
     display: flex;
     position: absolute;
     justify-content: flex-start;
@@ -2633,6 +2640,10 @@ footer {
         overflow-x: visible;
     }
 
+    .match-event-header-wrapper {
+        flex-direction: column;
+    }
+
     .match-card-header {
         justify-content: center;
         padding-left: 0;
@@ -2808,6 +2819,10 @@ footer {
         border-bottom-left-radius: 0.7rem;
         border-top-right-radius: 0px;
         border-top-left-radius: 0px;
+    }
+
+    .match-event-header-wrapper {
+        flex-direction: column;
     }
 
     .match-card-wrapper {
@@ -3043,6 +3058,10 @@ footer {
 
     .player-info {
         align-items: center;
+    }
+
+    .main-player-background .player-tag {
+        text-align: center;
     }
 
     .active-roster-wrapper {
