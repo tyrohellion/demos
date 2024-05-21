@@ -1273,6 +1273,8 @@ body {
     border-radius: 4px;
     transform: var(--card-grow-before);
     text-align: center;
+    text-align: -moz-center;
+    text-align: -webkit-center;
 }
 
 .match-event-header:hover {
