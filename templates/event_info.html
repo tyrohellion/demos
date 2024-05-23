@@ -91,8 +91,7 @@
                     <div class="event-subheadings">
                         <div class="date-wrapper">
                             <div class="event-start-date" id="startDate" data-utc="{{ event.startDate }}"></div>
-                            <div class="dash">-</div>
-                            <div class="event-start-date" id="endDate" data-utc="{{ event.endDate }}"></div>
+                            <div class="event-end-date" id="endDate" data-utc="{{ event.endDate }}"></div>
                         </div>
                         {% if event.prize %}
                         <div class="event-prize-wrapper">
@@ -126,7 +125,6 @@
             <div class="matches-wrapper" id="matches-container">
                     <div class="match-card-wrapper">
                         <a href="{{ url_for('get_match', match_id=match['_id']) }}" id="match-link"></a>
-                        <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="match-card-header">
                                 <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
                                     <div class="matches-event-name">{{ match['event']['name'] }}</div>
@@ -145,6 +143,7 @@
                                 </div>
                                 {% endif %}
                             </div>
+                            <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">
                                     {% if match['blue'] %}

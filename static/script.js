@@ -5,7 +5,6 @@ let hamburger = document.querySelector('.navbar-icon');
 let navbar = document.querySelector('.navbar');
 let closeMenu = document.querySelector('.close-menu-button');
 var body = document.body;
-var page = 1;
 
 searchButton.onclick = function() {
     search.classList.toggle('active');
@@ -183,14 +182,14 @@ function updateEventResults(events) {
     eventResults.innerHTML = "";
 
     events.forEach(function(event) {
-        var divWrapper = document.createElement("div"); 
+        var divWrapper = document.createElement("div");
         divWrapper.classList.add("event-results-item");
 
         if (event.name) {
             var pName = document.createElement("p");
-            pName.classList.add("event-name"); 
-            pName.textContent = event.name; 
-            divWrapper.appendChild(pName); 
+            pName.classList.add("event-name");
+            pName.textContent = event.name;
+            divWrapper.appendChild(pName);
         }
 
         if (event.image !== undefined) {
@@ -205,10 +204,10 @@ function updateEventResults(events) {
         divDetails.classList.add("event-details");
 
         if (event.tier) {
-            var pTier = document.createElement("p"); 
-            pTier.classList.add("event-tier"); 
-            pTier.textContent = event.tier; 
-            divDetails.appendChild(pTier); 
+            var pTier = document.createElement("p");
+            pTier.classList.add("event-tier");
+            pTier.textContent = event.tier;
+            divDetails.appendChild(pTier);
         }
 
         if (event.region) {
@@ -247,7 +246,7 @@ function updateEventResults(events) {
 
 function performTeamSearch() {
     var query = document.getElementById("searchInput").value;
-    console.log("Team Search Query:", query); 
+    console.log("Team Search Query:", query);
 
     fetch("/search?query=" + query)
         .then(response => {
@@ -331,8 +330,23 @@ function performSearch() {
 }
 
 function convertUTCtoDateOnly(utcDateString) {
-    var dateParts = utcDateString.split('T')[0];
-    return dateParts;
+
+    var dateParts = new Date(utcDateString);
+    
+    var year = dateParts.getFullYear();
+    var month = dateParts.getMonth();
+    var num_day = dateParts.getDate();
+    var day = dateParts.getDay();
+
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    var monthOfYear = monthNames[month];
+    var dayOfWeek = dayNames[day];
+
+    var prettyDate = (dayOfWeek + ", " + monthOfYear + " " + num_day + ", " + year);
+
+    return prettyDate;
 }
 
 var dateElements = document.querySelectorAll('.event-start-date, .event-end-date, .match-date, .match-date-header');

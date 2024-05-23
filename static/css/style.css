@@ -845,7 +845,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 46px;
-    max-width: fit-content;
+    min-width: fit-content;
     background-color: var(--sidebar-color);
     color: var(--button-color);
     border-radius: 0.7rem;
@@ -881,8 +881,12 @@ body {
     display: flex;
     background-color: var(--sidebar-color);
     color: var(--button-color);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     padding: 0.8rem;
-    height: 46px;
+    gap: 1rem;
+    min-height: 46px;
     border-radius: 0.7rem;
     cursor: default;
 }
@@ -892,7 +896,7 @@ body {
     flex-direction: row;
     min-width: fit-content;
     flex-wrap: wrap;
-    gap: 1.2rem;
+    gap: 1rem;
     margin-left: 2px;
 }
 
@@ -902,7 +906,6 @@ body {
 
 .event-start-date, .event-end-date {
     font-size: 1rem;
-    margin: auto;
     border-radius: 4px;
     font-weight: 500;
 }
@@ -1632,10 +1635,11 @@ body {
     background-color: var(--sidebar-color);
     border-radius: 0.7rem;
     padding: 1rem;
-    gap: 2rem;
+    gap: 1rem;
     width: 850px;
     transform: var(--card-grow-before);
     transition: 150ms all;
+    overflow: hidden;
 }
 
 .match-card-header a:hover {
@@ -1678,6 +1682,10 @@ body {
 
     .match-arrow {
         filter: invert();
+    }
+
+    .match-date {
+        color: var(--card-text-color);
     }
 
     .lan-wrapper .feather, .online-wrapper .feather {
@@ -1740,10 +1748,9 @@ body {
 }
 
 .match-date {
-    color: rgb(235, 235, 235);
-    position: absolute;
-    left: -175px;
-    font-size: 1.1rem;
+    color: var(--button-color);
+    padding-left: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
@@ -2792,6 +2799,22 @@ body {
         margin-left: 2px;
     }
 
+    .event-subheadings .event-tier {
+        width: 100%;
+    }
+
+    .event-subheadings .event-region {
+        width: 100%;
+    } 
+
+    .event-prize-wrapper {
+        width: 100%;
+    }
+
+    .search-icon-container {
+        gap: 12px;
+    }
+
     .active-roster-wrapper a:active {
         background-color: var(--sidebar-color);
         color: var(--button-color);
@@ -3035,6 +3058,18 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+    }
+
+    .event-subheadings .event-tier {
+        width: 100%;
+    }
+
+    .event-subheadings .event-region {
+        width: 100%;
+    } 
+
+    .event-prize-wrapper {
+        width: 100%;
     }
 
     .search-icon-container {

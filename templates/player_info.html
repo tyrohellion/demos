@@ -138,7 +138,6 @@
             <div class="matches-wrapper">
                     <div class="match-card-wrapper">
                         <a href="{{ url_for('get_match', match_id=match['_id']) }}" id="match-link"></a>
-                        <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="match-card-header">
                                 <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
                                     <div class="matches-event-name">{{ match['event']['name'] }}</div>
@@ -157,6 +156,7 @@
                                 </div>
                                 {% endif %}
                             </div>
+                            <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">
                                     {% if match['blue']['team']['team']['image'] %}
