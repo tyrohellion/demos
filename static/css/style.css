@@ -925,6 +925,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: fit-content;
     padding: 0.8rem;
     gap: 1rem;
     min-height: 46px;
@@ -939,6 +940,13 @@ body {
     flex-wrap: wrap;
     gap: 1rem;
     margin-left: 2px;
+}
+
+.event-small-tags-wrapper {
+    display: flex;
+    width: fit-content;
+    flex-wrap: nowrap;
+    gap: 1rem;
 }
 
 .event-prizepool {
@@ -978,6 +986,7 @@ body {
     border-radius: 30px;
     font-weight: 600;
     padding: 1.2rem;
+    width: 120px;
     color: var(--button-color);
     transition: all 100ms;
 }

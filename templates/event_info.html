@@ -144,6 +144,7 @@
                             <div class="event-start-date" id="startDate" data-utc="{{ event.startDate }}"></div>
                             <div class="event-end-date" id="endDate" data-utc="{{ event.endDate }}"></div>
                         </div>
+                        <div class="event-small-tags-wrapper">
                         {% if event.prize %}
                         <div class="event-prize-wrapper">
                             <div class="event-prizepool" id="prizePool">${{ event.prize.amount }}</div>
@@ -152,6 +153,7 @@
                         {% endif %}
                             <div class="event-tier">{{ event.tier }}-Tier</div>
                             <div class="event-region">{{ event.region }}</div>
+                        </div>
                     </div>
                 </div>
             </div>

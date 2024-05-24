@@ -350,12 +350,20 @@ function convertUTCtoDateOnly(utcDateString) {
         timeMinutes = "00";
     }
 
-    if (timeHours >= 12) {
-        var timeHours = ((timeHours - 12) + ":" + timeMinutes + " PM");
+    if (timeMinutes < 10 & timeMinutes > 0) {
+        timeMinutes = ("0" + timeMinutes);
+    }
+
+    if (timeHours > 12) {
+        timeHours = ((timeHours - 12) + ":" + timeMinutes + " PM");
     }
 
     if (timeHours < 12) {
-        var timeHours = (timeHours + ":" + timeMinutes + " AM");
+        timeHours = (timeHours + ":" + timeMinutes + " AM");
+    }
+
+    if (timeHours == 12) {
+        timeHours = (timeHours + ":" + timeMinutes + " PM");
     }
 
     var prettyDate = (dayOfWeek + ", " + monthOfYear + " " + num_day + ", " + year + " @" + timeHours);
