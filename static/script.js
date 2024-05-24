@@ -337,6 +337,8 @@ function convertUTCtoDateOnly(utcDateString) {
     var month = dateParts.getMonth();
     var num_day = dateParts.getDate();
     var day = dateParts.getDay();
+    var timeHours = dateParts.getHours();
+    var timeMinutes = dateParts.getMinutes();
 
     const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -344,7 +346,19 @@ function convertUTCtoDateOnly(utcDateString) {
     var monthOfYear = monthNames[month];
     var dayOfWeek = dayNames[day];
 
-    var prettyDate = (dayOfWeek + ", " + monthOfYear + " " + num_day + ", " + year);
+    if (timeMinutes == 0) {
+        timeMinutes = "00";
+    }
+
+    if (timeHours >= 12) {
+        var timeHours = ((timeHours - 12) + ":" + timeMinutes + " PM");
+    }
+
+    if (timeHours < 12) {
+        var timeHours = (timeHours + ":" + timeMinutes + " AM");
+    }
+
+    var prettyDate = (dayOfWeek + ", " + monthOfYear + " " + num_day + ", " + year + " @" + timeHours);
 
     return prettyDate;
 }
