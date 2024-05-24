@@ -1,6 +1,6 @@
 let search = document.querySelector('.fullscreen-search-container');
 let searchButton = document.querySelector('.search-container');
-let closeSearch = document.querySelector('.x-icon');
+let closeSearch = document.querySelector('.fullscreen-icon-tabler-x');
 let hamburger = document.querySelector('.navbar-icon');
 let navbar = document.querySelector('.navbar');
 let closeMenu = document.querySelector('.close-menu-button');
