@@ -151,7 +151,7 @@
                             <div class="event-prizepool">{{ event.prize.currency }}</div>
                         </div>
                         {% endif %}
-                            <div class="event-tier">{{ event.tier }}-Tier</div>
+                            <div class="event-tier" id="eventTierDisplay">{{ event.tier }}</div>
                             <div class="event-region">{{ event.region }}</div>
                         </div>
                     </div>
@@ -374,6 +374,16 @@
 
             prizePoolElement.textContent = formattedPrizePool;
 
+        </script>
+        <script>
+            var tier = document.getElementById('eventTierDisplay');
+            var tierValue = tier.textContent;
+            
+            if (tierValue == 'Show Match' || tierValue == 'Weekly' || tierValue == 'Monthly' || tierValue == 'Qualifier') {
+                tier.innerHTML = tierValue;
+            } else {
+                tier.innerHTML = (tierValue + "-Tier");
+            }
         </script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {

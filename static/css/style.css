@@ -945,6 +945,7 @@ body {
 .event-small-tags-wrapper {
     display: flex;
     width: fit-content;
+    justify-content: center;
     flex-wrap: nowrap;
     gap: 1rem;
 }
@@ -2086,7 +2087,7 @@ body {
     display: flex;
     overflow: auto;
     position: fixed;
-    padding-top: 6.7rem;
+    padding-top: 3rem;
     align-items: center;
     flex-direction: column;
     background-color: rgba(18, 19, 22, 0.9);
@@ -2576,16 +2577,27 @@ body {
         box-shadow: 0px 0px 49px 12px rgba(0,0,0,0.5);
     }
 
+    .navbar-icon .icon {
+        width: 24px;
+        height: 24px;
+    }
+
     .navbar-icon:hover {
         background-color: var(--button-color);
-        color: var(--card-text-color);
         cursor: pointer;
+
+        .icon {
+            stroke: var(--card-text-color);
+        }
     }
 
     .navbar-icon:active {
         background-color: var(--button-color);
-        color: var(--card-text-color);
         cursor: pointer;
+
+        .icon {
+            stroke: var(--card-text-color);
+        }
     }
 
     .event-icon {
@@ -2818,16 +2830,27 @@ body {
         box-shadow: 0px 0px 49px 12px rgba(0,0,0,0.5);
     }
 
+    .navbar-icon .icon {
+        width: 24px;
+        height: 24px;
+    }
+
     .navbar-icon:hover {
         background-color: var(--button-color);
-        color: var(--card-text-color);
         cursor: pointer;
+
+        .icon {
+            stroke: var(--card-text-color);
+        }
     }
 
     .navbar-icon:active {
         background-color: var(--button-color);
-        color: var(--card-text-color);
         cursor: pointer;
+
+        .icon {
+            stroke: var(--card-text-color);
+        }
     }
 
     .event-icon {
@@ -2887,6 +2910,10 @@ body {
         justify-content: center;
         gap: 1rem;
         margin-left: 2px;
+    }
+
+    .event-subheadings {
+        justify-content: center;
     }
 
     .event-subheadings .event-tier {
