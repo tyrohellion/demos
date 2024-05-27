@@ -217,6 +217,22 @@
             </div>
             {% endif %}
 
+            <div class="player-tab-wrapper">
+                <div class="player-tab-button" id="matches-button">Matches</div>
+                <div class="player-tab-button" id="player-links-button">Links</div>
+            </div>
+
+            <div class="player-links-wrapper" id="playerLinksWrapper">
+                {% if player.accounts.0.platform == "steam" %}
+                    {% if player.accounts.0.id %}
+                    <a href="https://steamcommunity.com/profiles/{{ player.accounts.0.id }}" class="player-link" target="_blank">Steam Profile</a>
+                    <a href="https://rocketleague.tracker.network/rocket-league/profile/steam/{{ player.accounts.0.id }}/overview" class="player-link" target="_blank">Rocket League Tracker</a>
+                    <a href="https://ballchasing.com/player/steam/{{ player.accounts.0.id }}" class="player-link" target="_blank">Ballchasing Info</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            <div id="matches-section">
             {% for match in matches %}
             <div class="matches-wrapper">
                     <div class="match-card-wrapper">
@@ -289,8 +305,9 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
 
-            <div class="pagination">
+            <div class="pagination" id="pagination-buttons">
                 {% if page > 1 %}
                 <a href="{{ url_for('get_player', player_id=player._id, page=page-1) }}" id="prevPageButton">Prev</a>
                 {% endif %}
@@ -413,6 +430,19 @@
 
             // Call the function initially
             hideNextButtonIfLessThanTenElements();
+        </script>
+        <script>
+            document.getElementById('matches-button').onclick = function() {
+                document.getElementById('matches-section').style.display = 'block';
+                document.getElementById('playerLinksWrapper').style.display = 'none';
+                document.getElementById('pagination-buttons').style.display = 'flex';
+            };
+
+            document.getElementById('player-links-button').onclick = function() {
+                document.getElementById('matches-section').style.display = 'none';
+                document.getElementById('playerLinksWrapper').style.display = 'flex';
+                document.getElementById('pagination-buttons').style.display = 'none';
+            };
         </script>
     </body>
 </html>
