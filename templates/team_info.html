@@ -261,6 +261,7 @@
                             <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">
+                                    {% if match['blue'] %}
                                     {% if match['blue']['team']['team']['image'] %}
                                     <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
                                     {% else %}
@@ -271,8 +272,13 @@
                                     {% else %}
                                     <div class="matches-orange-score">0</div>
                                     {% endif %}
+                                    {% else %}
+                                    <img src="/static/images/rocketleague.svg" alt="TBD">
+                                    <div class="matches-orange-score">0</div>
+                                    {% endif %}
                                 </div>
                                 <div class="orange-team-wrapper">
+                                    {% if match['orange'] %}
                                     {% if match['orange']['score'] %}
                                     <div class="matches-orange-score">{{ match['orange']['score'] }}</div>
                                     {% else %}
@@ -283,14 +289,26 @@
                                     {% else %}
                                     <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
                                     {% endif %}
+                                    {% else %}
+                                    <div class="matches-orange-score">0</div>
+                                    <img src="/static/images/rocketleague.svg" alt="TBD">
+                                    {% endif %}
                                 </div>
                             </div>
+                            {% if match['orange'] %}
                                 <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="orange-name">
                                     <div class="orange-name-text">{{ match['orange']['team']['team']['name'] }}</div>
                                 </a>
+                            {% else %}
+                                <div class="orange-tbd">TBD</div>
+                            {% endif %}
+                            {% if match['blue'] %}
                                 <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="blue-name">
                                     <div class="blue-name-text">{{ match['blue']['team']['team']['name'] }}</div>
                                 </a>
+                            {% else %}
+                                <div class="blue-tbd">TBD</div>
+                            {% endif %}
                     </div>
                 </div>
             {% endfor %}
