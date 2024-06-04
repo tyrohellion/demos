@@ -197,8 +197,8 @@
                 </div>
             </div>
             {% endif %}
-            {% if active_roster%}
             <div class="active-roster-wrapper">
+            {% if active_roster%}
             {% for player in active_roster %}
                 {% if player.get('coach', False) %}
                 <a href="{{ url_for('get_player', player_id=player._id) }}">
@@ -220,7 +220,7 @@
             {% else %}
             <div class="no-roster">No roster found</div>
             {% endif %}
-        </div>
+            </div>
 
         <div id="matches-section">
             {% for match in matches %}

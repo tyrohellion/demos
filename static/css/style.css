@@ -2134,11 +2134,9 @@ body {
 }
 
 .no-roster {
-    font-size: 1rem;
-    margin-top: 4rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    padding-bottom: 2rem;
-    margin-top: 3rem;
+    padding: 2rem;
 }
 
 
