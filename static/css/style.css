@@ -1377,6 +1377,7 @@ body {
     background-color: rgb(19, 20, 27);
     color: var(--button-color);
     text-wrap: nowrap;
+    flex-wrap: nowrap;
     transition: 150ms all;
 }
 
@@ -1419,6 +1420,7 @@ body {
     background-color: rgb(19, 20, 27);
     color: var(--button-color);
     text-wrap: nowrap;
+    flex-wrap: nowrap;
     transition: 150ms all;
 }
 
