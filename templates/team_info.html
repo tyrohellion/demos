@@ -222,59 +222,73 @@
             {% endif %}
         </div>
 
+        <div id="matches-section">
             {% for match in matches %}
             <div class="matches-wrapper" id="matches-container">
                     <div class="match-card-wrapper">
                         <a href="{{ url_for('get_match', match_id=match['_id']) }}" id="match-link"></a>
                             <div class="match-card-header">
-                                <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
-                                    <div class="matches-event-name">{{ match['event']['name'] }}</div>
-                                </a>
+                                    <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
+                                        <div class="matches-event-name">{{ match['event']['name'] }}</div>
+                                    </a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right card-match-arrow" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M9 6l6 6l-6 6" />
+                                    </svg>
+                                    <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
+                            </div>
+                            <div class="match-date-and-location-wrapper">
+                                <div class="match-date" data-utc="{{match['date']}}"></div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right card-match-arrow" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <path d="M9 6l6 6l-6 6" />
-                                  </svg>
-                                <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
+                                </svg>
                                 {% if match['stage']['lan'] %}
                                 <div class="lan-wrapper">
                                     <div class="lan-text">Lan</div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin lan-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin lan-icon" viewBox="0 0 24 24" stroke-width="1.9" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
                                         <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                                      </svg>
+                                    </svg>
                                 </div>
-                            {% else %}
-                            <div class="online-wrapper">
-                                <div class="online-text">Online</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world online-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                                    <path d="M3.6 9h16.8" />
-                                    <path d="M3.6 15h16.8" />
-                                    <path d="M11.5 3a17 17 0 0 0 0 18" />
-                                    <path d="M12.5 3a17 17 0 0 1 0 18" />
-                                  </svg>
+                                {% else %}
+                                <div class="online-wrapper">
+                                    <div class="online-text">Online</div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world online-icon" viewBox="0 0 24 24" stroke-width="1.9" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                                        <path d="M3.6 9h16.8" />
+                                        <path d="M3.6 15h16.8" />
+                                        <path d="M11.5 3a17 17 0 0 0 0 18" />
+                                        <path d="M12.5 3a17 17 0 0 1 0 18" />
+                                    </svg>
+                                </div>
+                                {% endif %}
                             </div>
-                            {% endif %}
-                            </div>
-                            <div class="match-date" data-utc="{{match['date']}}"></div>
                             <div class="img-score-wrapper">
                                 <div class="blue-team-wrapper">
                                     {% if match['blue'] %}
+                                    {% if match['blue']['score'] %}
+                                    <div class="matches-blue-score">{{ match['blue']['score'] }}</div>
+                                    {% else %}
+                                    <div class="matches-blue-score">0</div>
+                                    {% endif %}
                                     {% if match['blue']['team']['team']['image'] %}
                                     <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
                                     {% else %}
                                     <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
                                     {% endif %}
-                                    {% if match['blue']['score'] %}
-                                    <div class="matches-orange-score">{{ match['blue']['score'] }}</div>
                                     {% else %}
-                                    <div class="matches-orange-score">0</div>
-                                    {% endif %}
-                                    {% else %}
+                                    <div class="matches-blue-score">0</div>
                                     <img src="/static/images/rocketleague.svg" alt="TBD">
-                                    <div class="matches-orange-score">0</div>
+                                    {% endif %}
+                                    {% if match['blue'] %}
+                                    <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="blue-name">
+                                        <div class="blue-name-text">{{ match['blue']['team']['team']['name'] }}</div>
+                                    </a>
+                                    {% else %}
+                                        <div class="blue-name-text">TBD</div>
                                     {% endif %}
                                 </div>
                                 <div class="orange-team-wrapper">
@@ -293,22 +307,15 @@
                                     <div class="matches-orange-score">0</div>
                                     <img src="/static/images/rocketleague.svg" alt="TBD">
                                     {% endif %}
+                                    {% if match['orange'] %}
+                                    <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="orange-name">
+                                        <div class="orange-name-text">{{ match['orange']['team']['team']['name'] }}</div>
+                                    </a>
+                                    {% else %}
+                                        <div class="orange-name-text">TBD</div>
+                                    {% endif %}
                                 </div>
                             </div>
-                            {% if match['orange'] %}
-                                <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="orange-name">
-                                    <div class="orange-name-text">{{ match['orange']['team']['team']['name'] }}</div>
-                                </a>
-                            {% else %}
-                                <div class="orange-tbd">TBD</div>
-                            {% endif %}
-                            {% if match['blue'] %}
-                                <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="blue-name">
-                                    <div class="blue-name-text">{{ match['blue']['team']['team']['name'] }}</div>
-                                </a>
-                            {% else %}
-                                <div class="blue-tbd">TBD</div>
-                            {% endif %}
                     </div>
                 </div>
             {% endfor %}
