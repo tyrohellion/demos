@@ -1378,6 +1378,8 @@ body {
     color: var(--button-color);
     text-wrap: nowrap;
     flex-wrap: nowrap;
+    min-width: fit-content;
+    text-overflow: ellipsis;
     transition: 150ms all;
 }
 
@@ -1421,6 +1423,8 @@ body {
     color: var(--button-color);
     text-wrap: nowrap;
     flex-wrap: nowrap;
+    min-width: fit-content;
+    text-overflow: ellipsis;
     transition: 150ms all;
 }
 
