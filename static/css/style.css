@@ -1659,8 +1659,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 1rem;
-    margin-left: 0;
+    padding-left: 1rem;
+    margin: 0;
 }
 
 .blue-team-roster, .orange-team-roster {
@@ -3514,6 +3514,14 @@ body {
 
     .matchup-scoreboard-wrapper {
         border-radius: 0px;
+    }
+
+    .matches-team-name-orange {
+        bottom: -70px;
+    }
+
+    .matches-team-name-blue {
+        top: -70px;
     }
 }
  
