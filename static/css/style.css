@@ -1365,7 +1365,10 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
-    padding: 1.5rem;
+    padding-bottom: 4.5rem;
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .matches-team-name-blue {
@@ -1517,7 +1520,6 @@ body {
 
 .scores-cotainer {
     flex-direction: column;
-    padding-top: 3rem;
     justify-content: center;
     gap: 0;
     align-items: center;
@@ -2127,7 +2129,7 @@ body {
     padding: 0.5rem;
     border-radius: 0.5rem;
     z-index: 25;
-    background-color: var(--card-color);
+    background-color: rgb(19, 20, 27);
     color: var(--button-color);
     top: -42px;
     left: 2px;

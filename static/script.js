@@ -128,7 +128,7 @@ function updatePlayerResults(players) {
             updateResultsDisplay();
         });
 
-        playerResults.appendChild(divWrapper); 
+        playerResults.appendChild(divWrapper);
     });
 }
 
@@ -239,8 +239,8 @@ function updateEventResults(events) {
             updateResultsDisplay();
         });
 
-        divWrapper.appendChild(divDetails); 
-        eventResults.appendChild(divWrapper); 
+        divWrapper.appendChild(divDetails);
+        eventResults.appendChild(divWrapper);
     });
 }
 
