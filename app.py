@@ -14,7 +14,7 @@ def index():
     eventsS = octane_api.get_events(page=page, per_page=per_page, tier="S", order='date:desc', after='2023-08-01')
     eventsA = octane_api.get_events(page=page, per_page=per_page, tier="A", order='date:desc', after='2024-01-01')
     teams = octane_api.get_teams(page=page, per_page=per_page)
-    event = octane_api.get_event_participants(event_id='65a825ea370e82dfea34e7ac')
+    event = octane_api.get_event_participants(event_id='65a82626370e82dfea34e7ad')
     return render_template('index.html', results=results, eventscard=eventscard, eventsS=eventsS, eventsA=eventsA, teams=teams, event=event)
 
 @app.route('/events')

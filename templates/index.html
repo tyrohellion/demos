@@ -197,7 +197,7 @@
                         </div>
                     {% endfor %}
                     {% for event in eventsA %}
-                    {% if event.region == 'NA' or event.region == 'EU' or event.region == 'ME' or event.region == 'SAM' or event.region == 'INT' %}
+                    {% if event.region == 'NA' or event.region == 'EU' or event.region == 'ME' or event.region == 'SAM' or event.region == 'INT' or event.region == 'OCE' %}
                     <div class="featured-event-wrapper-index">
                         <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
                             {% if event.image %}
