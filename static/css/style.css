@@ -1609,7 +1609,7 @@ body {
     display: flex;
     position: absolute;
     gap: 2rem;
-    right: -557px;
+    right: -648px;
     top: -24px;
 }
 
@@ -1635,6 +1635,11 @@ body {
 #score {
     text-align: start;
     width: 71px;
+}
+
+#shots {
+    text-align: start;
+    width: 61px;
 }
 
 .player-stats-wrapper {
