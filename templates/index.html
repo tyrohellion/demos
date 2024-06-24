@@ -1,283 +1,412 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>demosgg</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/static/css/style-1.0.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>demosgg</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/style-1.0.css" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
 
-        <link rel="preconnect" href="https://rsms.me/">
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    </head>
-    
-    <body>
-        <div class="navbar-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M4 6l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 18l16 0" />
-              </svg>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+
+  <body>
+    <div class="navbar-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-menu-2"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#bec7e4"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 6l16 0" />
+        <path d="M4 12l16 0" />
+        <path d="M4 18l16 0" />
+      </svg>
+    </div>
+    <nav class="navbar">
+      <div class="navbar-wrapper">
+        <a href="{{ url_for('index') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-home"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Home</h3>
+        </a>
+        <a href="{{ url_for('players') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-user-star"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
+              <path
+                d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"
+              />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Players</h3>
+        </a>
+
+        <a class="search-container">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-list-search"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+              <path d="M18.5 18.5l2.5 2.5" />
+              <path d="M4 6h16" />
+              <path d="M4 12h4" />
+              <path d="M4 18h4" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Search</h3>
+        </a>
+
+        <a href="{{ url_for('events') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-tournament"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M20 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M6 12h3a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-3" />
+              <path d="M6 4h7a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-2" />
+              <path d="M14 10h4" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Events</h3>
+        </a>
+        <a href="{{ url_for('teams') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-users-group"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+              <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+              <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Teams</h3>
+        </a>
+      </div>
+      <div class="close-menu-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-x"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#bec7e4"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+    </nav>
+
+    <div class="fullscreen-search-container">
+      <div class="search-icon-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler fullscreen-icon-tabler-search"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#bec7e4"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+          <path d="M21 21l-6 -6" />
+        </svg>
+        <input
+          class="search-box"
+          type="text"
+          id="searchInput"
+          name="name"
+          placeholder="Search"
+          oninput="performSearch()"
+        />
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler fullscreen-icon-tabler-x"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#bec7e4"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+
+      <div class="results-container">
+        <div class="results-card-container">
+          <h3 class="results-card-text">Players</h3>
+          <div class="results-box" id="playerResults"></div>
+          <a
+            href="{{ url_for('players') }}"
+            class="seeMore"
+            id="playersMoreResults"
+            >Full player results</a
+          >
         </div>
-        <nav class="navbar">
-            <div class="navbar-wrapper">
-                <a href="{{ url_for('index') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                      </svg></div>
-                    <h3 class="navbar-text">Home</h3>
-                </a>
-                <a href="{{ url_for('players') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-star" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
-                        <path d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z" />
-                      </svg></div>
-                    <h3 class="navbar-text">Players</h3>
-                </a>
-
-                <a class="search-container">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                        <path d="M18.5 18.5l2.5 2.5" />
-                        <path d="M4 6h16" />
-                        <path d="M4 12h4" />
-                        <path d="M4 18h4" />
-                      </svg></div>
-                    <h3 class="navbar-text">Search</h3>
-                </a>
-
-                <a href="{{ url_for('events') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tournament" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M4 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M20 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M4 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M4 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M6 12h3a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-3" />
-                        <path d="M6 4h7a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-2" />
-                        <path d="M14 10h4" />
-                      </svg></div>
-                    <h3 class="navbar-text">Events</h3>
-                </a>
-                <a href="{{ url_for('teams') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                        <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                        <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                        <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                        <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                        <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-                      </svg></div>
-                    <h3 class="navbar-text">Teams</h3>
-                </a>
-            </div>
-            <div class="close-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                  </svg>
-            </div>
-        </nav>
-
-        <div class="fullscreen-search-container">
-            <div class="search-icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler fullscreen-icon-tabler-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                    <path d="M21 21l-6 -6" />
-                  </svg>
-                <input class="search-box"
-                    type="text"
-                    id="searchInput"
-                    name="name"
-                    placeholder="Search"
-                    oninput="performSearch()"
-                    />
-
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler fullscreen-icon-tabler-x" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                    </svg>
-            </div>
-
-            <div class="results-container">
-                <div class="results-card-container">
-                    <h3 class="results-card-text">Players</h3>
-                    <div class="results-box" id="playerResults"></div>
-                    <a href="{{ url_for('players') }}" class="seeMore" id="playersMoreResults">Full player results</a>
-                </div>
-                <div class="results-card-container">
-                    <h3 class="results-card-text">Teams</h3>
-                    <div class="results-box" id="teamResults"></div>
-                    <a href="{{ url_for('teams') }}" class="seeMore" id="teamsMoreResults">Full team results</a>
-                </div>
-                <div class="results-card-container">
-                    <h3 class="results-card-text">Events</h3>
-                    <div class="results-box" id="tournamentResults"></div>
-                    <a href="{{ url_for('events') }}" class="seeMore" id="tourneyMoreResults">Full event results</a>
-                </div>
-            </div>
+        <div class="results-card-container">
+          <h3 class="results-card-text">Teams</h3>
+          <div class="results-box" id="teamResults"></div>
+          <a href="{{ url_for('teams') }}" class="seeMore" id="teamsMoreResults"
+            >Full team results</a
+          >
         </div>
-
-        <div class="grid-container">
-            <section class="teams">
-                <a href="{{ url_for('teams') }}"></a>
-                <div class="index-card-blur">Teams</div>
-                    <div class="teams-container-index">
-                        {% for participant in event %}
-                            {% if participant.team.region == 'NA' or participant.team.region == 'EU' or participant.team.region == 'ME' or participant.team.region == 'SAM' %}
-                                <div class="team-wrapper-index">
-                                            <img src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ participant.team.name }}">
-                                            <div class="team-name-index">{{ participant.team.name }}</div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-            </section>
-
-            <section class="events">
-                <a href="{{ url_for('events') }}"></a>
-                <div class="index-card-blur">Events</div>
-                    <div class="events-container-index">
-                        <div class="event-wrapper-index">
-                            {% for event in eventscard %}
-                                {% if event.image %}
-                                    <img src="{{ event.image | default('/static/images/rocketleague.svg') }}" alt="{{ event.name }}">
-                                    <div class="event-name-index">{{ event.name }}</div>
-                                {% else %}
-                                    <img src="/static/images/rocketleague.svg" alt="{{ event.name }}">
-                                    <div class="event-name-index">{{ event.name }}</div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-            </section>
-
-            <section class="players">
-                <a href="{{ url_for('players') }}"></a>
-                <div class="index-card-blur">Players</div>
-                    <div class="players-container-index">
-                        {% for participant in event %}
-                        {% for player in participant.players %}
-                            <div class="player-wrapper-index">
-                                <img src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ participant.team.name }}">
-                                <div class="player-tag-index">{{ player.tag }}</div>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                    </div>
-            </section>
+        <div class="results-card-container">
+          <h3 class="results-card-text">Events</h3>
+          <div class="results-box" id="tournamentResults"></div>
+          <a
+            href="{{ url_for('events') }}"
+            class="seeMore"
+            id="tourneyMoreResults"
+            >Full event results</a
+          >
         </div>
+      </div>
+    </div>
 
-
-        <section class="featured-elements">
-            <div class="featured-events">
-                <div class="featured-events-heading">Featured Events</div>
-                    {% for event in eventsS %}
-                        <div class="featured-event-wrapper-index">
-                            <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
-                            {% if event.image %}
-                                <img src="{{ event.image | default('/static/images/rocketleague.svg') }}" alt="{{ event.name }}">
-                                <div class="featured-event-name-index">{{ event.name }}</div>
-                            {% else %}
-                                <img src="/static/images/rocketleague.svg" alt="{{ event.name }}">
-                                <div class="featured-event-name-index">{{ event.name }}</div>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                    {% for event in eventsA %}
-                    {% if event.region == 'NA' or event.region == 'EU' or event.region == 'ME' or event.region == 'SAM' or event.region == 'INT' or event.region == 'OCE' %}
-                    <div class="featured-event-wrapper-index">
-                        <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
-                            {% if event.image %}
-                                <img src="{{ event.image | default('/static/images/rocketleague.svg') }}" alt="{{ event.name }}">
-                                <div class="featured-event-name-index">{{ event.name }}</div>
-                            {% else %}
-                                <img src="/static/images/rocketleague.svg" alt="{{ event.name }}">
-                                <div class="featured-event-name-index">{{ event.name }}</div>
-                            {% endif %}
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="featured-teams">
-                <div class="featured-teams-heading">Featured Teams</div>
-                {% for participant in event %}
-                    {% if participant.team.region == 'NA' or participant.team.region == 'EU' or participant.team.region == 'ME' or participant.team.region == 'SAM' %}
-                        <div class="featured-team-wrapper-index">
-                            <a href="{{ url_for('get_team', team_id=participant.team._id) }}"></a>
-                            {% if participant.team.image %}
-                                <img src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ participant.team.name }}">
-                                <div class="featured-player-name-index">{{ participant.team.name }}</div>
-                            {% else %}
-                                <img src="/static/images/rocketleague.svg" alt="{{ participant.team.name }}">
-                                <div class="featured-player-name-index">{{ participant.team.name }}</div>
-                            {% endif %}
-                        </div>
-                        {% endif %}
-                {% endfor %}
-            </div>
-
-        </section>
-        <div class="footer">
-            <div class="main-section">
-                <div class="footer-section-headers">Demosgg</div>
-                <div class="footer-buttons">
-                    <a href="https://github.com/tyrohellion/demos" class="footer-button">
-                        <div class="footer-text">GitHub</div>
-                    </a>
-                    <a href="https://zsr.octane.gg" class="footer-button">
-                        <div class="footer-text">API</div>
-                    </a>
-                    <a href="https://liquipedia.net/rocketleague/Main_Page" class="footer-button">
-                        <div class="footer-text">Liquipedia</div>
-                    </a>
-                </div>
-            </div>
-            <div class="personal-section">
-                <div class="footer-section-headers">My stuff</div>
-                <div class="footer-buttons">
-                    <a href="https://x.com/tyrohellion" class="footer-button">
-                        <div class="footer-text">Twitter</div>
-                    </a>
-                    <a href="https://www.twitch.tv/tyrohellion" class="footer-button">
-                        <div class="footer-text">Twitch</div>
-                    </a>
-                    <a href="https://liquipedia.net/rocketleague/Tyro_(American_Player)" class="footer-button">
-                        <div class="footer-text">Liquipedia</div>
-                    </a>
-                </div>
-            </div>
-            <div class="thanks-section">
-                <div class="footer-section-headers">Acknowledgments</div>
-                <div class="footer-buttons">
-                    <a href="https://www.shiftrle.gg" class="footer-button">
-                        <div class="footer-text">ShiftRLE</div>
-                    </a>
-                    <a href="https://github.com/amas0/octanegg" class="footer-button">
-                        <div class="footer-text">Amas</div>
-                    </a>
-                    <a href="https://octane.gg" class="footer-button">
-                        <div class="footer-text">Octane.gg</div>
-                    </a>
-                </div>
-            </div>
-            <div class="copyright">
-                demosgg © 2024 - All Rights Reserved
-            </div>
+    <div class="grid-container">
+      <section class="teams">
+        <a href="{{ url_for('teams') }}"></a>
+        <div class="index-card-blur">Teams</div>
+        <div class="teams-container-index">
+          {% for participant in event %} {% if participant.team.region == 'NA'
+          or participant.team.region == 'EU' or participant.team.region == 'ME'
+          or participant.team.region == 'SAM' %}
+          <div class="team-wrapper-index">
+            <img
+              src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
+              alt="{{ participant.team.name }}"
+            />
+            <div class="team-name-index">{{ participant.team.name }}</div>
+          </div>
+          {% endif %} {% endfor %}
         </div>
-        <script src="/static/script.js" async defer></script>
-    </body>
+      </section>
+
+      <section class="events">
+        <a href="{{ url_for('events') }}"></a>
+        <div class="index-card-blur">Events</div>
+        <div class="events-container-index">
+          <div class="event-wrapper-index">
+            {% for event in eventscard %} {% if event.image %}
+            <img
+              src="{{ event.image | default('/static/images/rocketleague.svg') }}"
+              alt="{{ event.name }}"
+            />
+            <div class="event-name-index">{{ event.name }}</div>
+            {% else %}
+            <img src="/static/images/rocketleague.svg" alt="{{ event.name }}" />
+            <div class="event-name-index">{{ event.name }}</div>
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section class="players">
+        <a href="{{ url_for('players') }}"></a>
+        <div class="index-card-blur">Players</div>
+        <div class="players-container-index">
+          {% for participant in event %} {% for player in participant.players %}
+          <div class="player-wrapper-index">
+            <img
+              src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
+              alt="{{ participant.team.name }}"
+            />
+            <div class="player-tag-index">{{ player.tag }}</div>
+          </div>
+          {% endfor %} {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <section class="featured-elements">
+      <div class="featured-events">
+        <div class="featured-events-heading">Featured Events</div>
+        {% for event in eventsS %}
+        <div class="featured-event-wrapper-index">
+          <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
+          {% if event.image %}
+          <img
+            src="{{ event.image | default('/static/images/rocketleague.svg') }}"
+            alt="{{ event.name }}"
+          />
+          <div class="featured-event-name-index">{{ event.name }}</div>
+          {% else %}
+          <img src="/static/images/rocketleague.svg" alt="{{ event.name }}" />
+          <div class="featured-event-name-index">{{ event.name }}</div>
+          {% endif %}
+        </div>
+        {% endfor %} {% for event in eventsA %} {% if event.region == 'NA' or
+        event.region == 'EU' or event.region == 'ME' or event.region == 'SAM' or
+        event.region == 'INT' or event.region == 'OCE' %}
+        <div class="featured-event-wrapper-index">
+          <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
+          {% if event.image %}
+          <img
+            src="{{ event.image | default('/static/images/rocketleague.svg') }}"
+            alt="{{ event.name }}"
+          />
+          <div class="featured-event-name-index">{{ event.name }}</div>
+          {% else %}
+          <img src="/static/images/rocketleague.svg" alt="{{ event.name }}" />
+          <div class="featured-event-name-index">{{ event.name }}</div>
+          {% endif %}
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+
+      <div class="featured-teams">
+        <div class="featured-teams-heading">Featured Teams</div>
+        {% for participant in event %} {% if participant.team.region == 'NA' or
+        participant.team.region == 'EU' or participant.team.region == 'ME' or
+        participant.team.region == 'SAM' %}
+        <div class="featured-team-wrapper-index">
+          <a href="{{ url_for('get_team', team_id=participant.team._id) }}"></a>
+          {% if participant.team.image %}
+          <img
+            src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
+            alt="{{ participant.team.name }}"
+          />
+          <div class="featured-player-name-index">
+            {{ participant.team.name }}
+          </div>
+          {% else %}
+          <img
+            src="/static/images/rocketleague.svg"
+            alt="{{ participant.team.name }}"
+          />
+          <div class="featured-player-name-index">
+            {{ participant.team.name }}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+    </section>
+    <div class="footer">
+      <div class="main-section">
+        <div class="footer-section-headers">Demosgg</div>
+        <div class="footer-buttons">
+          <a href="https://github.com/tyrohellion/demos" class="footer-button">
+            <div class="footer-text">GitHub</div>
+          </a>
+          <a href="https://zsr.octane.gg" class="footer-button">
+            <div class="footer-text">API</div>
+          </a>
+          <a
+            href="https://liquipedia.net/rocketleague/Main_Page"
+            class="footer-button"
+          >
+            <div class="footer-text">Liquipedia</div>
+          </a>
+        </div>
+      </div>
+      <div class="personal-section">
+        <div class="footer-section-headers">My stuff</div>
+        <div class="footer-buttons">
+          <a href="https://x.com/tyrohellion" class="footer-button">
+            <div class="footer-text">Twitter</div>
+          </a>
+          <a href="https://www.twitch.tv/tyrohellion" class="footer-button">
+            <div class="footer-text">Twitch</div>
+          </a>
+          <a
+            href="https://liquipedia.net/rocketleague/Tyro_(American_Player)"
+            class="footer-button"
+          >
+            <div class="footer-text">Liquipedia</div>
+          </a>
+        </div>
+      </div>
+      <div class="thanks-section">
+        <div class="footer-section-headers">Acknowledgments</div>
+        <div class="footer-buttons">
+          <a href="https://www.shiftrle.gg" class="footer-button">
+            <div class="footer-text">ShiftRLE</div>
+          </a>
+          <a href="https://github.com/amas0/octanegg" class="footer-button">
+            <div class="footer-text">Amas</div>
+          </a>
+          <a href="https://octane.gg" class="footer-button">
+            <div class="footer-text">Octane.gg</div>
+          </a>
+        </div>
+      </div>
+      <div class="copyright">demosgg © 2024 - All Rights Reserved</div>
+    </div>
+    <script src="/static/script-1.0.js" async defer></script>
+  </body>
 </html>

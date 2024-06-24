@@ -13,6 +13,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/static/css/style-1.0.css" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
 
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -316,18 +317,19 @@
         <div class="scores-wrapper">
           {% set game = match.games[i] %} {% if i < match.games|length %}
           <div class="scores-blue">{{ game.blue }}</div>
-          {% if game.overtime == true %}
-          {% set extra_time = game.duration - 300 %}
-          {% set minutes = extra_time // 60 %}
-          {% set seconds = extra_time % 60 %}
-          {% if game.duration > 359 %}
-          <div class="game-number">Game {{ loop.index }} (+{{ minutes }}:{{ '%02d' % seconds }})</div>
+          {% if game.overtime == true %} {% set extra_time = game.duration - 300
+          %} {% set minutes = extra_time // 60 %} {% set seconds = extra_time %
+          60 %} {% if game.duration > 359 %}
+          <div class="game-number">
+            Game {{ loop.index }} (+{{ minutes }}:{{ '%02d' % seconds }})
+          </div>
           {% else %}
-          <div class="game-number">Game {{ loop.index }} (+0:{{ '%02d' % extra_time }})</div>
+          <div class="game-number">
+            Game {{ loop.index }} (+0:{{ '%02d' % extra_time }})
+          </div>
+          {% endif %} {% else %}
+          <div class="game-number">Game {{ loop.index }}</div>
           {% endif %}
-        {% else %}
-        <div class="game-number">Game {{ loop.index }}</div>
-        {% endif %}
           <div class="scores-orange">{{ game.orange }}</div>
           {% else %}
           <div class="scores-blue">?</div>
@@ -581,7 +583,7 @@
       </div>
       <div class="copyright">demosgg © 2024 - All Rights Reserved</div>
     </div>
-    <script src="/static/script.js" async defer></script>
+    <script src="/static/script-1.0.js" async defer></script>
     <script>
       // Get all elements with the class containing the decimal value
       const decimalDivs = document.querySelectorAll(

@@ -1,475 +1,742 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{ player.tag }}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/static/css/style-1.0.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{{ player.tag }}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/style-1.0.css" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
 
-        <link rel="preconnect" href="https://rsms.me/">
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    </head>
-    
-    <body>
-        <div class="navbar-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M4 6l16 0" />
-                <path d="M4 12l16 0" />
-                <path d="M4 18l16 0" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+
+  <body>
+    <div class="navbar-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-menu-2"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#bec7e4"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M4 6l16 0" />
+        <path d="M4 12l16 0" />
+        <path d="M4 18l16 0" />
+      </svg>
+    </div>
+    <nav class="navbar">
+      <div class="navbar-wrapper">
+        <a href="{{ url_for('index') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-home"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Home</h3>
+        </a>
+        <a href="{{ url_for('players') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-user-star"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
+              <path
+                d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z"
+              />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Players</h3>
+        </a>
+
+        <a class="search-container">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-list-search"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+              <path d="M18.5 18.5l2.5 2.5" />
+              <path d="M4 6h16" />
+              <path d="M4 12h4" />
+              <path d="M4 18h4" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Search</h3>
+        </a>
+
+        <a href="{{ url_for('events') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-tournament"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M20 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M4 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M6 12h3a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-3" />
+              <path d="M6 4h7a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-2" />
+              <path d="M14 10h4" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Events</h3>
+        </a>
+        <a href="{{ url_for('teams') }}">
+          <div class="event-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-users-group"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#bec7e4"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+              <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+              <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+            </svg>
+          </div>
+          <h3 class="navbar-text">Teams</h3>
+        </a>
+      </div>
+      <div class="close-menu-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-x"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#bec7e4"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+    </nav>
+
+    <div class="fullscreen-search-container">
+      <div class="search-icon-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler fullscreen-icon-tabler-search"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#bec7e4"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+          <path d="M21 21l-6 -6" />
+        </svg>
+        <input
+          class="search-box"
+          type="text"
+          id="searchInput"
+          name="name"
+          placeholder="Search"
+          oninput="performSearch()"
+        />
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler fullscreen-icon-tabler-x"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#bec7e4"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+
+      <div class="results-container">
+        <div class="results-card-container">
+          <h3 class="results-card-text">Players</h3>
+          <div class="results-box" id="playerResults"></div>
+          <a
+            href="{{ url_for('players') }}"
+            class="seeMore"
+            id="playersMoreResults"
+            >Full player results</a
+          >
+        </div>
+        <div class="results-card-container">
+          <h3 class="results-card-text">Teams</h3>
+          <div class="results-box" id="teamResults"></div>
+          <a href="{{ url_for('teams') }}" class="seeMore" id="teamsMoreResults"
+            >Full team results</a
+          >
+        </div>
+        <div class="results-card-container">
+          <h3 class="results-card-text">Events</h3>
+          <div class="results-box" id="tournamentResults"></div>
+          <a
+            href="{{ url_for('events') }}"
+            class="seeMore"
+            id="tourneyMoreResults"
+            >Full event results</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="main-player-background">
+      {% if player.team %}
+      <div class="player-header-container">
+        <img
+          class="player-img"
+          src="{{ player.team.image | default('/static/images/rocketleague.svg') }}"
+          alt="{{ player.tag }}"
+        />
+        <div class="player-info">
+          <div class="player-tag">{{ player.tag }}</div>
+          <div class="player-subheadings">
+            {% if player.name is defined %}
+            <div class="player-name">{{ player.name }}</div>
+            {% endif %} {% if player.country is defined %}
+            <div class="player-country">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-flag-pin"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#bec7e4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6"
+                />
+                <path d="M5 21v-7" />
+                <path
+                  d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z"
+                />
+                <path d="M19 18v.01" />
               </svg>
-        </div>
-        <nav class="navbar">
-            <div class="navbar-wrapper">
-                <a href="{{ url_for('index') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                      </svg></div>
-                    <h3 class="navbar-text">Home</h3>
-                </a>
-                <a href="{{ url_for('players') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-star" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h.5" />
-                        <path d="M17.8 20.817l-2.172 1.138a.392 .392 0 0 1 -.568 -.41l.415 -2.411l-1.757 -1.707a.389 .389 0 0 1 .217 -.665l2.428 -.352l1.086 -2.193a.392 .392 0 0 1 .702 0l1.086 2.193l2.428 .352a.39 .39 0 0 1 .217 .665l-1.757 1.707l.414 2.41a.39 .39 0 0 1 -.567 .411l-2.172 -1.138z" />
-                      </svg></div>
-                    <h3 class="navbar-text">Players</h3>
-                </a>
-
-                <a class="search-container">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M15 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                        <path d="M18.5 18.5l2.5 2.5" />
-                        <path d="M4 6h16" />
-                        <path d="M4 12h4" />
-                        <path d="M4 18h4" />
-                      </svg></div>
-                    <h3 class="navbar-text">Search</h3>
-                </a>
-
-                <a href="{{ url_for('events') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tournament" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M4 4m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M20 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M4 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M4 20m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M6 12h3a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-3" />
-                        <path d="M6 4h7a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-2" />
-                        <path d="M14 10h4" />
-                      </svg></div>
-                    <h3 class="navbar-text">Events</h3>
-                </a>
-                <a href="{{ url_for('teams') }}">
-                    <div class="event-icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                        <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                        <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                        <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                        <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                        <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-                      </svg></div>
-                    <h3 class="navbar-text">Teams</h3>
-                </a>
-            </div>
-            <div class="close-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                  </svg>
-            </div>
-        </nav>
-
-        <div class="fullscreen-search-container">
-            <div class="search-icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler fullscreen-icon-tabler-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                    <path d="M21 21l-6 -6" />
-                  </svg>
-                <input class="search-box"
-                    type="text"
-                    id="searchInput"
-                    name="name"
-                    placeholder="Search"
-                    oninput="performSearch()"
-                    />
-
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler fullscreen-icon-tabler-x" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                    </svg>
-            </div>
-
-            <div class="results-container">
-                <div class="results-card-container">
-                    <h3 class="results-card-text">Players</h3>
-                    <div class="results-box" id="playerResults"></div>
-                    <a href="{{ url_for('players') }}" class="seeMore" id="playersMoreResults">Full player results</a>
-                </div>
-                <div class="results-card-container">
-                    <h3 class="results-card-text">Teams</h3>
-                    <div class="results-box" id="teamResults"></div>
-                    <a href="{{ url_for('teams') }}" class="seeMore" id="teamsMoreResults">Full team results</a>
-                </div>
-                <div class="results-card-container">
-                    <h3 class="results-card-text">Events</h3>
-                    <div class="results-box" id="tournamentResults"></div>
-                    <a href="{{ url_for('events') }}" class="seeMore" id="tourneyMoreResults">Full event results</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-player-background">
-            {% if player.team %}
-            <div class="player-header-container">
-                <img class="player-img" src="{{ player.team.image | default('/static/images/rocketleague.svg') }}" alt="{{ player.tag }}">
-                <div class="player-info">
-                    <div class="player-tag">{{ player.tag }}</div>
-                    <div class="player-subheadings">
-                        {% if player.name is defined %}
-                        <div class="player-name">{{ player.name }}</div>
-                        {% endif %}
-                        {% if player.country is defined %}
-                        <div class="player-country">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flag-pin" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6" />
-                                <path d="M5 21v-7" />
-                                <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
-                                <path d="M19 18v.01" />
-                              </svg>
-                            {{ player.country }}
-                        </div>
-                        {% else %}
-                        <div class="player-country">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flag-pin" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6" />
-                                <path d="M5 21v-7" />
-                                <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
-                                <path d="M19 18v.01" />
-                              </svg>
-                            Unknown
-                        </div>
-                        {% endif %}
-                        <a href="{{ url_for('get_team', team_id=player.team._id) }}">
-                            <div class="player-team">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                    <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
-                                    <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                    <path d="M17 10h2a2 2 0 0 1 2 2v1" />
-                                    <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-                                    <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
-                                  </svg>
-                                {{ player.team.name }}
-                            </div>
-                        </a>                        
-                    </div>
-                </div>
+              {{ player.country }}
             </div>
             {% else %}
-
-            <div class="player-header-container">
-                <img class="player-img" src="/static/images/rocketleague.svg" alt="{{ player.tag }}">
-                <div class="player-info">
-                    <div class="player-tag">{{ player.tag }}</div>
-                    <div class="player-subheadings">
-                        {% if player.name is defined %}
-                        <div class="player-name">{{ player.name }}</div>
-                        {% endif %}
-                        {% if player.country is defined %}
-                        <div class="player-country">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flag-pin" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6" />
-                                <path d="M5 21v-7" />
-                                <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
-                                <path d="M19 18v.01" />
-                              </svg>
-                            {{ player.country }}
-                        </div>
-                        {% else %}
-                        <div class="player-country">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flag-pin" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6" />
-                                <path d="M5 21v-7" />
-                                <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
-                                <path d="M19 18v.01" />
-                              </svg>
-                            ?
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
+            <div class="player-country">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-flag-pin"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#bec7e4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6"
+                />
+                <path d="M5 21v-7" />
+                <path
+                  d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z"
+                />
+                <path d="M19 18v.01" />
+              </svg>
+              Unknown
             </div>
             {% endif %}
-
-            <div class="player-tab-wrapper">
-                <div class="player-tab-button" id="matches-button">Matches</div>
-                <div class="player-tab-button" id="player-links-button">Links</div>
-            </div>
-
-            <div class="player-links-wrapper" id="playerLinksWrapper">
-                {% if player.accounts.0.platform == "steam" %}
-                    {% if player.accounts.0.id %}
-                    <a href="https://steamcommunity.com/profiles/{{ player.accounts.0.id }}" class="player-link" target="_blank">Steam Profile</a>
-                    <a href="https://rocketleague.tracker.network/rocket-league/profile/steam/{{ player.accounts.0.id }}/overview" class="player-link" target="_blank">Rocket League Tracker</a>
-                    <a href="https://ballchasing.com/player/steam/{{ player.accounts.0.id }}" class="player-link" target="_blank">Ballchasing Info</a>
-                    {% endif %}
-                {% else %}
-                    <div class="no-roster">No Steam profile found</div>
-                {% endif %}
-            </div>
-
-            <div id="matches-section">
-            {% for match in matches %}
-            <div class="matches-wrapper" id="matches-container">
-                    <div class="match-card-wrapper">
-                        <a href="{{ url_for('get_match', match_id=match['_id']) }}" id="match-link"></a>
-                            <div class="match-card-header">
-                                    <a href="{{ url_for('get_event', event_id=match['event']['_id']) }}">
-                                        <div class="matches-event-name">{{ match['event']['name'] }}</div>
-                                    </a>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right card-match-arrow" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M9 6l6 6l-6 6" />
-                                    </svg>
-                                    <div class="matches-event-stage">{{ match['stage']['name'] }}</div>
-                            </div>
-                            <div class="match-date-and-location-wrapper">
-                                <div class="match-date" data-utc="{{match['date']}}"></div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right card-match-arrow" viewBox="0 0 24 24" stroke-width="1.5" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M9 6l6 6l-6 6" />
-                                </svg>
-                                {% if match['stage']['lan'] %}
-                                <div class="lan-wrapper">
-                                    <div class="lan-text">Lan</div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin lan-icon" viewBox="0 0 24 24" stroke-width="1.9" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
-                                        <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                                    </svg>
-                                </div>
-                                {% else %}
-                                <div class="online-wrapper">
-                                    <div class="online-text">Online</div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-world online-icon" viewBox="0 0 24 24" stroke-width="1.9" stroke="#bec7e4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                                        <path d="M3.6 9h16.8" />
-                                        <path d="M3.6 15h16.8" />
-                                        <path d="M11.5 3a17 17 0 0 0 0 18" />
-                                        <path d="M12.5 3a17 17 0 0 1 0 18" />
-                                    </svg>
-                                </div>
-                                {% endif %}
-                            </div>
-                            <div class="img-score-wrapper">
-                                <div class="blue-team-wrapper">
-                                    {% if match['blue'] %}
-                                    {% if match['blue']['score'] %}
-                                    <div class="matches-blue-score">{{ match['blue']['score'] }}</div>
-                                    {% else %}
-                                    <div class="matches-blue-score">0</div>
-                                    {% endif %}
-                                    {% if match['blue']['team']['team']['image'] %}
-                                    <img src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['blue']['team']['team']['name'] }}">
-                                    {% else %}
-                                    <img src="/static/images/rocketleague.svg" alt="{{ match['blue']['team']['team']['name'] }}">
-                                    {% endif %}
-                                    {% else %}
-                                    <div class="matches-blue-score">0</div>
-                                    <img src="/static/images/rocketleague.svg" alt="TBD">
-                                    {% endif %}
-                                    {% if match['blue'] %}
-                                    <a href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}" class="blue-name">
-                                        <div class="blue-name-text">{{ match['blue']['team']['team']['name'] }}</div>
-                                    </a>
-                                    {% else %}
-                                        <div class="blue-name-text">TBD</div>
-                                    {% endif %}
-                                </div>
-                                <div class="orange-team-wrapper">
-                                    {% if match['orange'] %}
-                                    {% if match['orange']['score'] %}
-                                    <div class="matches-orange-score">{{ match['orange']['score'] }}</div>
-                                    {% else %}
-                                    <div class="matches-orange-score">0</div>
-                                    {% endif %}
-                                    {% if match['orange']['team']['team']['image'] %}
-                                    <img src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}" alt="{{ match['orange']['team']['team']['name'] }}">
-                                    {% else %}
-                                    <img src="/static/images/rocketleague.svg" alt="{{ match['orange']['team']['team']['name'] }}">
-                                    {% endif %}
-                                    {% else %}
-                                    <div class="matches-orange-score">0</div>
-                                    <img src="/static/images/rocketleague.svg" alt="TBD">
-                                    {% endif %}
-                                    {% if match['orange'] %}
-                                    <a href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}" class="orange-name">
-                                        <div class="orange-name-text">{{ match['orange']['team']['team']['name'] }}</div>
-                                    </a>
-                                    {% else %}
-                                        <div class="orange-name-text">TBD</div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            {% endfor %}
+            <a href="{{ url_for('get_team', team_id=player.team._id) }}">
+              <div class="player-team">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-users-group"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#bec7e4"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                  <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+                  <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                  <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
+                </svg>
+                {{ player.team.name }}
+              </div>
+            </a>
+          </div>
         </div>
+      </div>
+      {% else %}
 
-            <div class="pagination" id="pagination-buttons">
-                {% if page > 1 %}
-                <a href="{{ url_for('get_player', player_id=player._id, page=page-1) }}" id="prevPageButton">Prev</a>
+      <div class="player-header-container">
+        <img
+          class="player-img"
+          src="/static/images/rocketleague.svg"
+          alt="{{ player.tag }}"
+        />
+        <div class="player-info">
+          <div class="player-tag">{{ player.tag }}</div>
+          <div class="player-subheadings">
+            {% if player.name is defined %}
+            <div class="player-name">{{ player.name }}</div>
+            {% endif %} {% if player.country is defined %}
+            <div class="player-country">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-flag-pin"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#bec7e4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6"
+                />
+                <path d="M5 21v-7" />
+                <path
+                  d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z"
+                />
+                <path d="M19 18v.01" />
+              </svg>
+              {{ player.country }}
+            </div>
+            {% else %}
+            <div class="player-country">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-flag-pin"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#bec7e4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12.857 14.675a5.016 5.016 0 0 1 -.857 -.675a5 5 0 0 0 -7 0v-9a5 5 0 0 1 7 0a5 5 0 0 0 7 0v6"
+                />
+                <path d="M5 21v-7" />
+                <path
+                  d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z"
+                />
+                <path d="M19 18v.01" />
+              </svg>
+              ?
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="player-tab-wrapper">
+        <div class="player-tab-button" id="matches-button">Matches</div>
+        <div class="player-tab-button" id="player-links-button">Links</div>
+      </div>
+
+      <div class="player-links-wrapper" id="playerLinksWrapper">
+        {% if player.accounts.0.platform == "steam" %} {% if
+        player.accounts.0.id %}
+        <a
+          href="https://steamcommunity.com/profiles/{{ player.accounts.0.id }}"
+          class="player-link"
+          target="_blank"
+          >Steam Profile</a
+        >
+        <a
+          href="https://rocketleague.tracker.network/rocket-league/profile/steam/{{ player.accounts.0.id }}/overview"
+          class="player-link"
+          target="_blank"
+          >Rocket League Tracker</a
+        >
+        <a
+          href="https://ballchasing.com/player/steam/{{ player.accounts.0.id }}"
+          class="player-link"
+          target="_blank"
+          >Ballchasing Info</a
+        >
+        {% endif %} {% else %}
+        <div class="no-roster">No Steam profile found</div>
+        {% endif %}
+      </div>
+
+      <div id="matches-section">
+        {% for match in matches %}
+        <div class="matches-wrapper" id="matches-container">
+          <div class="match-card-wrapper">
+            <a
+              href="{{ url_for('get_match', match_id=match['_id']) }}"
+              id="match-link"
+            ></a>
+            <div class="match-card-header">
+              <a
+                href="{{ url_for('get_event', event_id=match['event']['_id']) }}"
+              >
+                <div class="matches-event-name">
+                  {{ match['event']['name'] }}
+                </div>
+              </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-chevron-right card-match-arrow"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#bec7e4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+              <div class="matches-event-stage">
+                {{ match['stage']['name'] }}
+              </div>
+            </div>
+            <div class="match-date-and-location-wrapper">
+              <div class="match-date" data-utc="{{match['date']}}"></div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-chevron-right card-match-arrow"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#bec7e4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+              {% if match['stage']['lan'] %}
+              <div class="lan-wrapper">
+                <div class="lan-text">Lan</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-map-pin lan-icon"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.9"
+                  stroke="#bec7e4"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                  <path
+                    d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+                  />
+                </svg>
+              </div>
+              {% else %}
+              <div class="online-wrapper">
+                <div class="online-text">Online</div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-world online-icon"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.9"
+                  stroke="#bec7e4"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                  <path d="M3.6 9h16.8" />
+                  <path d="M3.6 15h16.8" />
+                  <path d="M11.5 3a17 17 0 0 0 0 18" />
+                  <path d="M12.5 3a17 17 0 0 1 0 18" />
+                </svg>
+              </div>
+              {% endif %}
+            </div>
+            <div class="img-score-wrapper">
+              <div class="blue-team-wrapper">
+                {% if match['blue'] %} {% if match['blue']['score'] %}
+                <div class="matches-blue-score">
+                  {{ match['blue']['score'] }}
+                </div>
+                {% else %}
+                <div class="matches-blue-score">0</div>
+                {% endif %} {% if match['blue']['team']['team']['image'] %}
+                <img
+                  src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
+                  alt="{{ match['blue']['team']['team']['name'] }}"
+                />
+                {% else %}
+                <img
+                  src="/static/images/rocketleague.svg"
+                  alt="{{ match['blue']['team']['team']['name'] }}"
+                />
+                {% endif %} {% else %}
+                <div class="matches-blue-score">0</div>
+                <img src="/static/images/rocketleague.svg" alt="TBD" />
+                {% endif %} {% if match['blue'] %}
+                <a
+                  href="{{ url_for('get_team', team_id = match['blue']['team']['team']['_id']) }}"
+                  class="blue-name"
+                >
+                  <div class="blue-name-text">
+                    {{ match['blue']['team']['team']['name'] }}
+                  </div>
+                </a>
+                {% else %}
+                <div class="blue-name-text">TBD</div>
                 {% endif %}
-                {% if  page >= 0 %}
-                <a href="{{ url_for('get_player', player_id=player._id, page=page+1) }}" id="nextPageButton">Next</a>
+              </div>
+              <div class="orange-team-wrapper">
+                {% if match['orange'] %} {% if match['orange']['score'] %}
+                <div class="matches-orange-score">
+                  {{ match['orange']['score'] }}
+                </div>
+                {% else %}
+                <div class="matches-orange-score">0</div>
+                {% endif %} {% if match['orange']['team']['team']['image'] %}
+                <img
+                  src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
+                  alt="{{ match['orange']['team']['team']['name'] }}"
+                />
+                {% else %}
+                <img
+                  src="/static/images/rocketleague.svg"
+                  alt="{{ match['orange']['team']['team']['name'] }}"
+                />
+                {% endif %} {% else %}
+                <div class="matches-orange-score">0</div>
+                <img src="/static/images/rocketleague.svg" alt="TBD" />
+                {% endif %} {% if match['orange'] %}
+                <a
+                  href="{{ url_for('get_team', team_id = match['orange']['team']['team']['_id']) }}"
+                  class="orange-name"
+                >
+                  <div class="orange-name-text">
+                    {{ match['orange']['team']['team']['name'] }}
+                  </div>
+                </a>
+                {% else %}
+                <div class="orange-name-text">TBD</div>
                 {% endif %}
+              </div>
             </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
 
-            </div>
-            <div class="footer">
-                <div class="main-section">
-                    <div class="footer-section-headers">Demosgg</div>
-                    <div class="footer-buttons">
-                        <a href="https://github.com/tyrohellion/demos" class="footer-button">
-                            <div class="footer-text">GitHub</div>
-                        </a>
-                        <a href="https://zsr.octane.gg" class="footer-button">
-                            <div class="footer-text">API</div>
-                        </a>
-                        <a href="https://liquipedia.net/rocketleague/Main_Page" class="footer-button">
-                            <div class="footer-text">Liquipedia</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="personal-section">
-                    <div class="footer-section-headers">My stuff</div>
-                    <div class="footer-buttons">
-                        <a href="https://x.com/tyrohellion" class="footer-button">
-                            <div class="footer-text">Twitter</div>
-                        </a>
-                        <a href="https://www.twitch.tv/tyrohellion" class="footer-button">
-                            <div class="footer-text">Twitch</div>
-                        </a>
-                        <a href="https://liquipedia.net/rocketleague/Tyro_(American_Player)" class="footer-button">
-                            <div class="footer-text">Liquipedia</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="thanks-section">
-                    <div class="footer-section-headers">Acknowledgments</div>
-                    <div class="footer-buttons">
-                        <a href="https://www.shiftrle.gg" class="footer-button">
-                            <div class="footer-text">ShiftRLE</div>
-                        </a>
-                        <a href="https://github.com/amas0/octanegg" class="footer-button">
-                            <div class="footer-text">Amas</div>
-                        </a>
-                        <a href="https://octane.gg" class="footer-button">
-                            <div class="footer-text">Octane.gg</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="copyright">
-                    demosgg © 2024 - All Rights Reserved
-                </div>
-            </div>
-        <script src="/static/script.js" async defer></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                let currentPage = 1;
+      <div class="pagination" id="pagination-buttons">
+        {% if page > 1 %}
+        <a
+          href="{{ url_for('get_player', player_id=player._id, page=page-1) }}"
+          id="prevPageButton"
+          >Prev</a
+        >
+        {% endif %} {% if page >= 0 %}
+        <a
+          href="{{ url_for('get_player', player_id=player._id, page=page+1) }}"
+          id="nextPageButton"
+          >Next</a
+        >
+        {% endif %}
+      </div>
+    </div>
+    <div class="footer">
+      <div class="main-section">
+        <div class="footer-section-headers">Demosgg</div>
+        <div class="footer-buttons">
+          <a href="https://github.com/tyrohellion/demos" class="footer-button">
+            <div class="footer-text">GitHub</div>
+          </a>
+          <a href="https://zsr.octane.gg" class="footer-button">
+            <div class="footer-text">API</div>
+          </a>
+          <a
+            href="https://liquipedia.net/rocketleague/Main_Page"
+            class="footer-button"
+          >
+            <div class="footer-text">Liquipedia</div>
+          </a>
+        </div>
+      </div>
+      <div class="personal-section">
+        <div class="footer-section-headers">My stuff</div>
+        <div class="footer-buttons">
+          <a href="https://x.com/tyrohellion" class="footer-button">
+            <div class="footer-text">Twitter</div>
+          </a>
+          <a href="https://www.twitch.tv/tyrohellion" class="footer-button">
+            <div class="footer-text">Twitch</div>
+          </a>
+          <a
+            href="https://liquipedia.net/rocketleague/Tyro_(American_Player)"
+            class="footer-button"
+          >
+            <div class="footer-text">Liquipedia</div>
+          </a>
+        </div>
+      </div>
+      <div class="thanks-section">
+        <div class="footer-section-headers">Acknowledgments</div>
+        <div class="footer-buttons">
+          <a href="https://www.shiftrle.gg" class="footer-button">
+            <div class="footer-text">ShiftRLE</div>
+          </a>
+          <a href="https://github.com/amas0/octanegg" class="footer-button">
+            <div class="footer-text">Amas</div>
+          </a>
+          <a href="https://octane.gg" class="footer-button">
+            <div class="footer-text">Octane.gg</div>
+          </a>
+        </div>
+      </div>
+      <div class="copyright">demosgg © 2024 - All Rights Reserved</div>
+    </div>
+    <script src="/static/script-1.0.js" async defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let currentPage = 1;
 
-                // Function to fetch matches with a specific page number
-                function fetchMatches(page) {
-                    // Construct the URL with the page parameter
-                    const url = `/player/{{ player._id }}?page=${page}`;
+        // Function to fetch matches with a specific page number
+        function fetchMatches(page) {
+          // Construct the URL with the page parameter
+          const url = `/player/{{ player._id }}?page=${page}`;
 
-                    // Fetch data from the API
-                    fetch(url)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            console.log(data); // Log the data to ensure it's coming correctly
-                            // Process the data and append it to your HTML
-                            appendMatchesToDOM(data.matches); // Example: appendMatchesToDOM is a function that appends matches to the HTML
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with the fetch operation:', error);
-                        });
-                }
-
-                // Initial fetch when the page loads
-                fetchMatches(currentPage);
-
-                // Function to handle clicking on the next page button
-                nextPageButton.addEventListener('click', function() {
-                    currentPage++;
-                    fetchMatches(currentPage);
-                });
-
-                // Function to handle clicking on the previous page button
-                prevPageButton.addEventListener('click', function() {
-                    if (currentPage > 1) {
-                        currentPage--;
-                        fetchMatches(currentPage);
-                    }
-                });
+          // Fetch data from the API
+          fetch(url)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data); // Log the data to ensure it's coming correctly
+              // Process the data and append it to your HTML
+              appendMatchesToDOM(data.matches); // Example: appendMatchesToDOM is a function that appends matches to the HTML
+            })
+            .catch((error) => {
+              console.error(
+                "There was a problem with the fetch operation:",
+                error
+              );
             });
+        }
 
-                            // Function to count the number of elements with the class "match-card-wrapper"
-            function countMatchCardWrapperElements() {
-                const matchCardWrappers = document.querySelectorAll('.match-card-wrapper');
-                return matchCardWrappers.length;
-            }
+        // Initial fetch when the page loads
+        fetchMatches(currentPage);
 
-            // Function to hide the next button if less than 10 elements
-            function hideNextButtonIfLessThanTenElements() {
-                const matchCount = countMatchCardWrapperElements();
-                const nextButton = document.getElementById('nextPageButton');
-                if (matchCount == 10) {
-                    nextButton.style.display = 'flex';
-                }
-                else {
-                    nextButton.style.display = 'none';
-                }
-            }
+        // Function to handle clicking on the next page button
+        nextPageButton.addEventListener("click", function () {
+          currentPage++;
+          fetchMatches(currentPage);
+        });
 
-            // Call the function initially
-            hideNextButtonIfLessThanTenElements();
-        </script>
-        <script>
-            document.getElementById('matches-button').onclick = function() {
-                document.getElementById('matches-section').style.display = 'block';
-                document.getElementById('playerLinksWrapper').style.display = 'none';
-                document.getElementById('pagination-buttons').style.display = 'flex';
-            };
+        // Function to handle clicking on the previous page button
+        prevPageButton.addEventListener("click", function () {
+          if (currentPage > 1) {
+            currentPage--;
+            fetchMatches(currentPage);
+          }
+        });
+      });
 
-            document.getElementById('player-links-button').onclick = function() {
-                document.getElementById('matches-section').style.display = 'none';
-                document.getElementById('playerLinksWrapper').style.display = 'flex';
-                document.getElementById('pagination-buttons').style.display = 'none';
-            };
-        </script>
-    </body>
+      // Function to count the number of elements with the class "match-card-wrapper"
+      function countMatchCardWrapperElements() {
+        const matchCardWrappers = document.querySelectorAll(
+          ".match-card-wrapper"
+        );
+        return matchCardWrappers.length;
+      }
+
+      // Function to hide the next button if less than 10 elements
+      function hideNextButtonIfLessThanTenElements() {
+        const matchCount = countMatchCardWrapperElements();
+        const nextButton = document.getElementById("nextPageButton");
+        if (matchCount == 10) {
+          nextButton.style.display = "flex";
+        } else {
+          nextButton.style.display = "none";
+        }
+      }
+
+      // Call the function initially
+      hideNextButtonIfLessThanTenElements();
+    </script>
+    <script>
+      document.getElementById("matches-button").onclick = function () {
+        document.getElementById("matches-section").style.display = "block";
+        document.getElementById("playerLinksWrapper").style.display = "none";
+        document.getElementById("pagination-buttons").style.display = "flex";
+      };
+
+      document.getElementById("player-links-button").onclick = function () {
+        document.getElementById("matches-section").style.display = "none";
+        document.getElementById("playerLinksWrapper").style.display = "flex";
+        document.getElementById("pagination-buttons").style.display = "none";
+      };
+    </script>
+  </body>
 </html>
