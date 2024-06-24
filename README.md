@@ -5,8 +5,9 @@
 
 # Preview
 
-![](https://github.com/tyrohellion/demos/blob/master/screenshots/1.png)
-![](https://github.com/tyrohellion/demos/blob/master/screenshots/2.png)
+![](https://github.com/tyrohellion/demos/blob/main/screenshots/1.png)
+![](https://github.com/tyrohellion/demos/blob/main/screenshots/2.png)
+![](https://github.com/tyrohellion/demos/blob/main/screenshots/4.png)
 
 
 # Dependencies
