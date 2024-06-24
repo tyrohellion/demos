@@ -8,6 +8,7 @@ var body = document.body;
 
 searchButton.onclick = function() {
     search.classList.toggle('active');
+    document.getElementById('searchInput').focus();
 };
 
 closeSearch.onclick = function() {
