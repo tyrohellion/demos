@@ -6,7 +6,7 @@
     <title>demosgg</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/static/css/style-1.0.css" />
+    <link rel="stylesheet" href="/static/css/style-1.1.css" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
 
     <link rel="preconnect" href="https://rsms.me/" />
@@ -298,34 +298,17 @@
         {% for event in eventsS %}
         <div class="featured-event-wrapper-index">
           <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
-          {% if event.image %}
-          <img
-            src="{{ event.image | default('/static/images/rocketleague.svg') }}"
-            alt="{{ event.name }}"
-          />
           <div class="featured-event-name-index">{{ event.name }}</div>
-          {% else %}
-          <img src="/static/images/rocketleague.svg" alt="{{ event.name }}" />
-          <div class="featured-event-name-index">{{ event.name }}</div>
-          {% endif %}
         </div>
         {% endfor %} {% for event in eventsA %} {% if event.region == 'NA' or
         event.region == 'EU' or event.region == 'ME' or event.region == 'SAM' or
         event.region == 'INT' or event.region == 'OCE' %}
         <div class="featured-event-wrapper-index">
           <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
-          {% if event.image %}
-          <img
-            src="{{ event.image | default('/static/images/rocketleague.svg') }}"
-            alt="{{ event.name }}"
-          />
           <div class="featured-event-name-index">{{ event.name }}</div>
-          {% else %}
-          <img src="/static/images/rocketleague.svg" alt="{{ event.name }}" />
-          <div class="featured-event-name-index">{{ event.name }}</div>
-          {% endif %}
         </div>
-        {% endif %} {% endfor %}
+        {% endif %} 
+        {% endfor %}
       </div>
 
       <div class="featured-teams">
