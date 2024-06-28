@@ -74,11 +74,6 @@ def get_match(match_id):
 
     return render_template('match_info.html', match=match, games=games, num_of_games=num_of_games)
 
-@app.route('/game/<game_id>')
-def get_game(game_id):
-    game = octane_api.get_game(game_id)
-    return render_template('match_info.html', game=game)
-
 @app.route('/player/<player_id>')
 def get_player(player_id):
     player = octane_api.get_player(player_id)

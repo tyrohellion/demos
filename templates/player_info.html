@@ -7,7 +7,10 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/static/css/style-1.1.css" />
-    <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='/images/favicon.ico') }}"
+    />
 
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -398,8 +401,7 @@
       </div>
 
       <div class="player-links-wrapper" id="playerLinksWrapper">
-        {% if player.accounts.0.platform == "steam" %} {% if
-        player.accounts.0.id %}
+        {% if player.accounts and player.accounts.0.platform == "steam" and player.accounts.0.id %}
         <a
           href="https://steamcommunity.com/profiles/{{ player.accounts.0.id }}"
           class="player-link"
@@ -418,7 +420,7 @@
           target="_blank"
           >Ballchasing Info</a
         >
-        {% endif %} {% else %}
+        {% else %} 
         <div class="no-roster">No Steam profile found</div>
         {% endif %}
       </div>
