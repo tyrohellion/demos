@@ -243,17 +243,14 @@ body {
   }
 }
 
-/* grid card area */
+/* index card area */
 
 .grid-container {
-  display: grid;
-  place-content: center;
-  grid-template-columns: repeat(auto-fit, 20rem);
-  grid-auto-rows: minmax(1rem, 20rem);
-  grid-auto-flow: auto;
-  grid-gap: 20px;
-  padding-top: 40px;
-  padding-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40px 1rem 80px 1rem;
+  gap: 2rem;
 }
 
 .grid-container section {
@@ -261,6 +258,8 @@ body {
   color: var(--button-color);
   background-color: var(--match-results-background);
   display: flex;
+  width: 20rem;
+  height: 20rem;
   overflow: hidden;
 }
 
@@ -446,15 +445,24 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
 }
 
-.event-name-index,
 .team-name-index,
 .player-tag-index {
   display: flex;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  font-weight: 700;
+  margin-left: 16px;
+  margin-right: 16px;
+  text-align: left;
+  gap: 3rem;
+}
+
+.event-name-index {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
   font-weight: 700;
   margin-left: 16px;
   margin-right: 16px;
@@ -471,7 +479,6 @@ body {
 
 .player-wrapper-index {
   display: flex;
-  gap: 1rem;
   align-items: center;
   margin-left: 16px;
 }
@@ -2674,16 +2681,16 @@ body {
  * --------------------------------------------
  */
 @media all and (max-width: 1530px) {
-  .grid-container {
-    grid-template-columns: repeat(auto-fit, 15rem);
-    grid-auto-rows: minmax(1rem, 15rem);
+  .grid-container section {
+    width: 17rem;
+    height: 17rem;
   }
 }
 
 @media all and (min-width: 768px) and (max-width: 1024px) {
-  .grid-container {
-    grid-template-columns: repeat(auto-fit, 14rem);
-    grid-auto-rows: minmax(1rem, 14rem);
+  .grid-container section {
+    width: 14rem;
+    height: 14rem;
   }
 }
 
@@ -2708,11 +2715,6 @@ body {
 
   .search-box-and-filters {
     gap: 1rem;
-  }
-
-  .grid-container {
-    grid-template-columns: repeat(auto-fit, 14rem);
-    grid-auto-rows: minmax(1rem, 14rem);
   }
 
   .featured-event-wrapper-index {
@@ -2811,9 +2813,13 @@ body {
     display: none;
   }
 
+  .grid-container section {
+    width: 13rem;
+    height: 13rem;
+  }
+
   .grid-container {
-    grid-template-columns: repeat(auto-fit, 13rem);
-    grid-auto-rows: minmax(1rem, 13rem);
+    gap: 1rem;
   }
 
   .featured-event-wrapper-index {
@@ -2996,9 +3002,13 @@ body {
     display: none;
   }
 
+  .grid-container section {
+    width: 12rem;
+    height: 12rem;
+  }
+
   .grid-container {
-    grid-template-columns: repeat(auto-fit, 12rem);
-    grid-auto-rows: minmax(1rem, 12rem);
+    gap: 1rem;
   }
 
   .search-icon-container {
@@ -3126,9 +3136,13 @@ body {
 
 /* Portrait */
 @media screen and (orientation: portrait) {
+  .grid-container section {
+    width: 12rem;
+    height: 12rem;
+  }
+
   .grid-container {
-    grid-template-columns: repeat(auto-fit, 12rem);
-    grid-auto-rows: minmax(1rem, 12rem);
+    gap: 1rem;
   }
 }
 /* Landscape */
@@ -3249,9 +3263,13 @@ body {
     display: none;
   }
 
+  .grid-container section {
+    width: 12rem;
+    height: 12rem;
+  }
+
   .grid-container {
-    grid-template-columns: repeat(auto-fit, 12rem);
-    grid-auto-rows: minmax(1rem, 12rem);
+    gap: 1rem;
   }
 
   .event-subheadings {
