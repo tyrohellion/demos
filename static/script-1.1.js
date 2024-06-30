@@ -223,7 +223,11 @@ function updateEventResults(events) {
     if (event.tier) {
       var pTier = document.createElement("p");
       pTier.classList.add("event-tier");
-      pTier.textContent = event.tier;
+      if (event.tier == "S" || event.tier == "A" || event.tier == "B" || event.tier == "C" || event.tier == "D") {
+        pTier.textContent = event.tier + "-Tier";
+      } else {
+        pTier.textContent = event.tier;
+      }
       divDetails.appendChild(pTier);
     }
 
