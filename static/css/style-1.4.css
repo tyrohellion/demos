@@ -528,12 +528,13 @@ body {
   transition: 150ms all;
   transform: var(--card-grow-before);
   background-color: var(--sidebar-color);
+  overflow: hidden;
 }
 
 .featured-event-wrapper-index {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   position: relative;
   width: 720px;
   height: 40px;
@@ -543,6 +544,33 @@ body {
   border-radius: 0.5rem;
   transition: 150ms all;
   transform: var(--card-grow-before);
+  background-color: rgb(57, 58, 70);
+  overflow: hidden;
+}
+
+.featured-event-details-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.featured-event-tier-index,
+.featured-event-region-index {
+  color: var(--button-color);
+  background-color: var(--sidebar-color);
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: fit-content;
+}
+
+.featured-team-region-index {
+  color: var(--button-color);
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-width: fit-content;
   background-color: rgb(57, 58, 70);
 }
 
@@ -2695,6 +2723,10 @@ body {
 }
 
 @media all and (min-width: 768px) and (max-width: 992px) {
+  .featured-event-details-wrapper {
+    display: none;
+  }
+
   .filter-button-mobile {
     display: flex;
   }
@@ -2725,6 +2757,10 @@ body {
 }
 
 @media all and (min-width: 480px) and (max-width: 768px) {
+  .featured-event-details-wrapper {
+    display: none;
+  }
+
   .filter-button-mobile {
     display: flex;
   }
@@ -2912,6 +2948,10 @@ body {
 @media all and (max-width: 480px) {
   body {
     padding-bottom: 420px;
+  }
+
+  .featured-event-details-wrapper {
+    display: none;
   }
 
   .filter-button-mobile {
@@ -3172,6 +3212,10 @@ body {
 @media screen and (max-device-width: 767px) and (orientation: portrait) {
   body {
     padding-bottom: 420px;
+  }
+
+  .featured-event-details-wrapper {
+    display: none;
   }
 
   .filter-button-mobile {

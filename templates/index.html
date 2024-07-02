@@ -6,7 +6,7 @@
     <title>demos</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/static/css/style-1.3.css" />
+    <link rel="stylesheet" href="/static/css/style-1.4.css" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
 
     <link rel="preconnect" href="https://rsms.me/" />
@@ -299,6 +299,12 @@
         <div class="featured-event-wrapper-index">
           <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
           <div class="featured-event-name-index">{{ event.name }}</div>
+          {% if event.region and event.tier %}
+          <div class="featured-event-details-wrapper">
+            <div class="featured-event-tier-index">{{ event.tier }}-Tier</div>
+            <div class="featured-event-region-index">{{ event.region }}</div>
+          </div>
+          {% endif %}
         </div>
         {% endfor %} {% for event in eventsA %} {% if event.region == 'NA' or
         event.region == 'EU' or event.region == 'ME' or event.region == 'SAM' or
@@ -306,6 +312,12 @@
         <div class="featured-event-wrapper-index">
           <a href="{{ url_for('get_event', event_id=event._id) }}"></a>
           <div class="featured-event-name-index">{{ event.name }}</div>
+          {% if event.region and event.tier %}
+          <div class="featured-event-details-wrapper">
+            <div class="featured-event-tier-index">{{ event.tier }}-Tier</div>
+            <div class="featured-event-region-index">{{ event.region }}</div>
+          </div>
+          {% endif %}
         </div>
         {% endif %} 
         {% endfor %}
@@ -326,6 +338,7 @@
           <div class="featured-player-name-index">
             {{ participant.team.name }}
           </div>
+          <div class="featured-team-region-index">{{ participant.team.region }}</div>
           {% else %}
           <img
             src="/static/images/rocketleague.svg"
@@ -334,6 +347,7 @@
           <div class="featured-player-name-index">
             {{ participant.team.name }}
           </div>
+          <div class="featured-team-region-index">{{ participant.team.region }}</div>
           {% endif %}
         </div>
         {% endif %} {% endfor %}
