@@ -434,3 +434,8 @@ dateElements.forEach(function (element) {
 
   element.textContent = formattedDate;
 });
+
+function handleImageError(imgElement) {
+  imgElement.onerror = null;
+  imgElement.src = '/static/images/rocketleague.svg';
+}

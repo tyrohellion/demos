@@ -1408,6 +1408,30 @@ body {
   cursor: pointer;
 }
 
+.clickable-imgs {
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+
+.clickable-imgs a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7rem;
+  transition: all 100ms;
+  border: 2px solid rgba(255, 255, 255, 0);
+}
+
+.clickable-imgs a:hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7rem;
+  border: 2px solid var(--button-color);
+  transition: all 100ms;
+}
+
 .match-page-cards-wrapper {
   display: flex;
   gap: 1rem;

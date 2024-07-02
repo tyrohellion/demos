@@ -6,7 +6,7 @@
     <title>demos</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/static/css/style-1.4.css" />
+    <link rel="stylesheet" href="/static/css/style-1.5.css" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='/images/favicon.ico') }}">
 
     <link rel="preconnect" href="https://rsms.me/" />
@@ -249,6 +249,7 @@
             <img
               src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
               alt="{{ participant.team.name }}"
+              onerror="handleImageError(this)"
             />
             <div class="team-name-index">{{ participant.team.name }}</div>
           </div>
@@ -265,6 +266,7 @@
             <img
               src="{{ event.image | default('/static/images/rocketleague.svg') }}"
               alt="{{ event.name }}"
+              onerror="handleImageError(this)"
             />
             <div class="event-name-index">{{ event.name }}</div>
             {% else %}
@@ -284,6 +286,7 @@
             <img
               src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
               alt="{{ participant.team.name }}"
+              onerror="handleImageError(this)"
             />
             <div class="player-tag-index">{{ player.tag }}</div>
           </div>
@@ -334,6 +337,7 @@
           <img
             src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
             alt="{{ participant.team.name }}"
+            onerror="handleImageError(this)"
           />
           <div class="featured-player-name-index">
             {{ participant.team.name }}
@@ -404,6 +408,6 @@
       </div>
       <div class="copyright">demosgg © 2024 - All Rights Reserved</div>
     </div>
-    <script src="/static/script-1.1.js" async defer></script>
+    <script src="/static/script-1.2.js" async defer></script>
   </body>
 </html>
