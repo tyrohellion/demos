@@ -311,7 +311,6 @@
             <a href="{{ url_for('get_team', team_id = match.blue.team.team._id) }}"></a>
             <img
               src="{{ match.blue.team.team.image | default('/static/images/rocketleague.svg')}}"
-              alt="{{ match.blue.team.team.name }}"
               onerror="handleImageError(this)"
             />
           </div>
@@ -335,7 +334,6 @@
             <a href="{{ url_for('get_team', team_id = match.orange.team.team._id) }}"></a>
             <img
               src="{{ match.orange.team.team.image | default('/static/images/rocketleague.svg')}}"
-              alt="{{ match.orange.team.team.name }}"
               onerror="handleImageError(this)"
             />
           </div>
@@ -418,7 +416,6 @@
             <a href="{{ url_for('get_team', team_id = match.blue.team.team._id) }}"></a>
             <img
             src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
-            alt="{{ match['blue']['team']['team']['name'] }}"
             onerror="handleImageError(this)"
           />
           </div>
@@ -497,7 +494,6 @@
             <a href="{{ url_for('get_team', team_id = match.orange.team.team._id) }}"></a>
             <img
               src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
-              alt="{{ match['orange']['team']['team']['name'] }}"
               onerror="handleImageError(this)"
             />
           </div>

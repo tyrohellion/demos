@@ -528,7 +528,6 @@
                 {% endif %} {% if match['blue']['team']['team']['image'] %}
                 <img
                   src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
-                  alt="{{ match['blue']['team']['team']['name'] }}"
                   onerror="handleImageError(this)"
                 />
                 {% else %}
@@ -562,7 +561,6 @@
                 {% endif %} {% if match['orange']['team']['team']['image'] %}
                 <img
                   src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
-                  alt="{{ match['orange']['team']['team']['name'] }}"
                   onerror="handleImageError(this)"
                 />
                 {% else %}

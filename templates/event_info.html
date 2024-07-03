@@ -408,7 +408,6 @@
                 {% endif %} {% if match['blue']['team']['team']['image'] %}
                 <img
                   src="{{ match['blue']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
-                  alt="{{ match['blue']['team']['team']['name'] }}"
                   onerror="handleImageError(this)"
                 />
                 {% else %}
@@ -442,7 +441,6 @@
                 {% endif %} {% if match['orange']['team']['team']['image'] %}
                 <img
                   src="{{ match['orange']['team']['team']['image'] | default('/static/images/rocketleague.svg')}}"
-                  alt="{{ match['orange']['team']['team']['name'] }}"
                   onerror="handleImageError(this)"
                 />
                 {% else %}
@@ -501,7 +499,6 @@
           {% if participant.team.image %}
           <img
             src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
-            alt="{{ participant.team.name }}"
             onerror="handleImageError(this)"
           />
           <div class="team-name-participant">{{ participant.team.name }}</div>
@@ -529,7 +526,6 @@
           {% if participant.team.image %}
           <img
             src="{{ participant.team.image | default('/static/images/rocketleague.svg') }}"
-            alt="{{ participant.team.name }}"
             onerror="handleImageError(this)"
           />
           <div class="player-name-participant">{{ player.tag }}</div>
